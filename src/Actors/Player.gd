@@ -5,17 +5,22 @@ onready var platform_detector = $PlatformDetector
 onready var sprite = $AnimatedSprite
 
 export var speed = 100
-export var jump_speed = 100
+export var jump_speed = 260
 
 var movement_dir = Vector2()
 
 var active_action = null
 var active_action_steps = 0
-var step_length = 2
+const move_step_length = 4
+const jump_step_length = 8
+
 var discrete_move_done = false
-var current_step_time_left = step_length
+var current_step_length = move_step_length
+var current_step_time_left = current_step_length
 
 var lastHorisontalDirection = 1
+
+const step_size = 16.0
 
 var move_selection_panel_pos = Vector2()
 
@@ -31,7 +36,7 @@ func _process(delta):
 		if current_step_time_left < 0:
 			active_action_steps -= 1
 			discrete_move_done = false
-			current_step_time_left = step_length
+			current_step_time_left = current_step_length
 			
 			if active_action_steps <= 0:
 				active_action = null
@@ -94,7 +99,13 @@ func _process_action_input():
 func _on_action_choosen(action, steps):
 	active_action = action
 	active_action_steps = steps
-	current_step_time_left = step_length
+	
+	if active_action == MoveVariantBase.VariantType.Left or active_action == MoveVariantBase.VariantType.Right:
+		current_step_length = move_step_length * step_size / speed
+	else:
+		current_step_length = jump_step_length * step_size / speed
+	
+	current_step_time_left = current_step_length
 	discrete_move_done = false
 
 
