@@ -64,7 +64,7 @@ func _spawn_new_variant():
 	
 	var node_instance = new_scene.instance()
 	$VariantsContainer.add_child(node_instance)
-	node_instance.set_global_position(Vector2(scene_center.x, scene_center.y - scene_half_height))
+	node_instance.position = Vector2(scene_center.x, scene_center.y - scene_half_height)
 	active_variants.append(node_instance)
 
 
