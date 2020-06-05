@@ -13,15 +13,21 @@ const FLOOR_DETECT_DISTANCE = 20.0
 
 var movement_dir = Vector2()
 
+var active_action = null
+var lastHorisontalDirection = 1
+
 func _ready():
-	pass # Replace with function body.
+	Events.connect("player_action_choosen", self, "_on_action_choosen")
 
 
 func _process(delta):
-	pass
+	_process_action_input()
+	
+	# just for test
+	# _process_normal_input()
 
 
-func _process_input():
+func _process_normal_input():
 	var desiredDirection = Vector2()
 	
 	if Input.is_action_pressed("move_left"):
@@ -32,14 +38,37 @@ func _process_input():
 		desiredDirection.y += -1
 	
 	movement_dir = desiredDirection
-	
-	pass
 
+
+func _process_action_input():
+	if active_action == null:
+		return
+	
+	var desiredDirection = Vector2()
+	
+	if active_action == MoveVariantBase.VariantType.Left:
+		desiredDirection.x = -1
+	elif active_action == MoveVariantBase.VariantType.Right:
+		desiredDirection.x = 1
+	elif active_action == MoveVariantBase.VariantType.JumpUp and is_on_floor():
+		desiredDirection.y = -1
+	elif active_action == MoveVariantBase.VariantType.JumpDiagonal:
+		if is_on_floor():
+			desiredDirection.y = -1
+		desiredDirection.x = lastHorisontalDirection
+	
+	if desiredDirection.x > 0:
+		lastHorisontalDirection = 1
+	elif desiredDirection.x < 0:
+		lastHorisontalDirection = -1
+	
+	movement_dir = desiredDirection
+
+
+func _on_action_choosen(action):
+	active_action = action
 
 func _physics_process(delta):
-	# just for test
-	_process_input()
-	
 	# gravity acceleration
 	velocity.y += gravity * delta
 	

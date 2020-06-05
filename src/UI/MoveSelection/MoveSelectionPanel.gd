@@ -21,6 +21,9 @@ var scene_center
 var scene_half_height
 var item_collision_half_size
 
+# for adjusting priority of subsequent variants
+var variant_center_shift = 0
+
 # average variants count on screen
 var variants_dencity = 5
 
@@ -54,14 +57,14 @@ func _process(delta):
 func _spawn_new_variant():
 	# restart timer
 	# ToDo: better randomization that takes speed into account
-	spawn_timer.start(rng.randf_range(variant_spawn_height / speed, 0.5))
+	spawn_timer.start(rng.randf_range(variant_spawn_height / speed, 1))
 	
 	# spawn
 	var new_scene = variant_scenes[rng.randi_range(0, variant_scenes.size() - 1)]
 	
 	var node_instance = new_scene.instance()
 	$VariantsContainer.add_child(node_instance)
-	node_instance.set_global_position(Vector2(scene_center.x, scene_center.y - scene_half_height))
+	node_instance.position = Vector2(scene_center.x, scene_center.y - scene_half_height)
 	active_variants.append(node_instance)
 
 
@@ -76,7 +79,7 @@ func _despawn_old_variants():
 	var variants_to_despawn = []
 	
 	for variant in active_variants:
-		if variant.position.y > scene_center.y + scene_half_height:
+		if variant.position.y > scene_center.y + scene_half_height + variant_spawn_height:
 			variants_to_despawn.append(variant)
 	
 	_despawn_variant_items(variants_to_despawn)
@@ -88,17 +91,17 @@ func _update_positions(delta):
 
 
 func _select_hovered_action():
-	var variants_to_activate = []
+	var variant_to_activate = null
+	var min_diff = item_collision_half_size
 	
 	for variant in active_variants:
-		var pos_diff = abs(variant.get_global_position().y - $Cursor/CollisionShape2D.get_global_position().y)
-		if pos_diff < item_collision_half_size:
-			variants_to_activate.append(variant)
+		var pos_diff = abs(variant.get_global_position().y - $Cursor/CollisionShape2D.get_global_position().y + variant_center_shift)
+		if pos_diff < min_diff:
+			variant_to_activate = variant
 
-	for variant in variants_to_activate:
-		_activate_action(variant.get_node("VariantBase").variant_type)
-
-	_despawn_variant_items(variants_to_activate)
+	if variant_to_activate != null:
+		_activate_action(variant_to_activate.get_node("VariantBase").variant_type)
+		_despawn_variant_items([variant_to_activate])
 
 
 func _activate_action(action_type):
@@ -111,4 +114,6 @@ func _activate_action(action_type):
 			print("JumpDiagonal")
 		MoveVariantBase.VariantType.JumpUp:
 			print("JumpUp")
+	
+	Events.emit_signal("player_action_choosen", action_type)
 
