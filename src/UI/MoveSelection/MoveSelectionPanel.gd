@@ -45,9 +45,10 @@ func _ready():
 func _process(delta):
 	if Input.is_action_just_pressed("select_action"):
 		_select_hovered_action()
-		pass
-	#elif Input.is_action_pressed("select_action"):
-	#	pass
+	if Input.is_action_pressed("debug_step_left"):
+		Events.emit_signal("player_action_choosen", MoveVariantBase.VariantType.Left, 1)
+	if Input.is_action_pressed("debug_step_right"):
+		Events.emit_signal("player_action_choosen", MoveVariantBase.VariantType.Right, 1)
 	
 	_update_positions(delta)
 	

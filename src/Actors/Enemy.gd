@@ -1,81 +1,107 @@
 class_name Enemy
 extends Actor
 
-
 enum State {
 	IDLE,
 	WALKING,
 	DEAD
 }
 
-var _state = State.WALKING
+enum Direction {
+	RIGHT,
+	LEFT
+}
+
+export(State) var _state = State.IDLE setget _set_state
+export(Direction) var _direction = Direction.RIGHT setget _set_direction
+export var _speed = 100
+export var _stepSize = 16
+
+var _distance = 0
+var _startPosition = Vector2.ZERO
+var _is_falling = false
 
 onready var platform_detector = $PlatformDetector
 onready var floor_detector_left = $FloorDetectorLeft
 onready var floor_detector_right = $FloorDetectorRight
 onready var sprite = $Sprite
-#onready var animation_player = $AnimationPlayer
 
-# This function is called when the scene enters the scene tree.
-# We can initialize variables here.
 func _ready():
-	_velocity.x = speed.x
+	Events.connect("player_action_choosen", self, "_on_process_action")
 
-# Physics process is a built-in loop in Godot.
-# If you define _physics_process on a node, Godot will call it every frame.
+func _on_process_action(action, steps):
+	self._direction = _change_direction_on_collision(_direction)
+	self._distance = _stepSize * steps
+	self._startPosition = self.global_position
+	self._state = State.WALKING
 
-# At a glance, you can see that the physics process loop:
-# 1. Calculates the move velocity.
-# 2. Moves the character.
-# 3. Updates the sprite direction.
-# 4. Updates the animation.
+func _process(delta):
+	pass
 
-# Splitting the physics process logic into functions not only makes it
-# easier to read, it help to change or improve the code later on:
-# - If you need to change a calculation, you can use Go To -> Function
-#   (Ctrl Alt F) to quickly jump to the corresponding function.
-# - If you split the character into a state machine or more advanced pattern,
-#   you can easily move individual functions.
 func _physics_process(_delta):
-	_velocity = calculate_move_velocity(_velocity)
+	# platform collision
+	var snap_vector = Vector2.DOWN * FLOOR_DETECT_DISTANCE 
+	var is_falling = not platform_detector.is_colliding()
+	_velocity = move_and_slide_with_snap(_velocity, snap_vector, FLOOR_NORMAL, is_falling, 4, 0.9, false)
+	
+	# debug utility
+	if _is_falling != is_falling:
+#		if is_falling:
+#			print_debug("Begin falling")
+#		else:
+#			print_debug("End falling")
+		_is_falling = is_falling
+	
+	# should we stop already?
+	if _state == State.WALKING && not is_falling && abs(self.global_position.x - _startPosition.x) >= _distance:
+		self._state = State.IDLE
 
-	# We only update the y value of _velocity as we want to handle the horizontal movement ourselves.
-	_velocity.y = move_and_slide(_velocity, FLOOR_NORMAL).y
-
-	# We flip the Sprite depending on which way the enemy is moving.
-	sprite.scale.x = 1 if _velocity.x > 0 else -1
-
-	var animation = get_new_animation()
+	var animation = _select_animation()
 	if animation != sprite.animation:
+		#print_debug("Switching animation to " + animation)
 		sprite.play(animation)
 
-
-# This function calculates a new velocity whenever you need it.
-# If the enemy encounters a wall or an edge, the horizontal velocity is flipped.
-func calculate_move_velocity(linear_velocity):
-	var velocity = linear_velocity
-
-	if not floor_detector_left.is_colliding():
-		velocity.x = speed.x
-	elif not floor_detector_right.is_colliding():
-		velocity.x = -speed.x
-
+func _change_direction_on_collision(_direction):
 	if is_on_wall():
-		velocity.x *= -1
+		#print_debug("Wall detected")
+		if _direction == Direction.LEFT:
+			return Direction.RIGHT
+		else:
+			return Direction.LEFT
 
-	sprite.flip_h = (velocity.x > 0)
-	return velocity
+#	if _direction == Direction.LEFT && not floor_detector_left.is_colliding():
+#		print_debug("Left edge detected")
+#		return Direction.RIGHT
+#
+#	if _direction == Direction.RIGHT && not floor_detector_right.is_colliding():
+#		print_debug("Right edge detected")
+#		return Direction.LEFT
 
+	return _direction
 
-func destroy():
-	_state = State.DEAD
-	_velocity = Vector2.ZERO
+func _select_animation():
+	if _state == State.WALKING && abs(_velocity.x) != 0:
+		return "Walk"
+	return "Idle"
 
+func _set_state(value):
+	if value == State.WALKING:
+		#print_debug("Switching state to WALKING")
+		if _direction == Direction.LEFT:
+			_velocity.x = -_speed
+		elif _direction == Direction.RIGHT:
+			_velocity.x = _speed
+		else:
+			_velocity.x = 0
+	elif value == State.IDLE:
+		#print_debug("Switching state to IDLE")
+		_velocity.x = 0
+	_state = value
 
-func get_new_animation():
-	var animation_new = ""
-	if _state == State.WALKING && abs(_velocity.x) > 0:
-		animation_new = "Walk"
+func _set_direction(value):
+	if sprite != null:
+		sprite.flip_h = (value == Direction.RIGHT)
 	else:
-		animation_new = "Idle"
-	return animation_new
+		print_debug("Bug?")
+	_direction = value
+
