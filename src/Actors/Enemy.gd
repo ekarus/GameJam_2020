@@ -15,7 +15,7 @@ enum Direction {
 export(State) var _state = State.IDLE setget _set_state
 export(Direction) var _direction = Direction.RIGHT setget _set_direction
 export var _speed = 100
-export var _step_size = 16
+export var _step_size = 64
 export var _stop_on_edge = false
 export var _follow_player = false
 export var _player_visibility_radius = 256
@@ -98,6 +98,10 @@ func _set_state(value):
 	elif _state == State.IDLE:
 		#print_debug("Switching state to IDLE")
 		_velocity.x = 0
+
+	if sprite == null:
+		return # nothing to animate yet
+
 	# select animation according to the current state
 	var animation = _select_animation()
 	if animation != sprite.animation:
@@ -111,6 +115,7 @@ func _select_animation():
 
 func _set_direction(value):
 	_direction = value
-	if sprite != null:
-		sprite.flip_h = (_direction == Direction.RIGHT)
+	if sprite == null:
+		return
+	sprite.flip_h = (_direction == Direction.RIGHT)
 
