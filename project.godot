@@ -24,6 +24,10 @@ config/name="Game Jam 2020"
 run/main_scene="res://src/Game.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+Events="*res://src/Autoload/Events.gd"
+
 [input]
 
 move_left={
