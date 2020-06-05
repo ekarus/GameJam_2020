@@ -9,6 +9,7 @@ signal player_died
 signal quit_requested
 
 signal player_action_choosen(move_type, steps)
+signal player_action_complete
 
 signal item_collected
 

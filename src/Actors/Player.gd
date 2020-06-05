@@ -40,6 +40,7 @@ func _process(delta):
 			
 			if active_action_steps <= 0:
 				active_action = null
+				Events.emit_signal("player_action_complete")
 	
 	_process_action_input()
 	
