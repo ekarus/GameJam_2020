@@ -14,8 +14,8 @@ var active_variants = []
 
 var start_speed = 100.0
 var speed = start_speed
-var variant_spawn_width = 50.0
-var variant_collision_width = 10.0
+var variant_spawn_width = 100.0
+var variant_collision_width = 100.0
 
 var scene_center
 var scene_half_height
@@ -75,7 +75,7 @@ func _process(delta):
 func _spawn_new_variant():
 	# restart timer
 	# ToDo: better randomization that takes speed into account
-	spawn_timer.start(rng.randf_range(variant_spawn_width / speed, 1))
+	spawn_timer.start(rng.randf_range(variant_spawn_width / speed, 5))
 	
 	# spawn
 	var new_scene = variant_scenes[rng.randi_range(0, variant_scenes.size() - 1)]
