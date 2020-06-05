@@ -71,8 +71,10 @@ func _process_action_input():
 		desiredDirection.x = -1
 	elif active_action == MoveVariantBase.VariantType.Right:
 		desiredDirection.x = 1
-	elif active_action == MoveVariantBase.VariantType.JumpUp and is_on_floor():
-		desiredDirection.y = -1
+	elif active_action == MoveVariantBase.VariantType.JumpUp:
+		if not discrete_move_done and is_on_floor():
+			desiredDirection.y = -1
+			discrete_move_done = true
 	elif active_action == MoveVariantBase.VariantType.JumpDiagonal:
 		if not discrete_move_done and is_on_floor():
 			desiredDirection.y = -1
