@@ -34,6 +34,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/Levels/GameLevel.gd"
 }, {
+"base": "Node",
+"class": "ItemEffectBase",
+"language": "GDScript",
+"path": "res://src/Collectibles/ItemEffect.gd"
+}, {
 "base": "Node2D",
 "class": "MoveVariantBase",
 "language": "GDScript",
@@ -50,6 +55,7 @@ _global_script_class_icons={
 "BehaviorLoop": "",
 "Enemy": "",
 "GameLevel": "",
+"ItemEffectBase": "",
 "MoveVariantBase": "",
 "Player": ""
 }
