@@ -9,3 +9,8 @@ signal player_died
 signal quit_requested
 
 signal player_action_choosen
+
+signal item_collected
+
+signal level_completed
+signal level_started

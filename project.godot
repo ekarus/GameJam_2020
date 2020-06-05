@@ -9,12 +9,24 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Node",
+"class": "BaseBehavior",
+"language": "GDScript",
+"path": "res://src/Behaiviors/BaseBehavior.gd"
+}, {
+"base": "BaseBehavior",
+"class": "BehaviorLoop",
+"language": "GDScript",
+"path": "res://src/Behaiviors/BehaviorLoop.gd"
+}, {
 "base": "KinematicBody2D",
 "class": "Player",
 "language": "GDScript",
 "path": "res://src/Player.gd"
 } ]
 _global_script_class_icons={
+"BaseBehavior": "",
+"BehaviorLoop": "",
 "Player": ""
 }
 
@@ -27,6 +39,7 @@ config/icon="res://icon.png"
 [autoload]
 
 Events="*res://src/Autoload/Events.gd"
+GameFlow="*res://src/Autoload/GameFlow.gd"
 
 [input]
 
