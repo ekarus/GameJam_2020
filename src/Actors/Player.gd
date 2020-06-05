@@ -5,14 +5,14 @@ onready var platform_detector = $PlatformDetector
 onready var sprite = $AnimatedSprite
 
 export var speed = 100
-export var jump_speed = 260
+export var jump_speed = 190
 
 var movement_dir = Vector2()
 
 var active_action = null
 var active_action_steps = 0
-const move_step_length = 4
-const jump_step_length = 8
+const move_step_length = 3
+const jump_step_length = 6
 
 var discrete_move_done = false
 var current_step_length = move_step_length
