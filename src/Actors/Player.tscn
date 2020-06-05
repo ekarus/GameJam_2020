@@ -6,8 +6,8 @@
 [ext_resource path="res://assets/PixelAdventure1/Main Characters/Virtual Guy/Run (32x32).png" type="Texture" id=4]
 [ext_resource path="res://assets/PixelAdventure1/Main Characters/Virtual Guy/Hit (32x32).png" type="Texture" id=5]
 
-[sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 10.4338, 11.8679 )
+[sub_resource type="CapsuleShape2D" id=33]
+height = 7.30522
 
 [sub_resource type="AtlasTexture" id=2]
 flags = 4
@@ -181,6 +181,7 @@ animations = [ {
 script = ExtResource( 1 )
 
 [node name="PlatformDetector" type="RayCast2D" parent="."]
+cast_to = Vector2( 0, 30 )
 
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
 margin_left = -4.0
@@ -194,7 +195,7 @@ __meta__ = {
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 0.27055, 3.92299 )
-shape = SubResource( 1 )
+shape = SubResource( 33 )
 
 [node name="MoveSelectionPanel" parent="." instance=ExtResource( 2 )]
 position = Vector2( -306.287, -177.931 )

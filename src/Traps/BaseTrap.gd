@@ -9,5 +9,5 @@ func _ready():
 
 func _on_Trap_body_entered(body):
 	if body is Player:
-		(body as Player)._apply_damage()
+		(body as Player).on_damage()
 	pass 
