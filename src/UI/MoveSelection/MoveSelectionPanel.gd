@@ -47,21 +47,21 @@ func _ready():
 func _process(delta):
 	if Input.is_action_just_pressed("select_action"):
 		_select_hovered_action()
-	if Input.is_action_just_pressed("debug_step_left"):
+	elif Input.is_action_just_pressed("debug_jump_left"):
+		Events.emit_signal("player_action_choosen", MoveVariantBase.VariantType.JumpDiagonal, 1)
+		print("debug jump front")
+	elif Input.is_action_just_pressed("debug_jump_right"):
+		Events.emit_signal("player_action_choosen", MoveVariantBase.VariantType.JumpDiagonal, 1)
+		print("debug jump front")
+	elif Input.is_action_just_pressed("debug_step_left"):
 		Events.emit_signal("player_action_choosen", MoveVariantBase.VariantType.Left, 1)
 		print("debug left")
-	if Input.is_action_just_pressed("debug_step_right"):
+	elif Input.is_action_just_pressed("debug_step_right"):
 		Events.emit_signal("player_action_choosen", MoveVariantBase.VariantType.Right, 1)
 		print("debug right")
-	if Input.is_action_just_pressed("debug_jump_up"):
+	elif Input.is_action_just_pressed("debug_jump_up"):
 		Events.emit_signal("player_action_choosen", MoveVariantBase.VariantType.JumpUp, 1)
 		print("debug jump up")
-	if Input.is_action_just_pressed("debug_jump_left"):
-		Events.emit_signal("player_action_choosen", MoveVariantBase.VariantType.JumpDiagonal, 1)
-		print("debug jump front")
-	if Input.is_action_just_pressed("debug_jump_right"):
-		Events.emit_signal("player_action_choosen", MoveVariantBase.VariantType.JumpDiagonal, 1)
-		print("debug jump front")
 	
 	_update_positions(delta)
 	

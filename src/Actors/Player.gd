@@ -97,6 +97,10 @@ func _process_action_input():
 
 
 func _on_action_choosen(action, steps):
+	if active_action != null:
+		print("skipped action because processing another one")
+		return
+	
 	active_action = action
 	active_action_steps = steps
 	
