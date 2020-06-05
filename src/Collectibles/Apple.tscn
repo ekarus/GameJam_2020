@@ -98,7 +98,9 @@ animations = [ {
 "speed": 15.0
 } ]
 
-[node name="Apple" type="Area2D"]
+[node name="Apple" type="Area2D" groups=[
+"Collectables",
+]]
 script = ExtResource( 1 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -106,6 +108,6 @@ shape = SubResource( 1 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 19 )
-frame = 10
+frame = 9
 playing = true
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

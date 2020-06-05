@@ -7,11 +7,12 @@ export(Array, PackedScene) var scenes
 
 var current_level_index = 0
 var current_level: GameLevel
-
+var collected_percent setget ,get_collected_percent
 
 func load_level(index):
 	current_level_index = index
 	get_tree().change_scene_to(scenes[index])
+	Events.emit_signal("level_started")
 	
 	
 func load_next_level():
@@ -31,8 +32,19 @@ func _on_item_collected():
 	pass
 
 func _on_level_started():
+	var items = get_tree().get_nodes_in_group("Collectables")
+	itemsCount = items.size()
+	print_debug("Total items: " + str(itemsCount))
 	pass
 	
 
 func _on_level_completed():
 	load_next_level()
+
+func get_collected_percent():
+	if itemsCount > 0:
+		return (itemsCollected / itemsCount) * 100.0
+	else:
+		return 0
+	pass
+	
