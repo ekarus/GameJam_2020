@@ -57,6 +57,7 @@ config/icon="res://icon.png"
 [autoload]
 
 Events="*res://src/Autoload/Events.gd"
+GameFlow="*res://src/Autoload/GameFlow.tscn"
 
 [importer_defaults]
 
