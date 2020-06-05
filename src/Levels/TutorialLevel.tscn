@@ -2,7 +2,7 @@
 
 [ext_resource path="res://assets/Tilesets/TerrainTileset.tres" type="TileSet" id=1]
 [ext_resource path="res://src/Levels/ExitPoint.tscn" type="PackedScene" id=2]
-[ext_resource path="res://src/Player.tscn" type="PackedScene" id=4]
+[ext_resource path="res://src/Actors/Player.tscn" type="PackedScene" id=4]
 
 [node name="Tutorial" type="Node2D"]
 
@@ -14,7 +14,6 @@ tile_data = PoolIntArray( 1835008, 7, 0, 1835071, 7, 0, 1900544, 8, 0, 1900607, 
 
 [node name="ExitPoint" parent="." instance=ExtResource( 2 )]
 position = Vector2( 984.331, 529.407 )
-frame = 1
 
 [node name="Player" parent="." instance=ExtResource( 4 )]
 position = Vector2( 41.0526, 535.789 )
