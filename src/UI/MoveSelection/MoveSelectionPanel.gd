@@ -51,6 +51,12 @@ func _process(delta):
 		Events.emit_signal("player_action_choosen", MoveVariantBase.VariantType.Left, 1)
 	if Input.is_action_pressed("debug_step_right"):
 		Events.emit_signal("player_action_choosen", MoveVariantBase.VariantType.Right, 1)
+	if Input.is_action_pressed("debug_jump_up"):
+		Events.emit_signal("player_action_choosen", MoveVariantBase.VariantType.JumpUp, 1)
+	if Input.is_action_pressed("debug_jump_left"):
+		Events.emit_signal("player_action_choosen", MoveVariantBase.VariantType.JumpDiagonal, 1)
+	if Input.is_action_pressed("debug_jump_right"):
+		Events.emit_signal("player_action_choosen", MoveVariantBase.VariantType.JumpDiagonal, 1)
 	
 	_update_positions(delta)
 	
