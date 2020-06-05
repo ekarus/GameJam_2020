@@ -132,6 +132,7 @@ func _physics_process(delta):
 func on_damage():
 	Events.emit_signal("player_died")
 	print_debug("player is ded")
+	$AnimatedSprite.play("hit")
 	pass
 
 

@@ -1,0 +1,26 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://src/UI/GameOver/GameOverOverlay.gd" type="Script" id=1]
+
+[node name="CanvasLayer" type="CanvasLayer"]
+script = ExtResource( 1 )
+
+[node name="Game over" type="Label" parent="."]
+margin_left = 458.471
+margin_top = 261.726
+margin_right = 534.471
+margin_bottom = 275.726
+text = "GAME OVER"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Continue" type="Label" parent="."]
+margin_left = 429.591
+margin_top = 324.901
+margin_right = 570.591
+margin_bottom = 338.901
+text = "Press action to restart"
+__meta__ = {
+"_edit_use_anchors_": false
+}

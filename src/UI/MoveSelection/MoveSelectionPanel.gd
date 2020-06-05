@@ -38,6 +38,7 @@ func _ready():
 	add_child(spawn_timer)
 	
 	Events.connect("player_action_complete", self, "_on_action_complete")
+	Events.connect("player_died", self, "_on_player_death")
 	
 	scene_center = $PanelArea/CollisionShape2D.position
 	scene_half_width = ($PanelArea/CollisionShape2D.shape as RectangleShape2D).extents.x
@@ -49,23 +50,24 @@ func _ready():
 
 
 func _process(delta):
-	if Input.is_action_just_pressed("select_action"):
-		_select_hovered_action()
-	elif Input.is_action_just_pressed("debug_jump_left"):
-		Events.emit_signal("player_action_choosen", MoveVariantBase.VariantType.JumpDiagonal, 1)
-		print("debug jump front")
-	elif Input.is_action_just_pressed("debug_jump_right"):
-		Events.emit_signal("player_action_choosen", MoveVariantBase.VariantType.JumpDiagonal, 1)
-		print("debug jump front")
-	elif Input.is_action_just_pressed("debug_step_left"):
-		Events.emit_signal("player_action_choosen", MoveVariantBase.VariantType.Left, 1)
-		print("debug left")
-	elif Input.is_action_just_pressed("debug_step_right"):
-		Events.emit_signal("player_action_choosen", MoveVariantBase.VariantType.Right, 1)
-		print("debug right")
-	elif Input.is_action_just_pressed("debug_jump_up"):
-		Events.emit_signal("player_action_choosen", MoveVariantBase.VariantType.JumpUp, 1)
-		print("debug jump up")
+	if GameFlow.input_active:
+		if Input.is_action_just_pressed("select_action"):
+			_select_hovered_action()
+		elif Input.is_action_just_pressed("debug_jump_left"):
+			Events.emit_signal("player_action_choosen", MoveVariantBase.VariantType.JumpDiagonal, 1)
+			print("debug jump front")
+		elif Input.is_action_just_pressed("debug_jump_right"):
+			Events.emit_signal("player_action_choosen", MoveVariantBase.VariantType.JumpDiagonal, 1)
+			print("debug jump front")
+		elif Input.is_action_just_pressed("debug_step_left"):
+			Events.emit_signal("player_action_choosen", MoveVariantBase.VariantType.Left, 1)
+			print("debug left")
+		elif Input.is_action_just_pressed("debug_step_right"):
+			Events.emit_signal("player_action_choosen", MoveVariantBase.VariantType.Right, 1)
+			print("debug right")
+		elif Input.is_action_just_pressed("debug_jump_up"):
+			Events.emit_signal("player_action_choosen", MoveVariantBase.VariantType.JumpUp, 1)
+			print("debug jump up")
 	
 	_update_positions(delta)
 	
@@ -148,3 +150,7 @@ func _activate_action(action_type, steps):
 func _on_action_complete():
 	wait_for_action_to_complete = false
 	spawn_timer.set_paused(false)
+
+func _on_player_death():
+	visible = false
+	pass

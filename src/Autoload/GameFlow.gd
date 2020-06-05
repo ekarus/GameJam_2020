@@ -4,24 +4,31 @@ var itemsCount = 0
 var itemsCollected = 0
 
 export(Array, PackedScene) var scenes
+export(PackedScene) var gameOverOverlay
 
 var current_level_index = 0
 var current_level: GameLevel
 var collected_percent setget ,get_collected_percent
 
+var input_active = true
+
 func load_level(index):
 	current_level_index = index
 	get_tree().change_scene_to(scenes[index])
+	GameFlow.unlock_character_input()
 	
 func load_next_level():
 	if current_level_index < scenes.size():
 		load_level(current_level_index + 1)
 
+func reload_level():
+	load_level(current_level_index)
 
 func _ready():
 	Events.connect("item_collected", self, "_on_item_collected")
 	Events.connect("level_completed", self, "_on_level_completed")
 	Events.connect("level_started", self, "_on_level_started")
+	Events.connect("player_died", self, "on_player_death")
 	pass 
 
 func _on_item_collected():
@@ -46,3 +53,16 @@ func get_collected_percent():
 		return 0
 	pass
 	
+func lock_character_input():
+	input_active = false
+	pass
+
+func unlock_character_input():
+	input_active = true
+	pass
+	
+func on_player_death():
+	lock_character_input()
+	var overlay = gameOverOverlay.instance()
+	add_child(overlay)
+	pass

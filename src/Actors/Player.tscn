@@ -6,7 +6,7 @@
 [ext_resource path="res://assets/PixelAdventure1/Main Characters/Virtual Guy/Run (32x32).png" type="Texture" id=4]
 [ext_resource path="res://assets/PixelAdventure1/Main Characters/Virtual Guy/Hit (32x32).png" type="Texture" id=5]
 
-[sub_resource type="CapsuleShape2D" id=33]
+[sub_resource type="CapsuleShape2D" id=1]
 height = 7.30522
 
 [sub_resource type="AtlasTexture" id=2]
@@ -167,7 +167,7 @@ animations = [ {
 "speed": 7.0
 }, {
 "frames": [ SubResource( 13 ), SubResource( 14 ), SubResource( 15 ), SubResource( 16 ), SubResource( 17 ), SubResource( 18 ), SubResource( 19 ) ],
-"loop": true,
+"loop": false,
 "name": "hit",
 "speed": 10.0
 }, {
@@ -195,7 +195,7 @@ __meta__ = {
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 0.27055, 3.92299 )
-shape = SubResource( 33 )
+shape = SubResource( 1 )
 
 [node name="MoveSelectionPanel" parent="." instance=ExtResource( 2 )]
 position = Vector2( -306.287, -177.931 )
@@ -208,7 +208,7 @@ zoom = Vector2( 0.6, 0.6 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 32 )
 animation = "idle"
-frame = 7
+frame = 9
 playing = true
 __meta__ = {
 "_edit_lock_": true
