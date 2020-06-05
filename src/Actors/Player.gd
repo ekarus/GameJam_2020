@@ -17,9 +17,11 @@ var current_step_time_left = step_length
 
 var lastHorisontalDirection = 1
 
+var move_selection_panel_pos = Vector2()
 
 func _ready():
 	Events.connect("player_action_choosen", self, "_on_action_choosen")
+	move_selection_panel_pos = $MoveSelectionPanel.position
 
 
 func _process(delta):
@@ -38,6 +40,11 @@ func _process(delta):
 	
 	# just for test
 	# _process_normal_input()
+	
+	$MoveSelectionPanel.set_global_position(clamp_vec(
+		move_selection_panel_pos + get_global_position(),
+		Vector2($Camera2D.limit_left, $Camera2D.limit_top),
+		Vector2($Camera2D.limit_right, $Camera2D.limit_bottom)))
 
 
 func _process_normal_input():
@@ -107,3 +114,7 @@ func _physics_process(delta):
 func _apply_damage():
 	Events.emit_signal("player_died")
 	pass
+
+
+func clamp_vec(vector, min_v, max_v):
+	return Vector2(clamp(vector.x, min_v.x, max_v.x), clamp(vector.y, min_v.y, max_v.y))

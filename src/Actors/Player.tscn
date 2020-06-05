@@ -196,18 +196,18 @@ __meta__ = {
 position = Vector2( 0.27055, 3.92299 )
 shape = SubResource( 1 )
 
+[node name="MoveSelectionPanel" parent="." instance=ExtResource( 2 )]
+position = Vector2( -306.287, -177.931 )
+scale = Vector2( 0.6, 0.6 )
+
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
 zoom = Vector2( 0.6, 0.6 )
 
-[node name="MoveSelectionPanel" parent="Camera2D" instance=ExtResource( 2 )]
-position = Vector2( -306.287, -177.931 )
-scale = Vector2( 0.6, 0.6 )
-
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 32 )
 animation = "idle"
-frame = 10
+frame = 7
 playing = true
 __meta__ = {
 "_edit_lock_": true

@@ -12,6 +12,10 @@ extents = Vector2( 35.2021, 63.7614 )
 
 [node name="Tutorial" type="Node2D"]
 script = ExtResource( 6 )
+LIMIT_LEFT = -60
+LIMIT_TOP = -1000
+LIMIT_RIGHT = 620
+LIMIT_BOTTOM = 776
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = ExtResource( 1 )
