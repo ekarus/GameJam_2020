@@ -15,7 +15,7 @@ var active_variants = []
 var start_speed = 100.0
 var speed = start_speed
 var variant_spawn_width = 100.0
-var variant_collision_width = 100.0
+var variant_collision_width = 0.0
 
 var scene_center
 var scene_half_height
@@ -43,7 +43,7 @@ func _ready():
 	scene_half_width = ($PanelArea/CollisionShape2D.shape as RectangleShape2D).extents.x
 	scene_half_height = ($PanelArea/CollisionShape2D.shape as RectangleShape2D).extents.y
 	
-	item_collision_half_size = ($Cursor/CollisionShape2D.shape as RectangleShape2D).extents.x + variant_collision_width/2
+	item_collision_half_size = ($Cursor/CollisionShape2D.shape as RectangleShape2D).extents.x + variant_collision_width*0.5
 	
 	_spawn_new_variant()
 
@@ -82,7 +82,7 @@ func _spawn_new_variant():
 	
 	var node_instance = new_scene.instance()
 	$VariantsContainer.add_child(node_instance)
-	node_instance.position = Vector2(scene_center.x - scene_half_width, scene_center.y)
+	node_instance.position = _get_variant_spawn_point()
 	active_variants.append(node_instance)
 
 
@@ -97,7 +97,7 @@ func _despawn_old_variants():
 	var variants_to_despawn = []
 	
 	for variant in active_variants:
-		if variant.position.x > scene_center.x + scene_half_width + variant_spawn_width:
+		if _is_variant_expired(variant):
 			variants_to_despawn.append(variant)
 	
 	_despawn_variant_items(variants_to_despawn)
@@ -108,7 +108,7 @@ func _update_positions(delta):
 		return
 	
 	for variant in active_variants:
-		variant.position.x += speed * delta
+		variant.position.x -= speed * delta
 
 
 func _select_hovered_action():
@@ -143,6 +143,14 @@ func _activate_action(action_type, steps):
 	wait_for_action_to_complete = true
 	Events.emit_signal("player_action_choosen", action_type, steps)
 	spawn_timer.set_paused(true)
+
+
+func _get_variant_spawn_point():
+	return Vector2(scene_center.x + scene_half_width + variant_spawn_width, scene_center.y)
+
+
+func _is_variant_expired(variant):
+	return variant.position.x < scene_center.x - scene_half_width - variant_spawn_width
 
 
 func _on_action_complete():
