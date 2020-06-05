@@ -5,7 +5,7 @@ onready var platform_detector = $PlatformDetector
 
 export var speed = 100
 export var jump_speed = 100
-onready var gravity = 100
+export var gravity = 100
 
 var velocity = Vector2()
 

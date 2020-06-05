@@ -5,6 +5,7 @@
 [node name="Node2D" type="Node2D"]
 
 [node name="VariantBase" parent="." instance=ExtResource( 1 )]
+variant_type = 2
 
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
 margin_left = -29.4733

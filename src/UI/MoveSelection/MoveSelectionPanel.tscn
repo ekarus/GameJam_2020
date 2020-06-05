@@ -3,10 +3,10 @@
 [ext_resource path="res://src/UI/MoveSelection/MoveSelectionPanel.gd" type="Script" id=1]
 [ext_resource path="res://assets/PixelAdventure1/Items/Boxes/Box2/Idle.png" type="Texture" id=2]
 
-[sub_resource type="RectangleShape2D" id=2]
+[sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 90, 300 )
 
-[sub_resource type="RectangleShape2D" id=1]
+[sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 73.2523, 10 )
 
 [node name="MoveSelectionPanel" type="Node2D"]
@@ -15,14 +15,14 @@ script = ExtResource( 1 )
 [node name="PanelArea" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PanelArea"]
-position = Vector2( 90, 300 )
-shape = SubResource( 2 )
+position = Vector2( 90, 297.736 )
+shape = SubResource( 1 )
 
 [node name="Cursor" type="Area2D" parent="."]
 position = Vector2( 92.3361, 497.267 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Cursor"]
-shape = SubResource( 1 )
+shape = SubResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="Cursor"]
 position = Vector2( 0.76368, 0.0726318 )
