@@ -113,6 +113,7 @@ func _physics_process(delta):
 
 func _apply_damage():
 	Events.emit_signal("player_died")
+	print_debug("player is ded")
 	pass
 
 

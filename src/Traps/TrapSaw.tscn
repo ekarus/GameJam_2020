@@ -15,9 +15,12 @@ script = ExtResource( 2 )
 MOVE_DIRECTION = Vector2( 1, 0 )
 MOVE_OFFSET = 100
 
+[node name="Tween" type="Tween" parent="Behavior"]
+
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 3 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
 [connection signal="body_entered" from="." to="." method="_on_Trap_body_entered"]
+[connection signal="tween_completed" from="Behavior/Tween" to="Behavior" method="_on_tween_completed"]

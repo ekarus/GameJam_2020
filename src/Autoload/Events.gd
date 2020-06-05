@@ -8,7 +8,7 @@ extends Node
 signal player_died
 signal quit_requested
 
-signal player_action_choosen
+signal player_action_choosen(move_type, steps)
 
 signal item_collected
 

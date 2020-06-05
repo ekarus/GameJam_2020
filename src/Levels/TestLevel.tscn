@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://assets/Tilesets/TerrainTileset.tres" type="TileSet" id=1]
 [ext_resource path="res://src/Actors/Enemy.tscn" type="PackedScene" id=2]
 [ext_resource path="res://src/Actors/Player.tscn" type="PackedScene" id=3]
 [ext_resource path="res://src/Levels/TestLevel.gd" type="Script" id=4]
+[ext_resource path="res://src/Traps/TrapSaw.tscn" type="PackedScene" id=5]
 
 [node name="Level" type="Node2D"]
 script = ExtResource( 4 )
@@ -20,3 +21,9 @@ _follow_player = true
 
 [node name="Player" parent="." instance=ExtResource( 3 )]
 position = Vector2( 507, 287 )
+
+[node name="Trap" parent="." instance=ExtResource( 5 )]
+position = Vector2( 287.668, 575.747 )
+z_index = -1
+
+[editable path="Trap"]
