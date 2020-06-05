@@ -1,16 +1,12 @@
 class_name Player
-extends KinematicBody2D
+extends Actor
 
 onready var platform_detector = $PlatformDetector
 
 export var speed = 100
 export var jump_speed = 100
-export var gravity = 100
 
 var velocity = Vector2()
-
-const FLOOR_DETECT_DISTANCE = 20.0
-
 var movement_dir = Vector2()
 
 var active_action = null
