@@ -53,3 +53,6 @@ func _physics_process(delta):
 	var is_falling = platform_detector.is_colliding()
 	velocity = move_and_slide_with_snap(velocity, snap_vector, Vector2.UP, is_falling, 4, 0.9, false)
 
+func _apply_damage():
+	Events.emit_signal("player_died")
+	pass
