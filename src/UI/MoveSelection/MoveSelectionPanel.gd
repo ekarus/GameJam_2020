@@ -28,12 +28,16 @@ var variant_center_shift = 0
 # average variants count on screen
 var variants_dencity = 5
 
+var wait_for_action_to_complete = false
+
 func _ready():
 	rng.randomize()
 	
 	spawn_timer.set_one_shot(true)
 	spawn_timer.connect("timeout", self, "_spawn_new_variant")
 	add_child(spawn_timer)
+	
+	Events.connect("player_action_complete", self, "_on_action_complete")
 	
 	scene_center = $PanelArea/CollisionShape2D.position
 	scene_half_width = ($PanelArea/CollisionShape2D.shape as RectangleShape2D).extents.x
@@ -100,11 +104,17 @@ func _despawn_old_variants():
 
 
 func _update_positions(delta):
+	if wait_for_action_to_complete:
+		return
+	
 	for variant in active_variants:
 		variant.position.x += speed * delta
 
 
 func _select_hovered_action():
+	if wait_for_action_to_complete:
+		return
+	
 	var variant_to_activate = null
 	var min_diff = item_collision_half_size
 	
@@ -130,5 +140,11 @@ func _activate_action(action_type, steps):
 		MoveVariantBase.VariantType.JumpUp:
 			print("JumpUp")
 	
+	wait_for_action_to_complete = true
 	Events.emit_signal("player_action_choosen", action_type, steps)
+	spawn_timer.set_paused(true)
 
+
+func _on_action_complete():
+	wait_for_action_to_complete = false
+	spawn_timer.set_paused(false)
