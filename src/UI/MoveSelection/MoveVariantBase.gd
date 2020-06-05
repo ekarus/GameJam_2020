@@ -9,4 +9,4 @@ enum VariantType {
 }
 
 export(VariantType) var variant_type = VariantType.Left
-
+export var steps_count = 1
