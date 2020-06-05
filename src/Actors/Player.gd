@@ -111,9 +111,8 @@ func _physics_process(delta):
 	_velocity = move_and_slide_with_snap(_velocity, snap_vector, Vector2.UP, is_falling, 4, 0.9, false)
 
 
-func _apply_damage():
+func on_damage():
 	Events.emit_signal("player_died")
-	pass
 
 
 func clamp_vec(vector, min_v, max_v):
