@@ -12,8 +12,6 @@ var collected_percent setget ,get_collected_percent
 func load_level(index):
 	current_level_index = index
 	get_tree().change_scene_to(scenes[index])
-	Events.emit_signal("level_started")
-	
 	
 func load_next_level():
 	if current_level_index < scenes.size():
