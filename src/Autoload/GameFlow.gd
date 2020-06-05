@@ -6,6 +6,8 @@ var itemsCollected = 0
 export(Array, PackedScene) var scenes
 
 var current_level_index = 0
+var current_level: GameLevel
+
 
 func load_level(index):
 	current_level_index = index
