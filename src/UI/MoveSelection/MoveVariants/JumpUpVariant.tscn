@@ -7,12 +7,13 @@
 [node name="VariantBase" parent="." instance=ExtResource( 1 )]
 variant_type = 2
 
-[node name="RichTextLabel" type="RichTextLabel" parent="."]
-margin_left = -29.4733
-margin_top = -5.99199
-margin_right = 43.5267
-margin_bottom = 11.008
+[node name="Label" type="Label" parent="."]
+margin_left = -65.0
+margin_top = -7.0
+margin_right = 65.0
+margin_bottom = 7.0
 text = "JUMP UP"
+align = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
