@@ -21,4 +21,3 @@ position = Vector2( 316.194, 494.417 )
 
 [node name="Player" parent="." instance=ExtResource( 4 )]
 position = Vector2( 131.278, 516.55 )
-[connection signal="body_entered" from="ExitPoint" to="ExitPoint" method="_on_ExitPoint_body_entered"]
