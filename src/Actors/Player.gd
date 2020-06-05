@@ -14,13 +14,30 @@ const FLOOR_DETECT_DISTANCE = 20.0
 var movement_dir = Vector2()
 
 var active_action = null
+var active_action_steps = 0
+var step_length = 2
+var discrete_move_done = false
+var current_step_time_left = step_length
+
 var lastHorisontalDirection = 1
+
 
 func _ready():
 	Events.connect("player_action_choosen", self, "_on_action_choosen")
 
 
 func _process(delta):
+	# process steps time calculation
+	if active_action != null:
+		current_step_time_left -= delta
+		if current_step_time_left < 0:
+			active_action_steps -= 1
+			discrete_move_done = false
+			current_step_time_left = step_length
+			
+			if active_action_steps <= 0:
+				active_action = null
+	
 	_process_action_input()
 	
 	# just for test
@@ -42,6 +59,7 @@ func _process_normal_input():
 
 func _process_action_input():
 	if active_action == null:
+		movement_dir = Vector2()
 		return
 	
 	var desiredDirection = Vector2()
@@ -53,8 +71,9 @@ func _process_action_input():
 	elif active_action == MoveVariantBase.VariantType.JumpUp and is_on_floor():
 		desiredDirection.y = -1
 	elif active_action == MoveVariantBase.VariantType.JumpDiagonal:
-		if is_on_floor():
+		if not discrete_move_done and is_on_floor():
 			desiredDirection.y = -1
+			discrete_move_done = true
 		desiredDirection.x = lastHorisontalDirection
 	
 	if desiredDirection.x > 0:
@@ -65,8 +84,11 @@ func _process_action_input():
 	movement_dir = desiredDirection
 
 
-func _on_action_choosen(action):
+func _on_action_choosen(action, steps):
 	active_action = action
+	active_action_steps = steps
+	current_step_time_left = step_length
+	discrete_move_done = false
 
 func _physics_process(delta):
 	# gravity acceleration

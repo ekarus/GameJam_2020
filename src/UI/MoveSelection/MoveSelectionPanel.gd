@@ -100,11 +100,12 @@ func _select_hovered_action():
 			variant_to_activate = variant
 
 	if variant_to_activate != null:
-		_activate_action(variant_to_activate.get_node("VariantBase").variant_type)
+		var variant_base = variant_to_activate.get_node("VariantBase")
+		_activate_action(variant_base.variant_type, variant_base.steps_count)
 		_despawn_variant_items([variant_to_activate])
 
 
-func _activate_action(action_type):
+func _activate_action(action_type, steps):
 	match action_type:
 		MoveVariantBase.VariantType.Left:
 			print("Left")
@@ -115,5 +116,5 @@ func _activate_action(action_type):
 		MoveVariantBase.VariantType.JumpUp:
 			print("JumpUp")
 	
-	Events.emit_signal("player_action_choosen", action_type)
+	Events.emit_signal("player_action_choosen", action_type, steps)
 

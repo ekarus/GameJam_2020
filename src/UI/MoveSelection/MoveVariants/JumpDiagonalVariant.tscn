@@ -6,19 +6,11 @@
 script/source = "extends Node2D
 
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = \"text\"
-
-
-# Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+	var count = randi() % 4 + 1
+	$VariantBase.steps_count = count
+	if count > 1:
+		$Label.text = $Label.text + (\" x%s\" % count)
 "
 
 [node name="Node2D" type="Node2D"]
@@ -27,12 +19,13 @@ script = SubResource( 1 )
 [node name="VariantBase" parent="." instance=ExtResource( 1 )]
 variant_type = 3
 
-[node name="RichTextLabel" type="RichTextLabel" parent="."]
-margin_left = -41.6952
-margin_top = -6.8075
-margin_right = 78.3048
-margin_bottom = 10.1925
-text = "JUMP FRONT"
+[node name="Label" type="Label" parent="."]
+margin_left = -66.0
+margin_top = -7.0
+margin_right = 66.0
+margin_bottom = 7.0
+text = "JUMP FORWARD"
+align = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
