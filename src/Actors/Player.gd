@@ -2,11 +2,11 @@ class_name Player
 extends Actor
 
 onready var platform_detector = $PlatformDetector
+onready var sprite = $AnimatedSprite
 
 export var speed = 100
 export var jump_speed = 100
 
-var velocity = Vector2()
 var movement_dir = Vector2()
 
 var active_action = null
@@ -74,8 +74,10 @@ func _process_action_input():
 	
 	if desiredDirection.x > 0:
 		lastHorisontalDirection = 1
+		sprite.scale.x = 1
 	elif desiredDirection.x < 0:
 		lastHorisontalDirection = -1
+		sprite.scale.x = -1
 	
 	movement_dir = desiredDirection
 
@@ -86,19 +88,21 @@ func _on_action_choosen(action, steps):
 	current_step_time_left = step_length
 	discrete_move_done = false
 
+
 func _physics_process(delta):
-	# gravity acceleration
-	velocity.y += gravity * delta
+	# super call
+	._physics_process(delta)
 	
 	# input acceleration
-	velocity.x = speed * movement_dir.x
+	_velocity.x = speed * movement_dir.x
 	if movement_dir.y != 0.0:
-		velocity.y = jump_speed * movement_dir.y
+		_velocity.y = jump_speed * movement_dir.y
 	
 	# platform collision
 	var snap_vector = Vector2.DOWN * FLOOR_DETECT_DISTANCE if movement_dir.y == 0.0 else Vector2.ZERO
 	var is_falling = platform_detector.is_colliding()
-	velocity = move_and_slide_with_snap(velocity, snap_vector, Vector2.UP, is_falling, 4, 0.9, false)
+	_velocity = move_and_slide_with_snap(_velocity, snap_vector, Vector2.UP, is_falling, 4, 0.9, false)
+
 
 func _apply_damage():
 	Events.emit_signal("player_died")
