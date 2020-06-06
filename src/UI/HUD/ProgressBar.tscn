@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://assets/Textures/HPInput.png" type="Texture" id=1]
+[ext_resource path="res://assets/Textures/HPBack.png" type="Texture" id=2]
+[ext_resource path="res://assets/Textures/HPLine.png" type="Texture" id=3]
+[ext_resource path="res://assets/Textures/HpFruitIcon.png" type="Texture" id=4]
+
+[node name="Hungry Hud" type="TextureProgress"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -119.5
+margin_top = 30.1369
+margin_right = 119.5
+margin_bottom = 60.1369
+value = 80.0
+texture_under = ExtResource( 2 )
+texture_over = ExtResource( 3 )
+texture_progress = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+margin_left = -37.3716
+margin_top = -5.0556
+margin_right = 2.62841
+margin_bottom = 34.9444
+texture = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
