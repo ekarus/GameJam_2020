@@ -8,6 +8,7 @@ export(PackedScene) var gameOverOverlay
 export(PackedScene) var level_complete_overlay = preload("res://src/UI/PopUps/NextLvl_PopUp.tscn")
 export(PackedScene) var pause_overlay = preload("res://src/UI/PopUps/Pause_PopUp.tscn")
 export(PackedScene) var main_menu_overlay = preload("res://src/UI/MainMenu/MainMenu_UI.tscn")
+export(PackedScene) var game_won_overlay = preload("res://src/UI/PopUps/WIN_PopUp.tscn")
 
 var pause_overlay_instance
 var main_menu_instance
@@ -33,6 +34,11 @@ func load_next_level():
 		load_level(current_level_index + 1)
 		Events.emit_signal("start_game")
 	print("next level")
+
+
+func load_first_level():
+	current_level_index = 0
+	load_level(current_level_index)
 
 
 func reload_level():
@@ -84,8 +90,12 @@ func _on_level_completed():
 	hide_hud()
 	lock_character_input()
 	pause_game_time()
-	var overlay = level_complete_overlay.instance()
-	add_child(overlay)
+	if current_level_index + 1 < scenes.size():
+		var overlay = level_complete_overlay.instance()
+		add_child(overlay)
+	else:
+		var overlay = game_won_overlay.instance()
+		add_child(overlay)
 
 
 func get_collected_percent():
@@ -110,7 +120,6 @@ func hide_hud():
 func show_hud():
 	if current_level and current_level._game_hud != null:
 		current_level._game_hud.show()
-	pass
 
 
 func on_player_death():
