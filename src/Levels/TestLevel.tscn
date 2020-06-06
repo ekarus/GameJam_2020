@@ -1,13 +1,17 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://assets/Tilesets/TerrainTileset.tres" type="TileSet" id=1]
 [ext_resource path="res://src/Actors/Enemies/Pig.tscn" type="PackedScene" id=2]
 [ext_resource path="res://src/Actors/Player.tscn" type="PackedScene" id=3]
 [ext_resource path="res://src/Levels/TestLevel.gd" type="Script" id=4]
-[ext_resource path="res://src/Traps/TrapSaw.tscn" type="PackedScene" id=5]
+[ext_resource path="res://src/Traps/TrapSawMoving.tscn" type="PackedScene" id=5]
 [ext_resource path="res://src/Actors/Enemies/Chicken.tscn" type="PackedScene" id=6]
 [ext_resource path="res://src/Actors/Enemies/Mushroom.tscn" type="PackedScene" id=7]
 [ext_resource path="res://src/Collectibles/Apple.tscn" type="PackedScene" id=8]
+[ext_resource path="res://src/Interactables/DialogAction.gd" type="Script" id=9]
+[ext_resource path="res://src/Interactables/Trigger.tscn" type="PackedScene" id=10]
+[ext_resource path="res://src/Traps/SpikesStatic.tscn" type="PackedScene" id=11]
+[ext_resource path="res://src/Traps/SawStatic.tscn" type="PackedScene" id=12]
 
 [node name="Level" type="Node2D"]
 script = ExtResource( 4 )
@@ -45,4 +49,19 @@ position = Vector2( 793.847, 546.251 )
 [node name="Apple2" parent="." instance=ExtResource( 8 )]
 position = Vector2( 705.612, 454.865 )
 
+[node name="Trigger" parent="." instance=ExtResource( 10 )]
+position = Vector2( 564.979, 286.203 )
+
+[node name="Action" type="Node" parent="Trigger"]
+script = ExtResource( 9 )
+dialogTime = 1.247
+
+[node name="SawStatic" parent="." instance=ExtResource( 12 )]
+position = Vector2( 706.417, 220.879 )
+
+[node name="SpikesStatic" parent="." instance=ExtResource( 11 )]
+position = Vector2( 887.985, 572.143 )
+
 [editable path="Trap"]
+
+[editable path="Trigger"]
