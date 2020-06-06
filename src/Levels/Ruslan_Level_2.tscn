@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://assets/Tilesets/TerrainTileset.tres" type="TileSet" id=1]
 [ext_resource path="res://src/Levels/ExitPoint.tscn" type="PackedScene" id=2]
@@ -12,6 +12,7 @@
 [ext_resource path="res://src/Traps/SpikesStatic.tscn" type="PackedScene" id=10]
 [ext_resource path="res://src/Actors/Enemies/Chicken.tscn" type="PackedScene" id=11]
 [ext_resource path="res://src/Traps/TrapSawMoving.tscn" type="PackedScene" id=12]
+[ext_resource path="res://src/Levels/Common/SpikeSet.tscn" type="PackedScene" id=13]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 35.2021, 63.7614 )
@@ -21,17 +22,7 @@ script = ExtResource( 6 )
 LIMIT_LEFT = 180
 LIMIT_RIGHT = 1220
 
-[node name="SpikeSet" type="Node2D" parent="."]
-position = Vector2( 748.046, 280.985 )
-rotation = 3.14159
-
-[node name="SpikesStatic" parent="SpikeSet" instance=ExtResource( 10 )]
-
-[node name="SpikesStatic2" parent="SpikeSet" instance=ExtResource( 10 )]
-position = Vector2( 17.6448, 0.0120888 )
-
-[node name="SpikesStatic3" parent="SpikeSet" instance=ExtResource( 10 )]
-position = Vector2( 35.3756, 0.0510483 )
+[node name="SpikeSet" parent="." instance=ExtResource( 13 )]
 
 [node name="SpikeSet2" type="Node2D" parent="."]
 position = Vector2( 430.432, 364.439 )
