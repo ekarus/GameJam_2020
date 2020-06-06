@@ -13,15 +13,8 @@ enum Direction {
 
 export(Direction) var _direction = Direction.LEFT setget _set_direction
 var _state = State.IDLE setget _set_state
-
-export var _step_size = 64
-export var _stop_on_edge = false
-export var _follow_player = false
-export var _player_visibility_radius = 256
-export var _dont_move = false
-
-var _distance = 0
-var _start_position = Vector2.ZERO
+var _sees_player = false
+var _hit_a_wall = false
 
 onready var platform_detector = $PlatformDetector
 onready var floor_detector_left = $FloorDetectorLeft
@@ -33,12 +26,14 @@ func _ready():
 
 
 func _on_process_action(action, steps):
-	if _dont_move:
+	if is_static_actor:
 		return
-	if _follow_player:
-		self._direction = _select_direction(_direction)
-	self._distance = _step_size * steps
-	self._start_position = self.global_position
+	_sees_player = find_path()
+	if not _sees_player:
+		if _hit_a_wall:
+			change_direction()
+			_hit_a_wall = false
+		go_straight()
 	self._state = State.MOVE
 
 
@@ -63,89 +58,96 @@ func _kill_player(player: Player):
 
 
 func _process(delta):
-	pass
-
-func _physics_process(_delta):
-	if _dont_move:
+	if is_static_actor:
 		return
-
-	# platform collision
-	_velocity = move_and_slide(_velocity, FLOOR_NORMAL)
-
-	if not _follow_player:
-		self._direction = _change_direction_on_collision(_direction)
-	
-	if _stop_on_edge:
-		self._direction = _change_direction_on_edge(_direction)
-	
-	if _state == State.MOVE:
-		# if walked far enought
-		if abs(self.global_position.x - _start_position.x) >= _distance:
-			self._state = State.IDLE
-		# or hit something
-		elif _velocity.x == 0:
-			self._state = State.IDLE
+	if not process_active_action(delta):
+		self._state = State.IDLE
 
 
-func _select_direction(_direction):
+func _physics_process(delta):
+	if is_static_actor:
+		return
+	if not _hit_a_wall:
+		_hit_a_wall = is_on_wall()
+		if _hit_a_wall:
+			print(self.name, " hit a wall, let's switch direction");
+
+
+func _exit_tree():
 	var level = GameFlow.current_level
-	if level != null && level.player != null:
-		var distance = self.global_position.distance_to(level.player.global_position)
-		if distance <= _player_visibility_radius:
-			var direction = self.global_position.direction_to(level.player.global_position)
-			if direction.x < 0:
-#				print(self.name, " sees player on the left, direction: ", direction)
-				return Direction.LEFT
-			else:
-#				print(self.name, " sees player on the right, direction: ", direction)
-				return Direction.RIGHT
+	if level == null || level.player == null:
+		return
+	level.enemies_paths.erase(self.name)
+
+
+func find_path():
+	var level = GameFlow.current_level
+	if level == null || level.player == null:
+		return false
+
+	var nav = get_parent().get_node("Navigation2D")
+	if nav == null:
+		return false
+
+	var path = nav.get_simple_path(self.position, level.player.position)
+	# set debug info
+	level.enemies_paths[self.name] = path
+	# redraw debug info
+	level.update()
+
+	if path.size() < 2:
+		return false
+	
+	var player_on_left = (path[0].x > path[1].x)
+	var player_on_top = (path[0].y - path[1].y >= 42)
+	if player_on_top:
+		if player_on_left:
+			set_active_action(MoveVariantBase.VariantType.JumpLeft, 1)
 		else:
-#			print(self.name, " doesn't see player, distance: ", distance)
-			pass
-	return _direction
-
-
-func _change_direction(_direction):
-	_velocity.x = 0
-	if _direction == Direction.LEFT:
-		return Direction.RIGHT
+			set_active_action(MoveVariantBase.VariantType.JumpRight, 1)
 	else:
-		return Direction.LEFT
+		if player_on_left:
+			set_active_action(MoveVariantBase.VariantType.Left, 1)
+		else:
+			set_active_action(MoveVariantBase.VariantType.Right, 1)
+	
+	if player_on_left:
+		self._direction = Direction.LEFT
+	else:
+		self._direction = Direction.RIGHT
+	return true
 
 
-func _change_direction_on_collision(direction):
-	if is_on_wall():
-#		print(self.name, " hit a wall")
-		return _change_direction(direction)
+func go_straight():
+	if _direction == Direction.LEFT:
+		set_active_action(MoveVariantBase.VariantType.Left, 1)
+	else:
+		set_active_action(MoveVariantBase.VariantType.Right, 1)
 
-	return direction
+
+func change_direction():
+	if _direction == Direction.LEFT:
+		self._direction = Direction.RIGHT
+	else:
+		self._direction = Direction.LEFT
 
 
-func _change_direction_on_edge(direction):
-	if direction == Direction.LEFT && not floor_detector_left.is_colliding():
-#		print(self.name, " left edge detected")
-		_velocity.x = 0
-		return Direction.RIGHT
-		
-	if direction == Direction.RIGHT && not floor_detector_right.is_colliding():
-#		print(self.name, " right edge detected")
-		_velocity.x = 0
-		return Direction.LEFT
-
-	return direction
+func select_animation():
+	if _state == State.MOVE && abs(movement_dir.x) != 0:
+		return "Move"
+	return "Idle"
 
 
 func _set_state(value):
 	if _state != value:
 		_state = value
-		_update_velocity()
 
 	# nothing to animate yet
 	if sprite == null:
 		return
 
 	# select animation according to the current state
-	var animation = _select_animation()
+	var animation = select_animation()
 	if animation != sprite.animation:
 		#print(self.name, " switching animation to: " + animation)
 		sprite.play(animation)
@@ -154,24 +156,6 @@ func _set_state(value):
 func _set_direction(value):
 	if _direction != value:
 		_direction = value
-	
-	if sprite == null:
-		return
-	sprite.flip_h = (_direction == Direction.RIGHT)
 
-
-func _select_animation():
-	if _state == State.MOVE && abs(_velocity.x) != 0:
-		return "Move"
-	return "Idle"
-
-
-func _update_velocity():
-	if _state == State.MOVE:
-		if _direction == Direction.LEFT:
-			_velocity.x = -speed.x
-		else:
-			_velocity.x = speed.x
-	else:
-		_velocity.x = 0
-
+	if sprite:
+		sprite.flip_h = (_direction == Direction.RIGHT)

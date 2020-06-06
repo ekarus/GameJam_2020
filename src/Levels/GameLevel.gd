@@ -8,6 +8,7 @@ export var LIMIT_RIGHT = 10000
 export var LIMIT_BOTTOM = 10000
 
 var player: Player
+var enemies_paths = {}
 
 export var actions_speed_multiplier = 1.0
 export var actions_dencity_multiplier = 1.0
@@ -35,3 +36,10 @@ func _ready():
 	
 	_game_hud = GameHudScene.instance()
 	add_child(_game_hud)
+
+
+func _draw():
+	for key in enemies_paths:
+		var path = enemies_paths[key]
+		if path.size() > 0:
+			draw_polyline(path, Color.red, 1)

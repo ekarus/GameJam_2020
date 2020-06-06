@@ -31,7 +31,7 @@ position = Vector2( 287.668, 575.747 )
 z_index = -1
 
 [node name="AnimatedSprite" parent="Trap" index="2"]
-frame = 5
+frame = 6
 
 [node name="Pig" parent="." instance=ExtResource( 2 )]
 position = Vector2( 591, 557 )
