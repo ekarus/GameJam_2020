@@ -2,8 +2,6 @@ extends CanvasLayer
 
 onready var panel = $DialogPanel
 
-export (Dictionary) var DIALOGS = { }
-
 func _ready():
 	_set_active(false)
 
@@ -20,10 +18,10 @@ func _get_text_label():
 	else:
 		return null
 	
-func show_dialog(key, wait_time : float):
+func show_dialog(text, wait_time : float):
 	_set_active(true)
 	var label : Label = _get_text_label()
-	label.text = DIALOGS[key] as String
+	label.text = text
 	$Timer.wait_time = wait_time
 	$Timer.start()
 
