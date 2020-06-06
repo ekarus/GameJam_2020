@@ -23,6 +23,7 @@ var hunger_speed = 0.001
 var move_selection_panel_pos = Vector2()
 
 var prevVelY = 0.0
+var playerDied = false
 
 func _ready():
 	Events.connect("player_action_choosen", self, "_on_action_choosen")
@@ -49,6 +50,11 @@ func _process(delta):
 	hunger_level -= hunger_speed * delta
 
 func _update_animations():
+	
+	if playerDied:
+		$AnimatedSprite.play("hit")
+		return
+		
 	var is_moving = abs(movement_dir.x) > 0
 	var is_jumping = _velocity.y < 0
 	var is_falling = prevVelY - _velocity.y < 0
@@ -139,8 +145,9 @@ func _physics_process(delta):
 
 func on_damage():
 	Events.emit_signal("player_died")
+	playerDied = true
 	print_debug("player is ded")
-	$AnimatedSprite.play("hit")
+
 	pass
 
 

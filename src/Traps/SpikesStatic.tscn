@@ -19,4 +19,3 @@ shape = SubResource( 1 )
 [node name="Sprite" type="Sprite" parent="."]
 position = Vector2( 0, -2.841 )
 texture = ExtResource( 3 )
-[connection signal="body_entered" from="." to="." method="_on_Trap_body_entered"]

@@ -30,6 +30,9 @@ position = Vector2( 507, 287 )
 position = Vector2( 287.668, 575.747 )
 z_index = -1
 
+[node name="AnimatedSprite" parent="Trap" index="2"]
+frame = 2
+
 [node name="Pig" parent="." instance=ExtResource( 2 )]
 position = Vector2( 591, 557 )
 collision_layer = 1
@@ -37,7 +40,6 @@ collision_layer = 1
 [node name="Mushroom" parent="." instance=ExtResource( 7 )]
 position = Vector2( 751, 557 )
 collision_layer = 1
-_state = 1
 
 [node name="Chicken" parent="." instance=ExtResource( 6 )]
 position = Vector2( 800, 279 )
