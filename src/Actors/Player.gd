@@ -64,6 +64,9 @@ func _update_animations():
 	var is_jumping = _velocity.y < 0
 	var is_falling = prevVelY - _velocity.y < 0
 	
+	if is_jumping && !$Jump_sound.playing:
+		$Jump_sound.play()
+	
 	if is_moving:
 		$AnimatedSprite.play("run")
 	elif is_jumping:
@@ -123,6 +126,8 @@ func _on_action_choosen(action, steps):
 	if active_action != null:
 		print("skipped action because processing another one")
 		return
+	
+	$choose_sound.play()
 	
 	active_action = action
 	active_action_steps = steps

@@ -83,6 +83,7 @@ func _on_level_started():
 	var items = get_tree().get_nodes_in_group("Collectables")
 	itemsCount = items.size()
 	print_debug("Total items: " + str(itemsCount))
+	$bgm_game.play()
 	Events.emit_signal("player_hunger_changed", 100)
 
 
@@ -90,6 +91,8 @@ func _on_level_completed():
 	hide_hud()
 	lock_character_input()
 	pause_game_time()
+	$bgm_game.stop()
+	$win_jingle.play()
 	if current_level_index + 1 < Scenes.size():
 		var overlay = level_complete_overlay.instance()
 		add_child(overlay)
@@ -126,6 +129,8 @@ func on_player_death():
 	pause_game_time()
 	hide_hud()
 	lock_character_input()
+	$bgm_game.stop()
+	$lose_jinge.play()
 	var overlay = gameOverOverlay.instance()
 	add_child(overlay)
 

@@ -8,6 +8,7 @@ func _ready():
 
 func start_game():
 	Events.emit_signal("start_game")
+	$bgm_menu.stop()
 	hide()
 	
 	

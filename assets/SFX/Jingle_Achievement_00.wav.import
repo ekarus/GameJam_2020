@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Jingle_Achievement_00.wav-d0c7eff02710af055782a4883cbd9789.sample"
+
+[deps]
+
+source_file="res://assets/SFX/Jingle_Achievement_00.wav"
+dest_files=[ "res://.import/Jingle_Achievement_00.wav-d0c7eff02710af055782a4883cbd9789.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0
