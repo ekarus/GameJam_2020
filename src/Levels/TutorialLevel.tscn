@@ -17,7 +17,7 @@ script = ExtResource( 6 )
 LIMIT_LEFT = -60
 LIMIT_TOP = -1000
 LIMIT_RIGHT = 620
-LIMIT_BOTTOM = 776
+LIMIT_BOTTOM = 700
 
 [node name="Enemy" parent="." instance=ExtResource( 7 )]
 position = Vector2( 583.451, 393.605 )

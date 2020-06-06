@@ -18,7 +18,7 @@ func load_level(index):
 	GameFlow.unlock_character_input()
 	
 func load_next_level():
-	if current_level_index < scenes.size():
+	if current_level_index + 1 < scenes.size():
 		load_level(current_level_index + 1)
 
 func reload_level():
