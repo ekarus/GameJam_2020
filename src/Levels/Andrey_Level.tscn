@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://assets/Tilesets/TerrainTileset.tres" type="TileSet" id=1]
 [ext_resource path="res://src/Levels/ExitPoint.tscn" type="PackedScene" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://src/Traps/SawStatic.tscn" type="PackedScene" id=8]
 [ext_resource path="res://assets/Tilesets/BackGroundTileset.tres" type="TileSet" id=9]
 [ext_resource path="res://src/Actors/Enemies/Chicken.tscn" type="PackedScene" id=10]
+[ext_resource path="res://src/Actors/Enemies/Mushroom.tscn" type="PackedScene" id=11]
 [ext_resource path="res://assets/Tilesets/NavigationTileset.tres" type="TileSet" id=12]
 
 [sub_resource type="RectangleShape2D" id=1]
@@ -56,6 +57,9 @@ position = Vector2( 516, 294 )
 
 [node name="Chicken" parent="." instance=ExtResource( 10 )]
 position = Vector2( 580, 238 )
+
+[node name="Mushroom" parent="." instance=ExtResource( 11 )]
+position = Vector2( 257, 586 )
 
 [node name="DeathTrigger" type="Area2D" parent="."]
 script = ExtResource( 5 )

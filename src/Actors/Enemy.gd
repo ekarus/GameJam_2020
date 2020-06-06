@@ -76,7 +76,7 @@ func _physics_process(delta):
 
 func _exit_tree():
 	var level = GameFlow.current_level
-	if level == null || level.player == null:
+	if level == null:
 		return
 	level.enemies_paths.erase(self.name)
 
