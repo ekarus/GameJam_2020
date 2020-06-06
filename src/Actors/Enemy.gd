@@ -97,7 +97,7 @@ func _change_direction(_direction):
 
 func _change_direction_on_collision(direction):
 	if is_on_wall():
-		print(self.name, " found detected")
+#		print(self.name, " hit a wall")
 		return _change_direction(direction)
 
 	return direction
@@ -105,12 +105,12 @@ func _change_direction_on_collision(direction):
 
 func _change_direction_on_edge(direction):
 	if direction == Direction.LEFT && not floor_detector_left.is_colliding():
-		print(self.name, " left edge detected")
+#		print(self.name, " left edge detected")
 		_velocity.x = 0
 		return Direction.RIGHT
 		
 	if direction == Direction.RIGHT && not floor_detector_right.is_colliding():
-		print(self.name, " right edge detected")
+#		print(self.name, " right edge detected")
 		_velocity.x = 0
 		return Direction.LEFT
 
