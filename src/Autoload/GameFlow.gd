@@ -9,6 +9,7 @@ export(PackedScene) var level_complete_overlay = preload("res://src/UI/PopUps/Ne
 export(PackedScene) var pause_overlay = preload("res://src/UI/PopUps/Pause_PopUp.tscn")
 export(PackedScene) var main_menu_overlay = preload("res://src/UI/MainMenu/MainMenu_UI.tscn")
 export(PackedScene) var game_won_overlay = preload("res://src/UI/PopUps/WIN_PopUp.tscn")
+export(PackedScene) var enemy_explosion = preload("res://src/Actors/Enemies/EnemyDeathSprite.tscn")
 
 var pause_overlay_instance
 var main_menu_instance
@@ -59,6 +60,7 @@ func _ready():
 	Events.connect("level_started", self, "_on_level_started")
 	Events.connect("player_died", self, "on_player_death")
 	Events.connect("game_start", self, "on_game_started")
+	Events.connect("enemy_death", self, "_on_enemy_death")
 
 
 func _process(delta):
@@ -161,3 +163,10 @@ func pause_game_time():
 
 func resume_game_time():
 	get_tree().paused = false
+
+func _on_enemy_death(position):
+	var sprite : AnimatedSprite = enemy_explosion.instance()
+	sprite.global_position = position
+	add_child(sprite)
+	$enemy_death_sound.global_position = position
+	$enemy_death_sound.play()

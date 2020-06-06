@@ -46,6 +46,7 @@ func _on_StompDetector_body_entered(body: Node) -> void:
 	if body.global_position.y > $StompDetector.global_position.y:
 		return
 	$CollisionShape2D.disabled = true
+	Events.emit_signal("enemy_death", global_position)
 	queue_free()
 
 

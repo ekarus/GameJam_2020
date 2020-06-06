@@ -23,3 +23,5 @@ signal game_unpaused
 
 signal player_inactive_long_time
 signal player_falling
+
+signal enemy_death(position)
