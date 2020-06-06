@@ -34,6 +34,7 @@ margin_left = -46.7547
 margin_top = -44.8679
 margin_right = 45.2453
 margin_bottom = 47.1321
+disabled = true
 texture_normal = ExtResource( 5 )
 texture_pressed = ExtResource( 4 )
 expand = true

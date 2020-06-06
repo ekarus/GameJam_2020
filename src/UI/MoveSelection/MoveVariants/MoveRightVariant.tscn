@@ -34,6 +34,7 @@ margin_left = -46.0
 margin_top = -46.0
 margin_right = 46.0
 margin_bottom = 46.0
+disabled = true
 texture_normal = ExtResource( 4 )
 texture_pressed = ExtResource( 3 )
 __meta__ = {
