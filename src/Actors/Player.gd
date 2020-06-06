@@ -29,10 +29,11 @@ func _process(delta):
 		elif movement_dir.x < 0:
 			sprite.scale.x = -1
 
-		hunger_level -= hunger_speed * delta
-		if hunger_level <= 0:
-			on_damage()
-		Events.emit_signal("player_hunger_changed", hunger_level * 100)
+		if !GameFlow.is_main_menu_open():
+			hunger_level -= hunger_speed * delta
+			if hunger_level <= 0:
+				on_damage()
+			Events.emit_signal("player_hunger_changed", hunger_level * 100)
 	_update_animations()
 
 func _update_animations():

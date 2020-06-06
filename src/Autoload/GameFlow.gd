@@ -49,14 +49,14 @@ func load_first_level():
 func reload_level():
 	load_level(current_level_index)
 	Events.emit_signal("start_game")
-	
-	
+
+
 func start_new_game():
 	load_level(0)
 	main_menu_instance = main_menu_overlay.instance()
 	$Menu.add_child(main_menu_instance)
 	main_menu_instance.show()
-	
+
 
 func _ready():
 	Events.connect("item_collected", self, "_on_item_collected")
@@ -176,3 +176,7 @@ func _on_enemy_death(position):
 	add_child(sprite)
 	$enemy_death_sound.global_position = position
 	$enemy_death_sound.play()
+
+
+func is_main_menu_open():
+	return main_menu_instance != null && main_menu_instance.visible
