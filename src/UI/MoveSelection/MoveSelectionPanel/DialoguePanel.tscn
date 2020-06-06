@@ -1,10 +1,10 @@
 [gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://assets/Textures/DialogueBackground.png" type="Texture" id=1]
-[ext_resource path="res://assets/font/MILLENNIA.TTF" type="DynamicFontData" id=2]
+[ext_resource path="res://assets/font/FFFFORWA.TTF" type="DynamicFontData" id=2]
 
 [sub_resource type="DynamicFont" id=1]
-size = 26
+size = 20
 use_mipmaps = true
 use_filter = true
 font_data = ExtResource( 2 )
