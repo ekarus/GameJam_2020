@@ -9,6 +9,13 @@ export var LIMIT_BOTTOM = 10000
 
 var player: Player
 var enemies_paths = {}
+const colors = [
+	Color.blue,
+	Color.brown,
+	Color.forestgreen,
+	Color.gold,
+	Color.darkred,
+	Color.darkorange]
 
 export var actions_speed_multiplier = 1.0
 export var actions_dencity_multiplier = 1.0
@@ -42,8 +49,12 @@ func start():
 
 
 func _draw():
+	if not GameFlow.DEBUG_NAVIGATION:
+		return
+	var color = 0
 	for key in enemies_paths:
 		var path = enemies_paths[key]
 		if path.size() > 0:
-			draw_polyline(path, Color.red, 1)
+			draw_polyline(path, colors[color % colors.size()], 1)
+			color += 1
 

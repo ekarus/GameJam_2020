@@ -126,12 +126,9 @@ animations = [ {
 } ]
 
 [node name="Chicken" instance=ExtResource( 1 )]
-_follow_player = true
 
 [node name="Sprite" parent="." index="3"]
 frames = SubResource( 28 )
-frame = 5
-playing = true
 
 [node name="CollisionShape2D" parent="." index="4"]
 position = Vector2( 0, -12 )

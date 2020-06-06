@@ -43,8 +43,12 @@ func _on_StompDetector_body_entered(body: Node) -> void:
 	if body.global_position.y > $StompDetector.global_position.y:
 		return
 	$CollisionShape2D.disabled = true
-	if GameFlow.current_level:
-		GameFlow.current_level.enemies_paths.erase(self.name)
+	var level = GameFlow.current_level
+	if level:
+		# remove debug info
+		level.enemies_paths.erase(self.name)
+		# redraw debug info
+		level.update()
 	Events.emit_signal("enemy_death", global_position)
 	queue_free()
 
