@@ -11,6 +11,8 @@ export(PackedScene) var main_menu_overlay = preload("res://src/UI/MainMenu/MainM
 export(PackedScene) var game_won_overlay = preload("res://src/UI/PopUps/WIN_PopUp.tscn")
 export(PackedScene) var enemy_explosion = preload("res://src/Actors/Enemies/EnemyDeathSprite.tscn")
 
+export(AudioEffect) var pauseScreenSoundFilter
+
 var pause_overlay_instance
 var main_menu_instance
 
@@ -144,6 +146,7 @@ func exit_game():
 func pause_game():
 	lock_character_input()
 	hide_hud()
+	AudioServer.add_bus_effect(0, pauseScreenSoundFilter, 0)
 	pause_overlay_instance = pause_overlay.instance()
 	add_child(pause_overlay_instance)
 	pause_game_time()
@@ -155,6 +158,7 @@ func unpause_game():
 	if pause_overlay_instance:
 		pause_overlay_instance.queue_free()
 		pause_overlay_instance = null
+	AudioServer.remove_bus_effect(0, 0)
 	resume_game_time()
 
 
