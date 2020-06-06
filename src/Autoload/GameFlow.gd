@@ -40,6 +40,7 @@ func _on_level_started():
 	var items = get_tree().get_nodes_in_group("Collectables")
 	itemsCount = items.size()
 	print_debug("Total items: " + str(itemsCount))
+	Events.emit_signal("player_hunger_changed", 100)
 	pass
 	
 

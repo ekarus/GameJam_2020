@@ -17,6 +17,7 @@ extents = Vector2( 35.2021, 63.7614 )
 script = ExtResource( 6 )
 LIMIT_LEFT = -150
 LIMIT_RIGHT = 710
+player_hunger_speed = 0.03
 
 [node name="GroundTiles" type="TileMap" parent="."]
 tile_set = ExtResource( 1 )

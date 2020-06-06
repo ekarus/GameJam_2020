@@ -11,6 +11,7 @@ var player: Player
 
 export var actions_speed_multiplier = 1.0
 export var actions_dencity_multiplier = 1.0
+export var player_hunger_speed = 0.01
 
 export(PackedScene) var GameHudScene = preload("res://src/UI/IngameHUD.tscn")
 
@@ -29,6 +30,8 @@ func _ready():
 			camera.limit_top = LIMIT_TOP
 			camera.limit_right = LIMIT_RIGHT
 			camera.limit_bottom = LIMIT_BOTTOM
+	
+	player.hunger_speed = player_hunger_speed
 	
 	_game_hud = GameHudScene.instance()
 	add_child(_game_hud)

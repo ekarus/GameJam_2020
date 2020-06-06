@@ -18,7 +18,7 @@ var current_step_time_left = current_step_length
 const step_size = 16.0
 
 var hunger_level = 1.0
-var hunger_speed = 0.001
+var hunger_speed = 0.1
 
 var move_selection_panel_pos = Vector2()
 
@@ -30,24 +30,29 @@ func _ready():
 
 
 func _process(delta):
-	# process steps time calculation
-	if active_action != null:
-		current_step_time_left -= delta
-		if current_step_time_left < 0:
-			active_action_steps -= 1
-			discrete_move_done = false
-			current_step_time_left = current_step_length
-			
-			if active_action_steps <= 0:
-				active_action = null
-				Events.emit_signal("player_action_complete")
-	
-	_process_action_input()
+	if !playerDied: 
+		# process steps time calculation
+		if active_action != null:
+			current_step_time_left -= delta
+			if current_step_time_left < 0:
+				active_action_steps -= 1
+				discrete_move_done = false
+				current_step_time_left = current_step_length
+				
+				if active_action_steps <= 0:
+					active_action = null
+					Events.emit_signal("player_action_complete")
+		
+		_process_action_input()
+
+		# just for test
+		# _process_normal_input()
+		
+		hunger_level -= hunger_speed * delta
+		if hunger_level <= 0:
+			on_damage()
+		Events.emit_signal("player_hunger_changed", hunger_level * 100)
 	_update_animations()
-	# just for test
-	# _process_normal_input()
-	
-	hunger_level -= hunger_speed * delta
 
 func _update_animations():
 	
@@ -142,6 +147,13 @@ func _physics_process(delta):
 	var is_falling = platform_detector.is_colliding()
 	_velocity = move_and_slide_with_snap(_velocity, snap_vector, Vector2.UP, is_falling, 4, 0.9, false)
 
+
+func reduce_hunger(value):
+	hunger_level += value
+	pass
+
+func reset_hunger(value):
+	hunger_level = 1.0
 
 func on_damage():
 	Events.emit_signal("player_died")

@@ -10,6 +10,7 @@ signal quit_requested
 
 signal player_action_choosen(move_type, steps)
 signal player_action_complete
+signal player_hunger_changed(value)
 
 signal item_collected
 

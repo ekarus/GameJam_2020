@@ -1,10 +1,10 @@
 extends Area2D
 
+export var RestorationValue = 20.0
+
 func _on_body_entered(body):
 	if body is Player:
+		(body as Player).reduce_hunger(RestorationValue / 100)
 		Events.emit_signal("item_collected")
-		var effect : ItemEffectBase = get_node("Effect")
-		if effect:
-			effect.apply_effect()
 		queue_free()
 	pass 
