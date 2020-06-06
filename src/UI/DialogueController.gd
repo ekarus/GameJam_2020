@@ -10,10 +10,11 @@ var action_reactions = [
 	"Dude, I think I'm gonna puke"
 ]
 
-var fall_dialog_chance = 1
-var fall_reactions = [
-	"I'm flying! I'm flying!",
-	"I need a jumpsuit"
+var death_dialog_chance = 0.5
+var death_reactions = [
+	"I trusted you, dude",
+	"Hey, stop it",
+	"Nooo"
 ]
 
 var old_hunger_value = 100.0
@@ -51,7 +52,7 @@ func _ready():
 	Events.connect("player_action_choosen", self, "_on_action_choosen")
 	Events.connect("player_hunger_changed", self, "_on_hunger_changed")
 	Events.connect("player_inactive_long_time", self, "_on_bored")
-	Events.connect("player_falling", self, "_on_falling")
+	Events.connect("player_died", self, "_on_die")
 	Events.connect("start_game", self, "_on_start_game")
 	
 	tutorial_timer = Timer.new()
@@ -108,12 +109,14 @@ func _on_bored():
 		show_dialog(bored_reactions[randi() % bored_reactions.size()], 4)
 
 
-func _on_falling():
-	if randf() <= fall_dialog_chance:
-		show_dialog(fall_reactions[randi() % fall_reactions.size()], 4)
+func _on_die():
+	if old_hunger_value > 10:
+		if randf() <= death_dialog_chance:
+			show_dialog(death_reactions[randi() % death_reactions.size()], 4)
 
 
 func _on_start_game():
+	hide_dialog()
 	show_tutorial_dialogues()
 
 
