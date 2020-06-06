@@ -42,7 +42,6 @@ func _ready():
 	add_child(spawn_timer)
 	
 	Events.connect("player_action_complete", self, "_on_action_complete")
-	Events.connect("player_died", self, "_on_player_death")
 	
 	scene_center = $PanelArea/CollisionShape2D.position
 	scene_half_width = ($PanelArea/CollisionShape2D.shape as RectangleShape2D).extents.x
@@ -168,7 +167,3 @@ func _is_variant_expired(variant):
 func _on_action_complete():
 	wait_for_action_to_complete = false
 	spawn_timer.set_paused(false)
-
-func _on_player_death():
-	visible = false
-	pass

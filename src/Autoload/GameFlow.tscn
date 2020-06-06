@@ -5,9 +5,8 @@
 [ext_resource path="res://src/Levels/TutorialLevel.tscn" type="PackedScene" id=3]
 [ext_resource path="res://src/UI/PopUps/GameOverOverlay.tscn" type="PackedScene" id=4]
 
-
-
 [node name="GameFlow" type="Node"]
+pause_mode = 2
 script = ExtResource( 2 )
 scenes = [ ExtResource( 3 ), ExtResource( 1 ) ]
 gameOverOverlay = ExtResource( 4 )
