@@ -16,6 +16,8 @@ var _state = State.IDLE setget _set_state
 var _sees_player = false
 var _hit_a_wall = false
 
+const _enemy_size = 64
+
 onready var platform_detector = $PlatformDetector
 onready var floor_detector_left = $FloorDetectorLeft
 onready var floor_detector_right = $FloorDetectorRight
@@ -41,6 +43,8 @@ func _on_StompDetector_body_entered(body: Node) -> void:
 	if body.global_position.y > $StompDetector.global_position.y:
 		return
 	$CollisionShape2D.disabled = true
+	if GameFlow.current_level:
+		GameFlow.current_level.enemies_paths.erase(self.name)
 	Events.emit_signal("enemy_death", global_position)
 	queue_free()
 
@@ -74,13 +78,6 @@ func _physics_process(delta):
 			print(self.name, " hit a wall, let's switch direction");
 
 
-func _exit_tree():
-	var level = GameFlow.current_level
-	if level == null:
-		return
-	level.enemies_paths.erase(self.name)
-
-
 func find_path():
 	var level = GameFlow.current_level
 	if level == null || level.player == null:
@@ -99,22 +96,32 @@ func find_path():
 	if path.size() < 2:
 		return false
 	
-	var player_on_left = (path[0].x > path[1].x)
-	var player_on_top = (path[0].y - path[1].y >= 42)
+	var player_on_left = (path[0].x - path[1].x) >= _enemy_size / 8
+	var player_on_right = (path[1].x - path[0].x) >= _enemy_size / 8
+	var player_on_top = (path[0].y - path[1].y) >= _enemy_size / 2
 	if player_on_top:
 		if player_on_left:
 			set_active_action(MoveVariantBase.VariantType.JumpLeft, 1)
-		else:
+		elif player_on_right:
 			set_active_action(MoveVariantBase.VariantType.JumpRight, 1)
+		elif path.size() > 2:
+			player_on_left = (path[1].x - path[2].x) >= _enemy_size / 8
+			player_on_right = (path[2].x - path[1].x) >= _enemy_size / 8
+			if player_on_left:
+				set_active_action(MoveVariantBase.VariantType.JumpLeft, 1)
+			elif player_on_right:
+				set_active_action(MoveVariantBase.VariantType.JumpRight, 1)
 	else:
 		if player_on_left:
 			set_active_action(MoveVariantBase.VariantType.Left, 1)
-		else:
+		elif player_on_right:
 			set_active_action(MoveVariantBase.VariantType.Right, 1)
+		else:
+			print(self.name, ": what is going on???")
 	
 	if player_on_left:
 		self._direction = Direction.LEFT
-	else:
+	elif player_on_right:
 		self._direction = Direction.RIGHT
 	return true
 
