@@ -4,6 +4,7 @@ extends CanvasLayer
 func _ready():
 	$Loose_PopUp/PopUp/Buttons/StartButton.connect("pressed", self, "_on_restart")
 	$Loose_PopUp/PopUp/Buttons/StartButton3.connect("pressed", self, "_on_exit")
+	$Loose_PopUp/PopUp/Buttons/StartButton.grab_focus()
 
 
 func _on_restart():

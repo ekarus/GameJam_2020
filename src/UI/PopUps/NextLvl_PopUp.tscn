@@ -30,46 +30,57 @@ extra_spacing_top = -2
 font_data = ExtResource( 2 )
 
 [sub_resource type="AtlasTexture" id=3]
+flags = 4
 atlas = ExtResource( 9 )
 region = Rect2( 0, 0, 32, 32 )
 
 [sub_resource type="AtlasTexture" id=4]
+flags = 4
 atlas = ExtResource( 9 )
 region = Rect2( 32, 0, 32, 32 )
 
 [sub_resource type="AtlasTexture" id=5]
+flags = 4
 atlas = ExtResource( 9 )
 region = Rect2( 64, 0, 32, 32 )
 
 [sub_resource type="AtlasTexture" id=6]
+flags = 4
 atlas = ExtResource( 9 )
 region = Rect2( 96, 0, 32, 32 )
 
 [sub_resource type="AtlasTexture" id=7]
+flags = 4
 atlas = ExtResource( 9 )
 region = Rect2( 128, 0, 32, 32 )
 
 [sub_resource type="AtlasTexture" id=8]
+flags = 4
 atlas = ExtResource( 9 )
 region = Rect2( 160, 0, 32, 32 )
 
 [sub_resource type="AtlasTexture" id=9]
+flags = 4
 atlas = ExtResource( 9 )
 region = Rect2( 192, 0, 32, 32 )
 
 [sub_resource type="AtlasTexture" id=10]
+flags = 4
 atlas = ExtResource( 9 )
 region = Rect2( 224, 0, 32, 32 )
 
 [sub_resource type="AtlasTexture" id=11]
+flags = 4
 atlas = ExtResource( 9 )
 region = Rect2( 256, 0, 32, 32 )
 
 [sub_resource type="AtlasTexture" id=12]
+flags = 4
 atlas = ExtResource( 9 )
 region = Rect2( 288, 0, 32, 32 )
 
 [sub_resource type="AtlasTexture" id=13]
+flags = 4
 atlas = ExtResource( 9 )
 region = Rect2( 320, 0, 32, 32 )
 
@@ -203,5 +214,5 @@ position = Vector2( 153.001, 139.066 )
 scale = Vector2( 3, 3 )
 frames = SubResource( 14 )
 animation = "Win"
-frame = 1
+frame = 3
 playing = true
