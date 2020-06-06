@@ -6,10 +6,12 @@
 [ext_resource path="res://assets/Textures/HpFruitIcon.png" type="Texture" id=4]
 
 [node name="Hungry Hud" type="TextureProgress"]
-margin_left = 37.5415
-margin_top = 5.89194
-margin_right = 276.542
-margin_bottom = 35.8919
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -119.5
+margin_top = 30.1369
+margin_right = 119.5
+margin_bottom = 60.1369
 value = 80.0
 texture_under = ExtResource( 2 )
 texture_over = ExtResource( 3 )
