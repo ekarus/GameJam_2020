@@ -6,7 +6,7 @@
 [ext_resource path="res://assets/font/FFFFORWA.TTF" type="DynamicFontData" id=4]
 [ext_resource path="res://assets/Textures/XN_bACK.png" type="Texture" id=5]
 
-[sub_resource type="DynamicFont" id=3]
+[sub_resource type="DynamicFont" id=1]
 size = 25
 outline_size = 2
 outline_color = Color( 0, 0, 0, 1 )
@@ -39,6 +39,7 @@ __meta__ = {
 }
 
 [node name="Control" type="NinePatchRect" parent="."]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 1.10445
@@ -63,7 +64,7 @@ margin_left = 40.4086
 margin_top = 64.9798
 margin_right = 80.4086
 margin_bottom = 100.98
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 1 )
 text = "x"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -75,7 +76,7 @@ margin_top = 61.0413
 margin_right = 105.261
 margin_bottom = 124.041
 custom_fonts/font = SubResource( 2 )
-text = "3"
+text = "1"
 __meta__ = {
 "_edit_use_anchors_": false
 }

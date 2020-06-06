@@ -1,4 +1,5 @@
 extends Area2D
+class_name Trap
 
 onready var behaviour : BaseBehavior = $Behavior
 
