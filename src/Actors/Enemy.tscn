@@ -129,7 +129,6 @@ extents = Vector2( 9, 3 )
 [node name="Enemy" type="KinematicBody2D"]
 collision_layer = 4
 script = ExtResource( 5 )
-_direction = 1
 
 [node name="PlatformDetector" type="RayCast2D" parent="."]
 enabled = true
