@@ -49,21 +49,6 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/Collectibles/ItemEffect.gd"
 }, {
-"base": "BaseVariant",
-"class": "JumpDiagonalVariant",
-"language": "GDScript",
-"path": "res://src/UI/MoveSelection/MoveVariants/JumpDiagonalVariant.gd"
-}, {
-"base": "BaseVariant",
-"class": "MoveLeftVariant",
-"language": "GDScript",
-"path": "res://src/UI/MoveSelection/MoveVariants/MoveLeftVariant.gd"
-}, {
-"base": "BaseVariant",
-"class": "MoveRightVariant",
-"language": "GDScript",
-"path": "res://src/UI/MoveSelection/MoveVariants/MoveRightVariant.gd"
-}, {
 "base": "Node2D",
 "class": "MoveVariantBase",
 "language": "GDScript",
@@ -98,9 +83,6 @@ _global_script_class_icons={
 "Enemy": "",
 "GameLevel": "",
 "ItemEffectBase": "",
-"JumpDiagonalVariant": "",
-"MoveLeftVariant": "",
-"MoveRightVariant": "",
 "MoveVariantBase": "",
 "Player": "",
 "Trap": "",
@@ -119,6 +101,10 @@ config/icon="res://icon.png"
 Events="*res://src/Autoload/Events.gd"
 GameFlow="*res://src/Autoload/GameFlow.tscn"
 DialogController="*res://src/UI/DialogController.tscn"
+
+[debug]
+
+settings/fps/force_fps=60
 
 [importer_defaults]
 
@@ -187,7 +173,7 @@ debug_jump_up={
 , Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":87,"unicode":0,"echo":false,"script":null)
  ]
 }
-debup_jump_left={
+debug_jump_left={
 "deadzone": 0.5,
 "events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":true,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777231,"unicode":0,"echo":false,"script":null)
 , Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":true,"control":false,"meta":false,"command":false,"pressed":false,"scancode":65,"unicode":0,"echo":false,"script":null)
@@ -209,7 +195,7 @@ debug_jump_right={
 
 [physics]
 
-2d/default_gravity=200
+2d/default_gravity=400
 2d/default_gravity_vector=Vector2( 0, 2 )
 
 [rendering]
