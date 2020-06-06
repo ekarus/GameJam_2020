@@ -1,6 +1,7 @@
 class_name BaseVariant
 extends Node2D
 
+
 func get_index_from_progression(progression):
 	var progression_sum = 0
 	for value in progression:
@@ -16,6 +17,7 @@ func get_index_from_progression(progression):
 	print("this random stuff is broken")
 	return 0
 
+
 func update_count(progression):
 	var count = get_index_from_progression(progression) + 1
 	
@@ -26,3 +28,9 @@ func update_count(progression):
 	else:
 		$Control.hide()
 	return count
+
+
+func activate_effect():
+	scale = Vector2(1.3, 1.3)
+	$Normal.set_visible(false)
+	$Activated.set_visible(true)

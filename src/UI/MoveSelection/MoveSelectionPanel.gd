@@ -31,10 +31,13 @@ var scene_half_height
 var scene_half_width
 var item_collision_half_size
 
+var activated_variant
+
 # for adjusting priority of subsequent variants
 var variant_center_shift = 0
 
 var wait_for_action_to_complete = false
+
 
 func _ready():
 	rng.randomize()
@@ -144,7 +147,9 @@ func _select_hovered_action():
 	if variant_to_activate != null:
 		var variant_base = variant_to_activate.get_node("VariantBase")
 		_activate_action(variant_base.variant_type, variant_base.steps_count)
-		_despawn_variant_items([variant_to_activate])
+		activated_variant = variant_to_activate
+		variant_to_activate.activate_effect()
+		variant_to_activate.position = $Cursor.position + Vector2(-1, -8)
 
 
 func _activate_action(action_type, steps):
@@ -174,5 +179,8 @@ func _is_variant_expired(variant):
 
 
 func _on_action_complete():
+	if activated_variant:
+		_despawn_variant_items([activated_variant])
+	
 	wait_for_action_to_complete = false
 	spawn_timer.set_paused(false)
