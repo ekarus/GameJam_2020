@@ -14,11 +14,13 @@ var variant_scenes = [
 var active_variants = []
 
 var base_speed = 300.0
-var speed = base_speed
+var speed_level_multiplier = 1.0
+var speed = base_speed * speed_level_multiplier
+var speed_btn_multiplier = 2.0
 
-var actions_dencity = 1
+var actions_dencity = 1.0
 
-var start_spawn_max_time = 1
+var start_spawn_max_time = 1.0
 var spawn_max_time = start_spawn_max_time
 
 var variant_spawn_width = 100.0
@@ -52,7 +54,8 @@ func _ready():
 	_spawn_new_variant()
 	
 	if GameFlow.current_level != null:
-		speed = base_speed * GameFlow.current_level.actions_speed_multiplier
+		speed_level_multiplier = GameFlow.current_level.actions_speed_multiplier
+		speed = base_speed * speed_level_multiplier
 		actions_dencity = GameFlow.current_level.actions_dencity_multiplier
 
 
@@ -75,6 +78,12 @@ func _process(delta):
 		elif Input.is_action_just_pressed("debug_jump_up"):
 			Events.emit_signal("player_action_choosen", MoveVariantBase.VariantType.JumpUp, 1)
 			print("debug jump up")
+	
+	if Input.is_action_just_pressed("speed_up_actions"):
+		speed = base_speed * speed_level_multiplier * speed_btn_multiplier
+	elif Input.is_action_just_released("speed_up_actions"):
+		speed = base_speed * speed_level_multiplier
+		
 	
 	_update_positions(delta)
 	
