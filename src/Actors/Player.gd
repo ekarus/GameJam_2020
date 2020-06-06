@@ -4,9 +4,6 @@ extends Actor
 onready var platform_detector = $PlatformDetector
 onready var sprite = $AnimatedSprite
 
-export var speed = 100
-export var jump_speed = 190
-
 var movement_dir = Vector2()
 
 var active_action = null
@@ -106,22 +103,19 @@ func _on_action_choosen(action, steps):
 	active_action_steps = steps
 	
 	if active_action == MoveVariantBase.VariantType.Left or active_action == MoveVariantBase.VariantType.Right:
-		current_step_length = move_step_length * step_size / speed
+		current_step_length = move_step_length * step_size / speed.x
 	else:
-		current_step_length = jump_step_length * step_size / speed
+		current_step_length = jump_step_length * step_size / speed.x
 	
 	current_step_time_left = current_step_length
 	discrete_move_done = false
 
 
 func _physics_process(delta):
-	# super call
-	._physics_process(delta)
-	
 	# input acceleration
-	_velocity.x = speed * movement_dir.x
+	_velocity.x = speed.x * movement_dir.x
 	if movement_dir.y != 0.0:
-		_velocity.y = jump_speed * movement_dir.y
+		_velocity.y = speed.y * movement_dir.y
 	
 	# platform collision
 	var snap_vector = Vector2.DOWN * FLOOR_DETECT_DISTANCE if movement_dir.y == 0.0 else Vector2.ZERO
