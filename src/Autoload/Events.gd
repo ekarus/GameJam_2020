@@ -20,3 +20,6 @@ signal start_game
 
 signal game_paused
 signal game_unpaused
+
+signal player_inactive_long_time
+signal player_falling
