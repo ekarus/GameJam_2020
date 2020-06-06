@@ -3,7 +3,7 @@
 [ext_resource path="res://assets/font/FFFFORWA.TTF" type="DynamicFontData" id=1]
 [ext_resource path="res://assets/Textures/XN_bACK.png" type="Texture" id=2]
 
-[sub_resource type="DynamicFont" id=3]
+[sub_resource type="DynamicFont" id=1]
 size = 25
 outline_size = 2
 outline_color = Color( 0, 0, 0, 1 )
@@ -35,7 +35,7 @@ margin_left = 10.7773
 margin_top = 21.6558
 margin_right = 50.7773
 margin_bottom = 57.6558
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 1 )
 text = "x"
 __meta__ = {
 "_edit_use_anchors_": false

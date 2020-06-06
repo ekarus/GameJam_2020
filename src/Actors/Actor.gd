@@ -9,7 +9,7 @@ onready var gravity = ProjectSettings.get("physics/2d/default_gravity")
 const FLOOR_NORMAL = Vector2.UP
 const FLOOR_DETECT_DISTANCE = 20.0
 
-export var speed: = Vector2(100, 190)
+export var speed: = Vector2(100, 85)
 
 var _velocity: = Vector2.ZERO
 
