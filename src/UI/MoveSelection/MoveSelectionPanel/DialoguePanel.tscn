@@ -11,9 +11,9 @@ font_data = ExtResource( 2 )
 
 [node name="DialogPanel" type="NinePatchRect"]
 margin_left = 16.9071
-margin_top = 33.1614
+margin_top = 79.5882
 margin_right = 466.907
-margin_bottom = 173.161
+margin_bottom = 219.588
 rect_scale = Vector2( 0.8, 0.8 )
 texture = ExtResource( 1 )
 __meta__ = {
