@@ -63,7 +63,7 @@ func _ready():
 	Events.connect("level_completed", self, "_on_level_completed")
 	Events.connect("level_started", self, "_on_level_started")
 	Events.connect("player_died", self, "on_player_death")
-	Events.connect("game_start", self, "on_game_started")
+	Events.connect("start_game", self, "on_game_started")
 	Events.connect("enemy_death", self, "_on_enemy_death")
 
 
