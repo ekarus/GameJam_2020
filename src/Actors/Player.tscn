@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=2]
+[gd_scene load_steps=43 format=2]
 
 [ext_resource path="res://src/Actors/Player.gd" type="Script" id=1]
 [ext_resource path="res://assets/PixelAdventure1/Main Characters/Virtual Guy/Jump (32x32).png" type="Texture" id=2]
@@ -6,6 +6,8 @@
 [ext_resource path="res://assets/PixelAdventure1/Main Characters/Virtual Guy/Run (32x32).png" type="Texture" id=4]
 [ext_resource path="res://assets/PixelAdventure1/Main Characters/Virtual Guy/Hit (32x32).png" type="Texture" id=5]
 [ext_resource path="res://assets/PixelAdventure1/Main Characters/Virtual Guy/Fall (32x32).png" type="Texture" id=6]
+[ext_resource path="res://assets/SFX/Jump.wav" type="AudioStream" id=7]
+[ext_resource path="res://assets/SFX/Hit_02.wav" type="AudioStream" id=8]
 
 [sub_resource type="CapsuleShape2D" id=1]
 height = 6.0
@@ -102,68 +104,68 @@ region = Rect2( 192, 0, 32, 32 )
 
 [sub_resource type="AtlasTexture" id=20]
 flags = 4
-atlas = ExtResource( 4 )
+atlas = ExtResource( 6 )
 region = Rect2( 0, 0, 32, 32 )
 
 [sub_resource type="AtlasTexture" id=21]
 flags = 4
 atlas = ExtResource( 4 )
-region = Rect2( 32, 0, 32, 32 )
+region = Rect2( 0, 0, 32, 32 )
 
 [sub_resource type="AtlasTexture" id=22]
 flags = 4
 atlas = ExtResource( 4 )
-region = Rect2( 64, 0, 32, 32 )
+region = Rect2( 32, 0, 32, 32 )
 
 [sub_resource type="AtlasTexture" id=23]
 flags = 4
 atlas = ExtResource( 4 )
-region = Rect2( 96, 0, 32, 32 )
+region = Rect2( 64, 0, 32, 32 )
 
 [sub_resource type="AtlasTexture" id=24]
 flags = 4
 atlas = ExtResource( 4 )
-region = Rect2( 128, 0, 32, 32 )
+region = Rect2( 96, 0, 32, 32 )
 
 [sub_resource type="AtlasTexture" id=25]
 flags = 4
 atlas = ExtResource( 4 )
-region = Rect2( 160, 0, 32, 32 )
+region = Rect2( 128, 0, 32, 32 )
 
 [sub_resource type="AtlasTexture" id=26]
 flags = 4
 atlas = ExtResource( 4 )
-region = Rect2( 192, 0, 32, 32 )
+region = Rect2( 160, 0, 32, 32 )
 
 [sub_resource type="AtlasTexture" id=27]
 flags = 4
 atlas = ExtResource( 4 )
-region = Rect2( 224, 0, 32, 32 )
+region = Rect2( 192, 0, 32, 32 )
 
 [sub_resource type="AtlasTexture" id=28]
 flags = 4
 atlas = ExtResource( 4 )
-region = Rect2( 256, 0, 32, 32 )
+region = Rect2( 224, 0, 32, 32 )
 
 [sub_resource type="AtlasTexture" id=29]
 flags = 4
 atlas = ExtResource( 4 )
-region = Rect2( 288, 0, 32, 32 )
+region = Rect2( 256, 0, 32, 32 )
 
 [sub_resource type="AtlasTexture" id=30]
 flags = 4
 atlas = ExtResource( 4 )
-region = Rect2( 320, 0, 32, 32 )
+region = Rect2( 288, 0, 32, 32 )
 
 [sub_resource type="AtlasTexture" id=31]
 flags = 4
 atlas = ExtResource( 4 )
-region = Rect2( 352, 0, 32, 32 )
+region = Rect2( 320, 0, 32, 32 )
 
 [sub_resource type="AtlasTexture" id=32]
 flags = 4
-atlas = ExtResource( 6 )
-region = Rect2( 0, 0, 32, 32 )
+atlas = ExtResource( 4 )
+region = Rect2( 352, 0, 32, 32 )
 
 [sub_resource type="AtlasTexture" id=33]
 flags = 4
@@ -182,15 +184,15 @@ animations = [ {
 "name": "hit",
 "speed": 10.0
 }, {
-"frames": [ SubResource( 20 ), SubResource( 21 ), SubResource( 22 ), SubResource( 23 ), SubResource( 24 ), SubResource( 25 ), SubResource( 26 ), SubResource( 27 ), SubResource( 28 ), SubResource( 29 ), SubResource( 30 ), SubResource( 31 ) ],
-"loop": true,
-"name": "run",
-"speed": 10.0
-}, {
-"frames": [ SubResource( 32 ) ],
+"frames": [ SubResource( 20 ) ],
 "loop": true,
 "name": "fall",
 "speed": 5.0
+}, {
+"frames": [ SubResource( 21 ), SubResource( 22 ), SubResource( 23 ), SubResource( 24 ), SubResource( 25 ), SubResource( 26 ), SubResource( 27 ), SubResource( 28 ), SubResource( 29 ), SubResource( 30 ), SubResource( 31 ), SubResource( 32 ) ],
+"loop": true,
+"name": "run",
+"speed": 10.0
 }, {
 "frames": [ SubResource( 33 ) ],
 "loop": true,
@@ -232,3 +234,13 @@ zoom = Vector2( 0.6, 0.6 )
 frames = SubResource( 34 )
 animation = "jump"
 playing = true
+
+[node name="Jump_sound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 7 )
+volume_db = -5.0
+pitch_scale = 0.5
+bus = "SFX"
+
+[node name="choose_sound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 8 )
+bus = "SFX"

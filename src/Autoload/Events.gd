@@ -16,6 +16,12 @@ signal item_collected
 
 signal level_completed
 signal level_started
+signal start_game
 
 signal game_paused
 signal game_unpaused
+
+signal player_inactive_long_time
+signal player_falling
+
+signal enemy_death(position)

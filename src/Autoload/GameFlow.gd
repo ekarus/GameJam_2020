@@ -3,12 +3,18 @@ extends Node
 var itemsCount = 0
 var itemsCollected = 0
 
-export(Array, PackedScene) var scenes
+export(Array, PackedScene) var Scenes
 export(PackedScene) var gameOverOverlay
 export(PackedScene) var level_complete_overlay = preload("res://src/UI/PopUps/NextLvl_PopUp.tscn")
 export(PackedScene) var pause_overlay = preload("res://src/UI/PopUps/Pause_PopUp.tscn")
+export(PackedScene) var main_menu_overlay = preload("res://src/UI/MainMenu/MainMenu_UI.tscn")
+export(PackedScene) var game_won_overlay = preload("res://src/UI/PopUps/WIN_PopUp.tscn")
+export(PackedScene) var enemy_explosion = preload("res://src/Actors/Enemies/EnemyDeathSprite.tscn")
+
+export(AudioEffect) var pauseScreenSoundFilter
 
 var pause_overlay_instance
+var main_menu_instance
 
 var current_level_index = 0
 var current_level: GameLevel
@@ -18,7 +24,7 @@ var input_active = true
 
 func load_level(index):
 	current_level_index = index
-	get_tree().change_scene_to(scenes[index])
+	get_tree().change_scene_to(Scenes[index])
 	GameFlow.unlock_character_input()
 	
 	unlock_character_input()
@@ -27,19 +33,36 @@ func load_level(index):
 
 
 func load_next_level():
-	if current_level_index + 1 < scenes.size():
+	if current_level_index + 1 < Scenes.size():
 		load_level(current_level_index + 1)
+		Events.emit_signal("start_game")
+	print("next level")
+
+
+func load_first_level():
+	current_level_index = 0
+	load_level(current_level_index)
 
 
 func reload_level():
 	load_level(current_level_index)
-
+	Events.emit_signal("start_game")
+	
+	
+func start_new_game():
+	load_level(0)
+	main_menu_instance = main_menu_overlay.instance()
+	$Menu.add_child(main_menu_instance)
+	main_menu_instance.show()
+	
 
 func _ready():
 	Events.connect("item_collected", self, "_on_item_collected")
 	Events.connect("level_completed", self, "_on_level_completed")
 	Events.connect("level_started", self, "_on_level_started")
 	Events.connect("player_died", self, "on_player_death")
+	Events.connect("game_start", self, "on_game_started")
+	Events.connect("enemy_death", self, "_on_enemy_death")
 
 
 func _process(delta):
@@ -51,6 +74,10 @@ func _process(delta):
 				unpause_game()
 
 
+func on_game_started():
+	main_menu_instance.hide()
+	
+
 func _on_item_collected():
 	itemsCollected += 1
 	print_debug("Collected an item, total: " + str(itemsCollected))
@@ -60,6 +87,7 @@ func _on_level_started():
 	var items = get_tree().get_nodes_in_group("Collectables")
 	itemsCount = items.size()
 	print_debug("Total items: " + str(itemsCount))
+	$bgm_game.play()
 	Events.emit_signal("player_hunger_changed", 100)
 
 
@@ -67,8 +95,14 @@ func _on_level_completed():
 	hide_hud()
 	lock_character_input()
 	pause_game_time()
-	var overlay = level_complete_overlay.instance()
-	add_child(overlay)
+	$bgm_game.stop()
+	$win_jingle.play()
+	if current_level_index + 1 < Scenes.size():
+		var overlay = level_complete_overlay.instance()
+		add_child(overlay)
+	else:
+		var overlay = game_won_overlay.instance()
+		add_child(overlay)
 
 
 func get_collected_percent():
@@ -93,13 +127,14 @@ func hide_hud():
 func show_hud():
 	if current_level and current_level._game_hud != null:
 		current_level._game_hud.show()
-	pass
 
 
 func on_player_death():
 	pause_game_time()
 	hide_hud()
 	lock_character_input()
+	$bgm_game.stop()
+	$lose_jinge.play()
 	var overlay = gameOverOverlay.instance()
 	add_child(overlay)
 
@@ -111,6 +146,7 @@ func exit_game():
 func pause_game():
 	lock_character_input()
 	hide_hud()
+	AudioServer.add_bus_effect(0, pauseScreenSoundFilter, 0)
 	pause_overlay_instance = pause_overlay.instance()
 	add_child(pause_overlay_instance)
 	pause_game_time()
@@ -122,6 +158,7 @@ func unpause_game():
 	if pause_overlay_instance:
 		pause_overlay_instance.queue_free()
 		pause_overlay_instance = null
+	AudioServer.remove_bus_effect(0, 0)
 	resume_game_time()
 
 
@@ -130,3 +167,10 @@ func pause_game_time():
 
 func resume_game_time():
 	get_tree().paused = false
+
+func _on_enemy_death(position):
+	var sprite : AnimatedSprite = enemy_explosion.instance()
+	sprite.global_position = position
+	add_child(sprite)
+	$enemy_death_sound.global_position = position
+	$enemy_death_sound.play()

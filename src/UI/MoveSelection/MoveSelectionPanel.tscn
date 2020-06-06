@@ -1,18 +1,27 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://src/UI/MoveSelection/MoveSelectionPanel.gd" type="Script" id=1]
 [ext_resource path="res://assets/Textures/MovePanelBackground.png" type="Texture" id=2]
 [ext_resource path="res://assets/Textures/MovePanelPlaceholder.png" type="Texture" id=3]
 [ext_resource path="res://assets/font/MILLENNIA.TTF" type="DynamicFontData" id=4]
+[ext_resource path="res://assets/Textures/BackNote.png" type="Texture" id=5]
+[ext_resource path="res://assets/Textures/NoteIcon.png" type="Texture" id=6]
+[ext_resource path="res://assets/Textures/SpaceIcon.png" type="Texture" id=7]
+[ext_resource path="res://assets/Textures/ShiftIcon.png" type="Texture" id=8]
 
-[sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 511.933, 78.7067 )
+[sub_resource type="DynamicFont" id=1]
+use_mipmaps = true
+use_filter = true
+font_data = ExtResource( 4 )
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 58.2758, 58.2944 )
+extents = Vector2( 511.933, 61.1343 )
 
-[sub_resource type="DynamicFont" id=3]
-size = 26
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 40.1769, 41.4051 )
+
+[sub_resource type="DynamicFont" id=4]
+size = 20
 outline_color = Color( 1, 1, 1, 0.43 )
 use_mipmaps = true
 use_filter = true
@@ -21,16 +30,89 @@ font_data = ExtResource( 4 )
 [node name="MoveSelectionPanel" type="Node2D"]
 script = ExtResource( 1 )
 
+[node name="NoteAction2" type="Control" parent="."]
+margin_left = 8.2807
+margin_top = 446.987
+margin_right = 277.281
+margin_bottom = 483.987
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="NinePatchRect" type="NinePatchRect" parent="NoteAction2"]
+margin_left = 0.902496
+margin_right = 268.902
+margin_bottom = 36.0
+texture = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="NoteAction2"]
+margin_left = 9.32066
+margin_top = 8.24519
+margin_right = 20.3207
+margin_bottom = 26.2452
+texture = ExtResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect2" type="TextureRect" parent="NoteAction2"]
+margin_left = 138.193
+margin_top = 5.01883
+margin_right = 162.193
+margin_bottom = 29.0188
+texture = ExtResource( 8 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect3" type="TextureRect" parent="NoteAction2"]
+margin_left = 36.6039
+margin_top = 5.3773
+margin_right = 60.6039
+margin_bottom = 29.3773
+texture = ExtResource( 7 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ActTitle2" type="Label" parent="NoteAction2"]
+modulate = Color( 0.698039, 0.698039, 0.698039, 1 )
+margin_left = 71.0
+margin_top = 10.0
+margin_right = 132.0
+margin_bottom = 27.0
+custom_fonts/font = SubResource( 1 )
+text = "Select"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ActTitle5" type="Label" parent="NoteAction2"]
+modulate = Color( 0.698039, 0.698039, 0.698039, 1 )
+margin_left = 170.301
+margin_top = 10.0
+margin_right = 237.301
+margin_bottom = 27.0
+custom_fonts/font = SubResource( 1 )
+text = "Speed Up"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="PanelArea" type="Area2D" parent="."]
+position = Vector2( 0, 6.02283 )
 
 [node name="TextureRect" type="TextureRect" parent="PanelArea"]
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-margin_top = 440.0
+margin_top = 475.0
 margin_right = 1024.0
-margin_bottom = 594.0
+margin_bottom = 595.0
 texture = ExtResource( 2 )
 expand = true
 __meta__ = {
@@ -38,11 +120,11 @@ __meta__ = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PanelArea"]
-position = Vector2( 512, 518 )
-shape = SubResource( 1 )
+position = Vector2( 512, 535.832 )
+shape = SubResource( 2 )
 
 [node name="Cursor" type="Area2D" parent="."]
-position = Vector2( 140, 505 )
+position = Vector2( 140, 511.023 )
 rotation = 1.5708
 
 [node name="TextureRect" type="TextureRect" parent="Cursor"]
@@ -50,10 +132,11 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-margin_left = -43.4908
-margin_top = -8.1152
-margin_right = 68.5092
-margin_bottom = 103.885
+margin_left = -7.3607
+margin_top = 7.88464
+margin_right = 104.639
+margin_bottom = 119.885
+rect_scale = Vector2( 0.7, 0.7 )
 texture = ExtResource( 3 )
 expand = true
 __meta__ = {
@@ -61,16 +144,16 @@ __meta__ = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Cursor"]
-position = Vector2( 12.736, 47.824 )
-shape = SubResource( 2 )
+position = Vector2( 32.2668, 46.4341 )
+shape = SubResource( 3 )
 
 [node name="Label" type="Label" parent="."]
 modulate = Color( 0.143265, 0.683238, 0.894531, 0.67451 )
 margin_left = 46.2104
-margin_top = 490.226
+margin_top = 511.379
 margin_right = 140.21
-margin_bottom = 552.226
-custom_fonts/font = SubResource( 3 )
+margin_bottom = 573.379
+custom_fonts/font = SubResource( 4 )
 text = "Press Space"
 align = 1
 valign = 1
@@ -82,3 +165,4 @@ __meta__ = {
 }
 
 [node name="VariantsContainer" type="Node2D" parent="."]
+position = Vector2( 0, 6.02283 )

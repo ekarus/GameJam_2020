@@ -20,10 +20,8 @@ var _game_hud = null
 
 func _ready():
 	player = $Player
+	Events.connect("start_game", self, "start")
 	GameFlow.current_level = self
-	Events.emit_signal("level_started")
-	print("Started level - %s" % name)
-	
 	for child in get_children():
 		if child is Player:
 			var camera = child.get_node("Camera2D")
@@ -38,8 +36,14 @@ func _ready():
 	add_child(_game_hud)
 
 
+func start():
+	Events.emit_signal("level_started")
+	print("Started level - %s" % name)
+
+
 func _draw():
 	for key in enemies_paths:
 		var path = enemies_paths[key]
 		if path.size() > 0:
 			draw_polyline(path, Color.red, 1)
+

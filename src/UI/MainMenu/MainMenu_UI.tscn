@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=2]
+[gd_scene load_steps=38 format=2]
 
 [ext_resource path="res://assets/font/MILLENNIA.TTF" type="DynamicFontData" id=1]
 [ext_resource path="res://assets/PixelAdventure2/Enemies/AngryPig/Idle (36x30).png" type="Texture" id=2]
@@ -11,40 +11,50 @@
 [ext_resource path="res://assets/PixelAdventure2/Enemies/Bat/Idle (46x30).png" type="Texture" id=9]
 [ext_resource path="res://assets/Textures/Logo.png" type="Texture" id=10]
 [ext_resource path="res://src/UI/MainMenu/MainMenu.gd" type="Script" id=11]
+[ext_resource path="res://assets/BGM/bgm_menu.ogg" type="AudioStream" id=12]
 
 [sub_resource type="AtlasTexture" id=1]
+flags = 4
 atlas = ExtResource( 2 )
 region = Rect2( 0, 0, 36, 30 )
 
 [sub_resource type="AtlasTexture" id=2]
+flags = 4
 atlas = ExtResource( 2 )
 region = Rect2( 36, 0, 36, 30 )
 
 [sub_resource type="AtlasTexture" id=3]
+flags = 4
 atlas = ExtResource( 2 )
 region = Rect2( 72, 0, 36, 30 )
 
 [sub_resource type="AtlasTexture" id=4]
+flags = 4
 atlas = ExtResource( 2 )
 region = Rect2( 108, 0, 36, 30 )
 
 [sub_resource type="AtlasTexture" id=5]
+flags = 4
 atlas = ExtResource( 2 )
 region = Rect2( 144, 0, 36, 30 )
 
 [sub_resource type="AtlasTexture" id=6]
+flags = 4
 atlas = ExtResource( 2 )
 region = Rect2( 180, 0, 36, 30 )
 
 [sub_resource type="AtlasTexture" id=7]
+flags = 4
 atlas = ExtResource( 2 )
 region = Rect2( 216, 0, 36, 30 )
 
 [sub_resource type="AtlasTexture" id=8]
+flags = 4
 atlas = ExtResource( 2 )
 region = Rect2( 252, 0, 36, 30 )
 
 [sub_resource type="AtlasTexture" id=9]
+flags = 4
 atlas = ExtResource( 2 )
 region = Rect2( 288, 0, 36, 30 )
 
@@ -57,50 +67,62 @@ animations = [ {
 } ]
 
 [sub_resource type="AtlasTexture" id=11]
+flags = 4
 atlas = ExtResource( 9 )
 region = Rect2( 0, 0, 46, 30 )
 
 [sub_resource type="AtlasTexture" id=12]
+flags = 4
 atlas = ExtResource( 9 )
 region = Rect2( 46, 0, 46, 30 )
 
 [sub_resource type="AtlasTexture" id=13]
+flags = 4
 atlas = ExtResource( 9 )
 region = Rect2( 92, 0, 46, 30 )
 
 [sub_resource type="AtlasTexture" id=14]
+flags = 4
 atlas = ExtResource( 9 )
 region = Rect2( 138, 0, 46, 30 )
 
 [sub_resource type="AtlasTexture" id=15]
+flags = 4
 atlas = ExtResource( 9 )
 region = Rect2( 184, 0, 46, 30 )
 
 [sub_resource type="AtlasTexture" id=16]
+flags = 4
 atlas = ExtResource( 9 )
 region = Rect2( 230, 0, 46, 30 )
 
 [sub_resource type="AtlasTexture" id=17]
+flags = 4
 atlas = ExtResource( 9 )
 region = Rect2( 276, 0, 46, 30 )
 
 [sub_resource type="AtlasTexture" id=18]
+flags = 4
 atlas = ExtResource( 9 )
 region = Rect2( 322, 0, 46, 30 )
 
 [sub_resource type="AtlasTexture" id=19]
+flags = 4
 atlas = ExtResource( 9 )
 region = Rect2( 368, 0, 46, 30 )
 
 [sub_resource type="AtlasTexture" id=20]
+flags = 4
 atlas = ExtResource( 9 )
 region = Rect2( 414, 0, 46, 30 )
 
 [sub_resource type="AtlasTexture" id=21]
+flags = 4
 atlas = ExtResource( 9 )
 region = Rect2( 460, 0, 46, 30 )
 
 [sub_resource type="AtlasTexture" id=22]
+flags = 4
 atlas = ExtResource( 9 )
 region = Rect2( 506, 0, 46, 30 )
 
@@ -151,7 +173,7 @@ position = Vector2( 898.342, -2.4011 )
 scale = Vector2( 2.96438, 2.96438 )
 frames = SubResource( 10 )
 animation = "IdlePig"
-frame = 3
+frame = 7
 playing = true
 
 [node name="IdleBat" type="AnimatedSprite" parent="."]
@@ -160,7 +182,7 @@ position = Vector2( 572.913, 226.962 )
 scale = Vector2( 2.96438, 2.96438 )
 frames = SubResource( 23 )
 animation = "IdleBat"
-frame = 3
+frame = 8
 playing = true
 
 [node name="Logo" type="TextureRect" parent="."]
@@ -247,3 +269,8 @@ uppercase = true
 __meta__ = {
 "_edit_use_anchors_": true
 }
+
+[node name="bgm_menu" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 12 )
+autoplay = true
+bus = "Music"
