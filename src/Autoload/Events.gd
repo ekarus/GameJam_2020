@@ -16,6 +16,7 @@ signal item_collected
 
 signal level_completed
 signal level_started
+signal start_game
 
 signal game_paused
 signal game_unpaused

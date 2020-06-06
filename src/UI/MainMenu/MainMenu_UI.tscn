@@ -151,7 +151,7 @@ position = Vector2( 898.342, -2.4011 )
 scale = Vector2( 2.96438, 2.96438 )
 frames = SubResource( 10 )
 animation = "IdlePig"
-frame = 3
+frame = 5
 playing = true
 
 [node name="IdleBat" type="AnimatedSprite" parent="."]

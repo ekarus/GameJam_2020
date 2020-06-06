@@ -3,12 +3,15 @@ extends Node
 var itemsCount = 0
 var itemsCollected = 0
 
-export(Array, PackedScene) var scenes
+export(Array, PackedScene) var Scenes
 export(PackedScene) var gameOverOverlay
 export(PackedScene) var level_complete_overlay = preload("res://src/UI/PopUps/NextLvl_PopUp.tscn")
 export(PackedScene) var pause_overlay = preload("res://src/UI/PopUps/Pause_PopUp.tscn")
+export(PackedScene) var main_menu_overlay = preload("res://src/UI/MainMenu/MainMenu_UI.tscn")
+export(PackedScene) var game_won_overlay = preload("res://src/UI/PopUps/WIN_PopUp.tscn")
 
 var pause_overlay_instance
+var main_menu_instance
 
 var current_level_index = 0
 var current_level: GameLevel
@@ -18,7 +21,7 @@ var input_active = true
 
 func load_level(index):
 	current_level_index = index
-	get_tree().change_scene_to(scenes[index])
+	get_tree().change_scene_to(Scenes[index])
 	GameFlow.unlock_character_input()
 	
 	unlock_character_input()
@@ -27,19 +30,35 @@ func load_level(index):
 
 
 func load_next_level():
-	if current_level_index + 1 < scenes.size():
+	if current_level_index + 1 < Scenes.size():
 		load_level(current_level_index + 1)
+		Events.emit_signal("start_game")
+	print("next level")
+
+
+func load_first_level():
+	current_level_index = 0
+	load_level(current_level_index)
 
 
 func reload_level():
 	load_level(current_level_index)
-
+	Events.emit_signal("start_game")
+	
+	
+func start_new_game():
+	load_level(0)
+	main_menu_instance = main_menu_overlay.instance()
+	$Menu.add_child(main_menu_instance)
+	main_menu_instance.show()
+	
 
 func _ready():
 	Events.connect("item_collected", self, "_on_item_collected")
 	Events.connect("level_completed", self, "_on_level_completed")
 	Events.connect("level_started", self, "_on_level_started")
 	Events.connect("player_died", self, "on_player_death")
+	Events.connect("game_start", self, "on_game_started")
 
 
 func _process(delta):
@@ -50,6 +69,10 @@ func _process(delta):
 			if pause_overlay_instance != null:
 				unpause_game()
 
+
+func on_game_started():
+	main_menu_instance.hide()
+	
 
 func _on_item_collected():
 	itemsCollected += 1
@@ -67,8 +90,12 @@ func _on_level_completed():
 	hide_hud()
 	lock_character_input()
 	pause_game_time()
-	var overlay = level_complete_overlay.instance()
-	add_child(overlay)
+	if current_level_index + 1 < Scenes.size():
+		var overlay = level_complete_overlay.instance()
+		add_child(overlay)
+	else:
+		var overlay = game_won_overlay.instance()
+		add_child(overlay)
 
 
 func get_collected_percent():
@@ -93,7 +120,6 @@ func hide_hud():
 func show_hud():
 	if current_level and current_level._game_hud != null:
 		current_level._game_hud.show()
-	pass
 
 
 func on_player_death():

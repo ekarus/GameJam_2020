@@ -1,13 +1,14 @@
 extends GameLevel
 
-func _ready():
-	_game_hud.hide()
-	GameFlow.lock_character_input()
-	$CanvasLayer/MainMenu.connect("start_game", self, "_on_StartButton_pressed")
-	
 
-func _on_StartButton_pressed():
-	GameFlow.unlock_character_input()
-	_game_hud.show()
+func _ready():
+	Events.connect("start_game", self, "start_new_game")
+	if GameFlow.main_menu_instance != null and GameFlow.main_menu_instance.visible:
+		GameFlow.hide_hud()
+		GameFlow.lock_character_input()
+
+
+func start_new_game():
 	$Player.reset_hunger(1.0)
-	$CanvasLayer/MainMenu.hide()
+	GameFlow.show_hud()
+	GameFlow.unlock_character_input()
