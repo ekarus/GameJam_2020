@@ -138,6 +138,7 @@ animations = [ {
 } ]
 
 [node name="Mushroom" instance=ExtResource( 1 )]
+_follow_player = true
 
 [node name="PlatformDetector" parent="." index="0"]
 visible = false
