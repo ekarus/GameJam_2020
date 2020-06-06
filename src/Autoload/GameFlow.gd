@@ -13,6 +13,8 @@ export(PackedScene) var enemy_explosion = preload("res://src/Actors/Enemies/Enem
 
 export(AudioEffect) var pauseScreenSoundFilter
 
+export var DEBUG_INPUT = false
+
 var pause_overlay_instance
 var main_menu_instance
 

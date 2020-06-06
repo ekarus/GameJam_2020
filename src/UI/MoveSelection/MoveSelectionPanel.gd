@@ -60,7 +60,7 @@ func _ready():
 
 
 func _process(delta):
-	if GameFlow.input_active:
+	if GameFlow.input_active && GameFlow.DEBUG_INPUT:
 		if Input.is_action_just_pressed("select_action"):
 			_select_hovered_action()
 		elif Input.is_action_just_pressed("debug_jump_left"):
