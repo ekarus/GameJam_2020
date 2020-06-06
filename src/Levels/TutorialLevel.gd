@@ -9,4 +9,5 @@ func _ready():
 func _on_StartButton_pressed():
 	GameFlow.unlock_character_input()
 	_game_hud.show()
+	$Player.reset_hunger(1.0)
 	$CanvasLayer/MainMenu.hide()
