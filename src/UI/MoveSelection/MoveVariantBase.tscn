@@ -3,7 +3,7 @@
 [ext_resource path="res://src/UI/MoveSelection/MoveVariantBase.gd" type="Script" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 72.6014, 73.0816 )
+extents = Vector2( 46, 46 )
 
 [node name="VariantBase" type="Node2D"]
 script = ExtResource( 2 )

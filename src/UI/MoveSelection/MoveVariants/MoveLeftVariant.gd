@@ -1,11 +1,7 @@
-extends Node2D
+class_name MoveLeftVariant
+extends BaseVariant
 
+var progression = [7, 2, 1]
 
 func _ready():
-	var count = randi() % 4 + 1
-	$VariantBase.steps_count = count
-	if count > 1 and $Control != null:
-		$Control.show()
-		$Control/Label2.text = ("%s" % count)
-	else:
-		$Control.hide()
+	update_count(progression)
