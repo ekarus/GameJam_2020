@@ -9,6 +9,8 @@ export var LIMIT_BOTTOM = 10000
 
 var player: Player
 
+export var actions_speed_multiplier = 1
+
 export(PackedScene) var game_hud = preload("res://src/UI/IngameHUD.tscn")
 
 func _ready():
