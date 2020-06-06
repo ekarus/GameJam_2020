@@ -94,11 +94,12 @@ animations = [ {
 } ]
 
 [node name="Bat" instance=ExtResource( 1 )]
+_dont_move = true
 
 [node name="Sprite" parent="." index="3"]
 position = Vector2( 0, -10 )
 frames = SubResource( 20 )
-frame = 9
+frame = 1
 
 [node name="CollisionShape2D" parent="." index="4"]
 position = Vector2( 0, -15 )
