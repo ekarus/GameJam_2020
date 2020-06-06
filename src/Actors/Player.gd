@@ -25,6 +25,11 @@ func _ready():
 	Events.connect("player_action_choosen", self, "_on_action_choosen")
 
 
+func _on_EnemyDetector_body_entered(body: Node) -> void:
+	if body is Enemy:
+		self.on_damage()
+
+
 func _process(delta):
 	# process steps time calculation
 	if active_action != null:
@@ -130,3 +135,4 @@ func clamp_vec(vector, min_v, max_v):
 	print("max: ", max_v)
 	print("res: ", Vector2(clamp(vector.x, min_v.x, max_v.x), clamp(vector.y, min_v.y, max_v.y)))
 	return Vector2(clamp(vector.x, min_v.x, max_v.x), clamp(vector.y, min_v.y, max_v.y))
+

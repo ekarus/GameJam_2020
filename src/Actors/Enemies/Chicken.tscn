@@ -141,6 +141,15 @@ visible = false
 frames = SubResource( 28 )
 animation = "Walk"
 
+[node name="CollisionShape2D" parent="." index="4"]
+position = Vector2( 0, -12 )
+
 [node name="VisibilityEnabler2D" parent="." index="5"]
 position = Vector2( -5.96046e-07, -14.5 )
 scale = Vector2( 1.4, 1.45 )
+
+[node name="StompDetector" parent="." index="6"]
+position = Vector2( 0, -25 )
+
+[node name="CollisionShape2D" parent="StompDetector" index="0"]
+position = Vector2( 0, -3 )

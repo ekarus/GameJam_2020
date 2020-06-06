@@ -39,6 +39,13 @@ func _on_process_action(action, steps):
 	self._state = State.WALKING
 
 
+func _on_StompDetector_body_entered(body: Node) -> void:
+	if body.global_position.y > $StompDetector.global_position.y:
+		return
+	$CollisionShape2D.disabled = true
+	queue_free()
+
+
 func _process(delta):
 	pass
 
