@@ -3,7 +3,7 @@ extends Actor
 
 enum State {
 	IDLE,
-	WALK
+	MOVE
 }
 
 enum Direction {
@@ -18,6 +18,7 @@ export var _step_size = 64
 export var _stop_on_edge = false
 export var _follow_player = false
 export var _player_visibility_radius = 256
+export var _dont_move = false
 
 var _distance = 0
 var _start_position = Vector2.ZERO
@@ -32,11 +33,13 @@ func _ready():
 
 
 func _on_process_action(action, steps):
+	if _dont_move:
+		return
 	if _follow_player:
 		self._direction = _select_direction(_direction)
 	self._distance = _step_size * steps
 	self._start_position = self.global_position
-	self._state = State.WALK
+	self._state = State.MOVE
 
 
 func _on_StompDetector_body_entered(body: Node) -> void:
@@ -62,8 +65,10 @@ func _kill_player(player: Player):
 func _process(delta):
 	pass
 
-
 func _physics_process(_delta):
+	if _dont_move:
+		return
+
 	# platform collision
 	_velocity = move_and_slide(_velocity, FLOOR_NORMAL)
 
@@ -73,7 +78,7 @@ func _physics_process(_delta):
 	if _stop_on_edge:
 		self._direction = _change_direction_on_edge(_direction)
 	
-	if _state == State.WALK:
+	if _state == State.MOVE:
 		# if walked far enought
 		if abs(self.global_position.x - _start_position.x) >= _distance:
 			self._state = State.IDLE
@@ -156,13 +161,13 @@ func _set_direction(value):
 
 
 func _select_animation():
-	if _state == State.WALK && abs(_velocity.x) != 0:
-		return "Walk"
+	if _state == State.MOVE && abs(_velocity.x) != 0:
+		return "Move"
 	return "Idle"
 
 
 func _update_velocity():
-	if _state == State.WALK:
+	if _state == State.MOVE:
 		if _direction == Direction.LEFT:
 			_velocity.x = -speed.x
 		else:

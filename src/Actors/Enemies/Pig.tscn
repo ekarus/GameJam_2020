@@ -4,3 +4,7 @@
 
 [node name="Pig" instance=ExtResource( 1 )]
 _stop_on_edge = true
+
+[node name="Sprite" parent="." index="3"]
+frame = 7
+playing = true
