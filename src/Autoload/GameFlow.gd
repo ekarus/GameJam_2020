@@ -66,3 +66,7 @@ func on_player_death():
 	var overlay = gameOverOverlay.instance()
 	add_child(overlay)
 	pass
+
+
+func exit_game():
+	get_tree().quit()

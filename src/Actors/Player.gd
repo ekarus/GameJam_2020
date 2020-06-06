@@ -19,6 +19,9 @@ var lastHorisontalDirection = 1
 
 const step_size = 16.0
 
+var hunger_level = 1.0
+var hunger_speed = 0.001
+
 var move_selection_panel_pos = Vector2()
 
 func _ready():
@@ -47,6 +50,8 @@ func _process(delta):
 	
 	# just for test
 	# _process_normal_input()
+	
+	hunger_level -= hunger_speed * delta
 
 
 func _process_normal_input():
