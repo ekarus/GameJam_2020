@@ -5,7 +5,8 @@ enum VariantType {
 	Left,
 	Right,
 	JumpUp,
-	JumpDiagonal
+	JumpLeft,
+	JumpRight
 }
 
 export(VariantType) var variant_type = VariantType.Left

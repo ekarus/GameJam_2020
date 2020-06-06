@@ -6,7 +6,8 @@ var rng = RandomNumberGenerator.new()
 var variant_scenes = [
 	preload("res://src/UI/MoveSelection/MoveVariants/MoveRightVariant.tscn"),
 	preload("res://src/UI/MoveSelection/MoveVariants/MoveLeftVariant.tscn"),
-	preload("res://src/UI/MoveSelection/MoveVariants/JumpDiagonalVariant.tscn"),
+	preload("res://src/UI/MoveSelection/MoveVariants/JumpLeftVariant.tscn"),
+	preload("res://src/UI/MoveSelection/MoveVariants/JumpRightVariant.tscn"),
 	preload("res://src/UI/MoveSelection/MoveVariants/JumpUpVariant.tscn")
 ]
 
@@ -61,11 +62,11 @@ func _process(delta):
 		if Input.is_action_just_pressed("select_action"):
 			_select_hovered_action()
 		elif Input.is_action_just_pressed("debug_jump_left"):
-			Events.emit_signal("player_action_choosen", MoveVariantBase.VariantType.JumpDiagonal, 1)
-			print("debug jump front")
+			Events.emit_signal("player_action_choosen", MoveVariantBase.VariantType.JumpLeft, 1)
+			print("debug jump left")
 		elif Input.is_action_just_pressed("debug_jump_right"):
-			Events.emit_signal("player_action_choosen", MoveVariantBase.VariantType.JumpDiagonal, 1)
-			print("debug jump front")
+			Events.emit_signal("player_action_choosen", MoveVariantBase.VariantType.JumpRight, 1)
+			print("debug jump right")
 		elif Input.is_action_just_pressed("debug_step_left"):
 			Events.emit_signal("player_action_choosen", MoveVariantBase.VariantType.Left, 1)
 			print("debug left")
@@ -144,8 +145,10 @@ func _activate_action(action_type, steps):
 			print("Left")
 		MoveVariantBase.VariantType.Right:
 			print("Right")
-		MoveVariantBase.VariantType.JumpDiagonal:
-			print("JumpDiagonal")
+		MoveVariantBase.VariantType.JumpLeft:
+			print("JumpLeft")
+		MoveVariantBase.VariantType.JumpRight:
+			print("JumpRight")
 		MoveVariantBase.VariantType.JumpUp:
 			print("JumpUp")
 	

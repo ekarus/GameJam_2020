@@ -50,9 +50,14 @@ _global_script_classes=[ {
 "path": "res://src/Collectibles/ItemEffect.gd"
 }, {
 "base": "BaseVariant",
-"class": "JumpDiagonalVariant",
+"class": "JumpLeftVariant",
 "language": "GDScript",
-"path": "res://src/UI/MoveSelection/MoveVariants/JumpDiagonalVariant.gd"
+"path": "res://src/UI/MoveSelection/MoveVariants/JumpLeftVariant.gd"
+}, {
+"base": "BaseVariant",
+"class": "JumpRightVariant",
+"language": "GDScript",
+"path": "res://src/UI/MoveSelection/MoveVariants/JumpRightVariant.gd"
 }, {
 "base": "BaseVariant",
 "class": "MoveLeftVariant",
@@ -98,7 +103,8 @@ _global_script_class_icons={
 "Enemy": "",
 "GameLevel": "",
 "ItemEffectBase": "",
-"JumpDiagonalVariant": "",
+"JumpLeftVariant": "",
+"JumpRightVariant": "",
 "MoveLeftVariant": "",
 "MoveRightVariant": "",
 "MoveVariantBase": "",

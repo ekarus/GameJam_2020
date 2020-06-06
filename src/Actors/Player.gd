@@ -15,8 +15,6 @@ var discrete_move_done = false
 var current_step_length = move_step_length
 var current_step_time_left = current_step_length
 
-var lastHorisontalDirection = 1
-
 const step_size = 16.0
 
 var hunger_level = 1.0
@@ -88,25 +86,23 @@ func _process_action_input():
 	
 	var desiredDirection = Vector2()
 	
-	if active_action == MoveVariantBase.VariantType.Left:
+	if active_action in [MoveVariantBase.VariantType.Left, MoveVariantBase.VariantType.JumpLeft]:
 		desiredDirection.x = -1
-	elif active_action == MoveVariantBase.VariantType.Right:
+	elif active_action in [MoveVariantBase.VariantType.Right, MoveVariantBase.VariantType.JumpRight]:
 		desiredDirection.x = 1
 	elif active_action == MoveVariantBase.VariantType.JumpUp:
 		if not discrete_move_done and is_on_floor():
 			desiredDirection.y = -1
 			discrete_move_done = true
-	elif active_action == MoveVariantBase.VariantType.JumpDiagonal:
+
+	if active_action in [MoveVariantBase.VariantType.JumpLeft, MoveVariantBase.VariantType.JumpRight]:
 		if not discrete_move_done and is_on_floor():
 			desiredDirection.y = -1
 			discrete_move_done = true
-		desiredDirection.x = lastHorisontalDirection
 	
 	if desiredDirection.x > 0:
-		lastHorisontalDirection = 1
 		sprite.scale.x = 1
 	elif desiredDirection.x < 0:
-		lastHorisontalDirection = -1
 		sprite.scale.x = -1
 	
 	movement_dir = desiredDirection
