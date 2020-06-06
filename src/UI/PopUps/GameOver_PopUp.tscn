@@ -189,5 +189,5 @@ position = Vector2( 159.397, 184.197 )
 scale = Vector2( 2, 2 )
 frames = SubResource( 11 )
 animation = "loose"
-frame = 2
+frame = 4
 playing = true

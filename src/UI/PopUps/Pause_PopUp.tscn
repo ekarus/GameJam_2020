@@ -69,9 +69,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = -125.0
-margin_top = -51.0
+margin_top = -24.0
 margin_right = 125.0
-margin_bottom = 119.0
+margin_bottom = 93.0
 custom_constants/separation = 10
 __meta__ = {
 "_edit_use_anchors_": false
@@ -109,43 +109,10 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="StartButton2" type="TextureButton" parent="PopUp/Buttons"]
+[node name="StartButton3" type="TextureButton" parent="PopUp/Buttons"]
 margin_top = 60.0
 margin_right = 250.0
 margin_bottom = 110.0
-rect_min_size = Vector2( 250, 50 )
-texture_normal = ExtResource( 7 )
-texture_pressed = ExtResource( 8 )
-texture_hover = ExtResource( 3 )
-stretch_mode = 2
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Label" type="Label" parent="PopUp/Buttons/StartButton2"]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -113.0
-margin_top = -19.0
-margin_right = 117.0
-margin_bottom = 18.0
-custom_fonts/font = SubResource( 2 )
-text = "Options"
-align = 1
-valign = 1
-autowrap = true
-clip_text = true
-uppercase = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="StartButton3" type="TextureButton" parent="PopUp/Buttons"]
-margin_top = 120.0
-margin_right = 250.0
-margin_bottom = 170.0
 rect_min_size = Vector2( 250, 50 )
 texture_normal = ExtResource( 7 )
 texture_pressed = ExtResource( 8 )

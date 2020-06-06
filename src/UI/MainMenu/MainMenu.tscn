@@ -792,14 +792,14 @@ position = Vector2( 173.687, 352.681 )
 scale = Vector2( 3, 3 )
 frames = SubResource( 25 )
 animation = "IdleHero"
-frame = 1
+frame = 4
 playing = true
 
 [node name="mashroom" type="AnimatedSprite" parent="Bottom"]
 position = Vector2( 958.352, 560.291 )
 frames = SubResource( 40 )
 animation = "IdleMAsh"
-frame = 7
+frame = 9
 playing = true
 
 [node name="Fire" type="AnimatedSprite" parent="Bottom"]
@@ -807,6 +807,7 @@ position = Vector2( -150.317, 415.908 )
 scale = Vector2( 2, 2 )
 frames = SubResource( 44 )
 animation = "IdleFire"
+frame = 1
 playing = true
 
 [node name="Logo" type="TextureRect" parent="."]
@@ -815,9 +816,9 @@ anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
 margin_left = -544.839
-margin_top = -287.752
+margin_top = -259.359
 margin_right = -81.8391
-margin_bottom = -109.752
+margin_bottom = -81.3588
 texture = ExtResource( 8 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -828,6 +829,7 @@ position = Vector2( 419.181, -43.0421 )
 scale = Vector2( 2.96438, 2.96438 )
 frames = SubResource( 54 )
 animation = "IdlePig"
+frame = 4
 playing = true
 
 [node name="IdleBat" type="AnimatedSprite" parent="Logo"]
@@ -835,7 +837,7 @@ position = Vector2( 93.752, 186.321 )
 scale = Vector2( 2.96438, 2.96438 )
 frames = SubResource( 67 )
 animation = "IdleBat"
-frame = 6
+frame = 4
 playing = true
 
 [node name="Buttons" type="VBoxContainer" parent="."]
@@ -844,9 +846,9 @@ anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
 margin_left = -340.441
-margin_top = -76.4946
+margin_top = -48.1014
 margin_right = -90.4406
-margin_bottom = 93.5054
+margin_bottom = 121.899
 custom_constants/separation = 10
 __meta__ = {
 "_edit_use_anchors_": false
@@ -884,43 +886,10 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="StartButton2" type="TextureButton" parent="Buttons"]
+[node name="StartButton3" type="TextureButton" parent="Buttons"]
 margin_top = 60.0
 margin_right = 250.0
 margin_bottom = 110.0
-rect_min_size = Vector2( 250, 50 )
-texture_normal = ExtResource( 5 )
-texture_pressed = ExtResource( 6 )
-texture_hover = ExtResource( 7 )
-stretch_mode = 2
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Label" type="Label" parent="Buttons/StartButton2"]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -113.0
-margin_top = -19.0
-margin_right = 117.0
-margin_bottom = 18.0
-custom_fonts/font = SubResource( 69 )
-text = "Options"
-align = 1
-valign = 1
-autowrap = true
-clip_text = true
-uppercase = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="StartButton3" type="TextureButton" parent="Buttons"]
-margin_top = 120.0
-margin_right = 250.0
-margin_bottom = 170.0
 rect_min_size = Vector2( 250, 50 )
 texture_normal = ExtResource( 5 )
 texture_pressed = ExtResource( 6 )
