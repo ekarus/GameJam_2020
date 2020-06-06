@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://assets/Textures/NextLvl_Back.png" type="Texture" id=1]
 [ext_resource path="res://assets/font/MILLENNIA.TTF" type="DynamicFontData" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://assets/Textures/ButtonSimpleDef.png" type="Texture" id=7]
 [ext_resource path="res://assets/Textures/ButtonSimpleHover.png" type="Texture" id=8]
 [ext_resource path="res://assets/PixelAdventure1/Main Characters/Virtual Guy/Idle (32x32).png" type="Texture" id=9]
+[ext_resource path="res://src/UI/PopUps/NextLvl_PopUp.gd" type="Script" id=10]
 
 [sub_resource type="DynamicFont" id=1]
 size = 26
@@ -83,6 +84,7 @@ animations = [ {
 [node name="Win_PopUp" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+script = ExtResource( 10 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
