@@ -71,6 +71,10 @@ config/icon="res://icon.png"
 Events="*res://src/Autoload/Events.gd"
 GameFlow="*res://src/Autoload/GameFlow.tscn"
 
+[debug]
+
+settings/fps/force_fps=60
+
 [importer_defaults]
 
 texture={
