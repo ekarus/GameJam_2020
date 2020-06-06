@@ -4,12 +4,3 @@
 
 [node name="Pig" instance=ExtResource( 1 )]
 _stop_on_edge = true
-
-[node name="PlatformDetector" parent="." index="0"]
-visible = false
-
-[node name="FloorDetectorLeft" parent="." index="1"]
-visible = false
-
-[node name="FloorDetectorRight" parent="." index="2"]
-visible = false

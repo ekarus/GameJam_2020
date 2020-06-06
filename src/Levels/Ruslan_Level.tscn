@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://assets/Tilesets/TerrainTileset.tres" type="TileSet" id=1]
 [ext_resource path="res://src/Levels/ExitPoint.tscn" type="PackedScene" id=2]
@@ -8,14 +8,17 @@
 [ext_resource path="res://src/Levels/GameLevel.gd" type="Script" id=6]
 [ext_resource path="res://src/Actors/Enemies/Mushroom.tscn" type="PackedScene" id=7]
 [ext_resource path="res://src/Traps/SawStatic.tscn" type="PackedScene" id=8]
+[ext_resource path="res://assets/Tilesets/BackGroundTileset.tres" type="TileSet" id=9]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 35.2021, 63.7614 )
 
 [node name="RuslanLevel" type="Node2D"]
 script = ExtResource( 6 )
+LIMIT_LEFT = -150
+LIMIT_RIGHT = 710
 
-[node name="TileMap" type="TileMap" parent="."]
+[node name="GroundTiles" type="TileMap" parent="."]
 tile_set = ExtResource( 1 )
 cell_size = Vector2( 16, 16 )
 format = 1
@@ -43,3 +46,9 @@ z_index = -1
 
 [node name="Mushroom" parent="." instance=ExtResource( 7 )]
 position = Vector2( 205.405, 210.796 )
+
+[node name="BackgroundTiles" type="TileMap" parent="."]
+z_index = -2
+tile_set = ExtResource( 9 )
+format = 1
+tile_data = PoolIntArray( 131067, 1, 0, 131068, 1, 0, 131069, 1, 0, 131070, 1, 0, 131071, 1, 0, 65536, 1, 0, 65537, 1, 0, 65538, 1, 0, 65539, 1, 0, 65540, 1, 0, 65541, 1, 0, 65542, 1, 0, 65543, 1, 0, 65544, 1, 0, 65545, 1, 0, 65546, 1, 0, 65547, 1, 0, 65548, 1, 0, 196603, 1, 0, 196604, 1, 0, 196605, 1, 0, 196606, 1, 0, 196607, 1, 0, 131072, 1, 0, 131073, 1, 0, 131074, 1, 0, 131075, 1, 0, 131076, 1, 0, 131077, 1, 0, 131078, 1, 0, 131079, 1, 0, 131080, 1, 0, 131081, 1, 0, 131082, 1, 0, 131083, 1, 0, 131084, 1, 0, 262139, 1, 0, 262140, 1, 0, 262141, 1, 0, 262142, 1, 0, 262143, 1, 0, 196608, 1, 0, 196609, 1, 0, 196610, 1, 0, 196611, 1, 0, 196612, 1, 0, 196613, 1, 0, 196614, 1, 0, 196615, 1, 0, 196616, 1, 0, 196617, 1, 0, 196618, 1, 0, 196619, 1, 0, 196620, 1, 0, 327675, 1, 0, 327676, 1, 0, 327677, 1, 0, 327678, 1, 0, 327679, 1, 0, 262144, 1, 0, 262145, 1, 0, 262146, 1, 0, 262147, 1, 0, 262148, 1, 0, 262149, 1, 0, 262150, 1, 0, 262151, 1, 0, 262152, 1, 0, 262153, 1, 0, 262154, 1, 0, 262155, 1, 0, 262156, 1, 0, 393213, 1, 0, 393214, 1, 0, 393215, 1, 0, 327680, 1, 0, 327681, 1, 0, 327682, 1, 0, 327683, 1, 0, 327684, 1, 0, 327685, 1, 0, 327686, 1, 0, 327687, 1, 0, 327688, 1, 0, 327689, 1, 0, 327690, 1, 0, 327691, 1, 0, 327692, 1, 0, 458750, 1, 0, 393216, 1, 0, 393217, 1, 0, 393218, 1, 0, 393219, 1, 0, 393220, 1, 0, 393221, 1, 0, 393222, 1, 0, 393228, 1, 0 )

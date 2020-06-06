@@ -19,15 +19,15 @@ var lastHorisontalDirection = 1
 
 const step_size = 16.0
 
+var hunger_level = 1.0
+var hunger_speed = 0.001
+
 var move_selection_panel_pos = Vector2()
+
+var prevVelY = 0.0
 
 func _ready():
 	Events.connect("player_action_choosen", self, "_on_action_choosen")
-
-
-func _on_EnemyDetector_body_entered(body: Node) -> void:
-	if body is Enemy:
-		self.on_damage()
 
 
 func _process(delta):
@@ -44,9 +44,28 @@ func _process(delta):
 				Events.emit_signal("player_action_complete")
 	
 	_process_action_input()
-	
+	_update_animations()
 	# just for test
 	# _process_normal_input()
+	
+	hunger_level -= hunger_speed * delta
+
+func _update_animations():
+	var is_moving = abs(movement_dir.x) > 0
+	var is_jumping = _velocity.y < 0
+	var is_falling = prevVelY - _velocity.y < 0
+	
+	if is_moving:
+		$AnimatedSprite.play("run")
+	elif is_jumping:
+		$AnimatedSprite.play("jump")
+	elif is_falling:
+		$AnimatedSprite.play("fall")
+	else:
+		$AnimatedSprite.play("idle")
+
+	prevVelY = _velocity.y
+	pass
 
 
 func _process_normal_input():
