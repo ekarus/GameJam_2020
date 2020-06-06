@@ -3,7 +3,7 @@ extends Node
 var itemsCount = 0
 var itemsCollected = 0
 
-export(Array, PackedScene) var scenes
+export(Array, PackedScene) var Scenes
 export(PackedScene) var gameOverOverlay
 export(PackedScene) var level_complete_overlay = preload("res://src/UI/PopUps/NextLvl_PopUp.tscn")
 export(PackedScene) var pause_overlay = preload("res://src/UI/PopUps/Pause_PopUp.tscn")
@@ -21,7 +21,7 @@ var input_active = true
 
 func load_level(index):
 	current_level_index = index
-	get_tree().change_scene_to(scenes[index])
+	get_tree().change_scene_to(Scenes[index])
 	GameFlow.unlock_character_input()
 	
 	unlock_character_input()
@@ -30,7 +30,7 @@ func load_level(index):
 
 
 func load_next_level():
-	if current_level_index + 1 < scenes.size():
+	if current_level_index + 1 < Scenes.size():
 		load_level(current_level_index + 1)
 		Events.emit_signal("start_game")
 	print("next level")
@@ -90,7 +90,7 @@ func _on_level_completed():
 	hide_hud()
 	lock_character_input()
 	pause_game_time()
-	if current_level_index + 1 < scenes.size():
+	if current_level_index + 1 < Scenes.size():
 		var overlay = level_complete_overlay.instance()
 		add_child(overlay)
 	else:
