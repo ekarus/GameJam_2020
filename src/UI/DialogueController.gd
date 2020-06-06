@@ -32,6 +32,19 @@ var bored_reactions = [
 	"Yes, what were we talking about?"
 ]
 
+var current_tutorial_dialogue = 0
+var tutorial_shown = false
+var tutorial_dialogues = [
+	"Duuude, I think I've stuck in VR",
+	"I mean.. I can't take off the helmet. It's stuck on me!",
+	"I need to get to the IT support floor..",
+	".. but I can't see a thing in this helmet",
+	"Can you guide me?"
+]
+
+
+var tutorial_timer: Timer
+
 
 func _ready():
 	_set_active(false)
@@ -39,6 +52,11 @@ func _ready():
 	Events.connect("player_hunger_changed", self, "_on_hunger_changed")
 	Events.connect("player_inactive_long_time", self, "_on_bored")
 	Events.connect("player_falling", self, "_on_falling")
+	Events.connect("start_game", self, "_on_start_game")
+	
+	tutorial_timer = Timer.new()
+	tutorial_timer.connect("timeout", self, "_next_tutorial_dialogue")
+	add_child(tutorial_timer)
 
 
 func _set_active(value):
@@ -93,3 +111,25 @@ func _on_bored():
 func _on_falling():
 	if randf() <= fall_dialog_chance:
 		show_dialog(fall_reactions[randi() % fall_reactions.size()], 4)
+
+
+func _on_start_game():
+	show_tutorial_dialogues()
+
+
+func show_tutorial_dialogues():
+	if tutorial_shown:
+		return
+	
+	current_tutorial_dialogue = 0
+	_next_tutorial_dialogue()
+	tutorial_timer.start(4.0)
+	tutorial_shown = true
+
+
+func _next_tutorial_dialogue():
+	if current_tutorial_dialogue < tutorial_dialogues.size():
+		show_dialog(tutorial_dialogues[current_tutorial_dialogue], 4)
+		current_tutorial_dialogue += 1
+	else:
+		tutorial_timer.stop()
