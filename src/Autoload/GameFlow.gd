@@ -77,7 +77,8 @@ func _process(delta):
 
 
 func on_game_started():
-	main_menu_instance.hide()
+	if main_menu_instance:
+		main_menu_instance.hide()
 	
 
 func _on_item_collected():
