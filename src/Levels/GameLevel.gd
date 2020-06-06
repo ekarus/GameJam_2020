@@ -12,7 +12,9 @@ var player: Player
 export var actions_speed_multiplier = 1.0
 export var actions_dencity_multiplier = 1.0
 
-export(PackedScene) var game_hud = preload("res://src/UI/IngameHUD.tscn")
+export(PackedScene) var GameHudScene = preload("res://src/UI/IngameHUD.tscn")
+
+var _game_hud = null
 
 func _ready():
 	player = $Player
@@ -28,4 +30,5 @@ func _ready():
 			camera.limit_right = LIMIT_RIGHT
 			camera.limit_bottom = LIMIT_BOTTOM
 	
-	add_child(game_hud.instance())
+	_game_hud = GameHudScene.instance()
+	add_child(_game_hud)
