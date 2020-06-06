@@ -90,8 +90,6 @@ func _on_level_completed():
 	hide_hud()
 	lock_character_input()
 	pause_game_time()
-	var overlay = level_complete_overlay.instance()
-	add_child(overlay)
 	if current_level_index + 1 < scenes.size():
 		var overlay = level_complete_overlay.instance()
 		add_child(overlay)
