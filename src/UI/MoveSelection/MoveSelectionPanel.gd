@@ -15,6 +15,8 @@ var active_variants = []
 var base_speed = 300.0
 var speed = base_speed
 
+var actions_dencity = 1
+
 var start_spawn_max_time = 1
 var spawn_max_time = start_spawn_max_time
 
@@ -51,6 +53,7 @@ func _ready():
 	
 	if GameFlow.current_level != null:
 		speed = base_speed * GameFlow.current_level.actions_speed_multiplier
+		actions_dencity = GameFlow.current_level.actions_dencity_multiplier
 
 
 func _process(delta):
@@ -81,7 +84,7 @@ func _process(delta):
 func _spawn_new_variant():
 	# restart timer
 	# ToDo: better randomization that takes speed into account
-	spawn_timer.start(rng.randf_range(variant_spawn_width / speed, spawn_max_time / speed * base_speed))
+	spawn_timer.start(rng.randf_range(variant_spawn_width / speed, spawn_max_time / speed * base_speed / actions_dencity))
 	
 	# spawn
 	var new_scene = variant_scenes[rng.randi_range(0, variant_scenes.size() - 1)]

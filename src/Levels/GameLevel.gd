@@ -9,7 +9,8 @@ export var LIMIT_BOTTOM = 10000
 
 var player: Player
 
-export var actions_speed_multiplier = 1
+export var actions_speed_multiplier = 1.0
+export var actions_dencity_multiplier = 1.0
 
 export(PackedScene) var game_hud = preload("res://src/UI/IngameHUD.tscn")
 
