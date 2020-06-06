@@ -30,42 +30,34 @@ extra_spacing_top = -2
 font_data = ExtResource( 1 )
 
 [sub_resource type="AtlasTexture" id=3]
-flags = 4
 atlas = ExtResource( 5 )
 region = Rect2( 0, 0, 52, 54 )
 
 [sub_resource type="AtlasTexture" id=4]
-flags = 4
 atlas = ExtResource( 5 )
 region = Rect2( 52, 0, 52, 54 )
 
 [sub_resource type="AtlasTexture" id=5]
-flags = 4
 atlas = ExtResource( 5 )
 region = Rect2( 104, 0, 52, 54 )
 
 [sub_resource type="AtlasTexture" id=6]
-flags = 4
 atlas = ExtResource( 5 )
 region = Rect2( 156, 0, 52, 54 )
 
 [sub_resource type="AtlasTexture" id=7]
-flags = 4
 atlas = ExtResource( 5 )
 region = Rect2( 208, 0, 52, 54 )
 
 [sub_resource type="AtlasTexture" id=8]
-flags = 4
 atlas = ExtResource( 5 )
 region = Rect2( 260, 0, 52, 54 )
 
 [sub_resource type="AtlasTexture" id=9]
-flags = 4
 atlas = ExtResource( 5 )
 region = Rect2( 312, 0, 52, 54 )
 
 [sub_resource type="AtlasTexture" id=10]
-flags = 4
 atlas = ExtResource( 5 )
 region = Rect2( 364, 0, 52, 54 )
 
@@ -78,6 +70,7 @@ animations = [ {
 } ]
 
 [node name="CanvasLayer" type="CanvasLayer"]
+pause_mode = 2
 script = ExtResource( 10 )
 
 [node name="Loose_PopUp" type="Control" parent="."]
@@ -201,5 +194,5 @@ position = Vector2( 159.397, 184.197 )
 scale = Vector2( 2, 2 )
 frames = SubResource( 11 )
 animation = "loose"
-frame = 2
+frame = 7
 playing = true

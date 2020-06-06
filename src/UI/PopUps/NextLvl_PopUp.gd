@@ -4,6 +4,7 @@ extends CanvasLayer
 func _ready():
 	$Win_PopUp/PopUP/Buttons/StartButton2.connect("pressed", self, "_on_next_level")
 	$Win_PopUp/PopUP/Buttons/StartButton3.connect("pressed", self, "_on_exit")
+	$Win_PopUp/PopUP/Buttons/StartButton2.grab_focus()
 
 
 func _on_next_level():

@@ -22,6 +22,10 @@ func load_level(index):
 	current_level_index = index
 	get_tree().change_scene_to(scenes[index])
 	GameFlow.unlock_character_input()
+	
+	unlock_character_input()
+	show_hud()
+	resume_game_time()
 
 
 func load_next_level():
@@ -70,17 +74,16 @@ func _on_item_collected():
 
 
 func _on_level_started():
-	unlock_character_input()
-	show_hud()
 	var items = get_tree().get_nodes_in_group("Collectables")
 	itemsCount = items.size()
 	print_debug("Total items: " + str(itemsCount))
 	Events.emit_signal("player_hunger_changed", 100)
-	
+
 
 func _on_level_completed():
 	hide_hud()
 	lock_character_input()
+	pause_game_time()
 	var overlay = level_complete_overlay.instance()
 	add_child(overlay)
 
@@ -105,12 +108,13 @@ func hide_hud():
 
 
 func show_hud():
-	if current_level._game_hud != null:
+	if current_level and current_level._game_hud != null:
 		current_level._game_hud.show()
 	pass
 
 
 func on_player_death():
+	pause_game_time()
 	hide_hud()
 	lock_character_input()
 	var overlay = gameOverOverlay.instance()
@@ -126,7 +130,7 @@ func pause_game():
 	hide_hud()
 	pause_overlay_instance = pause_overlay.instance()
 	add_child(pause_overlay_instance)
-	get_tree().paused = true
+	pause_game_time()
 
 
 func unpause_game():
@@ -135,5 +139,11 @@ func unpause_game():
 	if pause_overlay_instance:
 		pause_overlay_instance.queue_free()
 		pause_overlay_instance = null
-	get_tree().paused = false
+	resume_game_time()
 
+
+func pause_game_time():
+	get_tree().paused = true
+
+func resume_game_time():
+	get_tree().paused = false
