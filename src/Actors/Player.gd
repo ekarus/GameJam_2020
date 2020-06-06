@@ -30,11 +30,11 @@ func _ready():
 
 
 func _process(delta):
-	if !playerDied: 
+	if !playerDied:
 		# process steps time calculation
 		if active_action != null:
 			current_step_time_left -= delta
-			if current_step_time_left < 0:
+			if current_step_time_left < 0 and is_on_floor():
 				active_action_steps -= 1
 				discrete_move_done = false
 				current_step_time_left = current_step_length
@@ -152,8 +152,10 @@ func reduce_hunger(value):
 	hunger_level += value
 	pass
 
+
 func reset_hunger(value):
 	hunger_level = 1.0
+
 
 func on_damage():
 	if playerDied:
