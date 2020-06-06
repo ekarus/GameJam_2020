@@ -7,8 +7,10 @@ export(Array, PackedScene) var scenes
 export(PackedScene) var gameOverOverlay
 export(PackedScene) var level_complete_overlay = preload("res://src/UI/PopUps/NextLvl_PopUp.tscn")
 export(PackedScene) var pause_overlay = preload("res://src/UI/PopUps/Pause_PopUp.tscn")
+export(PackedScene) var main_menu_overlay = preload("res://src/UI/MainMenu/MainMenu_UI.tscn")
 
 var pause_overlay_instance
+var main_menu_instance
 
 var current_level_index = 0
 var current_level: GameLevel
@@ -25,18 +27,28 @@ func load_level(index):
 func load_next_level():
 	if current_level_index + 1 < scenes.size():
 		load_level(current_level_index + 1)
+		Events.emit_signal("start_game")
 	print("next level")
 
 
 func reload_level():
 	load_level(current_level_index)
-
+	Events.emit_signal("start_game")
+	
+	
+func start_new_game():
+	load_level(0)
+	main_menu_instance = main_menu_overlay.instance()
+	$Menu.add_child(main_menu_instance)
+	main_menu_instance.show()
+	
 
 func _ready():
 	Events.connect("item_collected", self, "_on_item_collected")
 	Events.connect("level_completed", self, "_on_level_completed")
 	Events.connect("level_started", self, "_on_level_started")
 	Events.connect("player_died", self, "on_player_death")
+	Events.connect("game_start", self, "on_game_started")
 
 
 func _process(delta):
@@ -47,6 +59,10 @@ func _process(delta):
 			if pause_overlay_instance != null:
 				unpause_game()
 
+
+func on_game_started():
+	main_menu_instance.hide()
+	
 
 func _on_item_collected():
 	itemsCollected += 1

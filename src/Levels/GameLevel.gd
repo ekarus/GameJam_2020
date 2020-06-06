@@ -19,10 +19,8 @@ var _game_hud = null
 
 func _ready():
 	player = $Player
+	Events.connect("start_game", self, "start")
 	GameFlow.current_level = self
-	Events.emit_signal("level_started")
-	print("Started level - %s" % name)
-	
 	for child in get_children():
 		if child is Player:
 			var camera = child.get_node("Camera2D")
@@ -35,3 +33,8 @@ func _ready():
 	
 	_game_hud = GameHudScene.instance()
 	add_child(_game_hud)
+
+
+func start():
+	Events.emit_signal("level_started")
+	print("Started level - %s" % name)
