@@ -120,10 +120,11 @@ animations = [ {
 } ]
 
 [sub_resource type="CapsuleShape2D" id=28]
-radius = 11.0
-height = 7.0
+radius = 13.0
+height = 3.99999
 
 [node name="Enemy" type="KinematicBody2D"]
+collision_layer = 4
 script = ExtResource( 5 )
 _direction = 1
 
@@ -145,6 +146,7 @@ collide_with_areas = true
 
 [node name="Sprite" type="AnimatedSprite" parent="."]
 material = SubResource( 1 )
+position = Vector2( 0, -15 )
 frames = SubResource( 27 )
 animation = "Idle"
 __meta__ = {
@@ -153,6 +155,13 @@ __meta__ = {
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
-position = Vector2( 0, 3 )
+position = Vector2( 0, -13 )
 rotation = -1.5708
 shape = SubResource( 28 )
+
+[node name="VisibilityEnabler2D" type="VisibilityEnabler2D" parent="."]
+visible = false
+position = Vector2( 0.5, -13.5 )
+scale = Vector2( 1.65, 1.35 )
+process_parent = true
+physics_process_parent = true
