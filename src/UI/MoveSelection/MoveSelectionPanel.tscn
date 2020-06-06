@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://src/UI/MoveSelection/MoveSelectionPanel.gd" type="Script" id=1]
 [ext_resource path="res://assets/Textures/MovePanelBackground.png" type="Texture" id=2]
@@ -8,11 +8,13 @@
 [ext_resource path="res://assets/Textures/NoteIcon.png" type="Texture" id=6]
 [ext_resource path="res://assets/Textures/SpaceIcon.png" type="Texture" id=7]
 [ext_resource path="res://assets/Textures/ShiftIcon.png" type="Texture" id=8]
+[ext_resource path="res://assets/font/FFFFORWA.TTF" type="DynamicFontData" id=9]
 
 [sub_resource type="DynamicFont" id=1]
+size = 10
 use_mipmaps = true
 use_filter = true
-font_data = ExtResource( 4 )
+font_data = ExtResource( 9 )
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 511.933, 61.1343 )
@@ -40,8 +42,8 @@ __meta__ = {
 }
 
 [node name="NinePatchRect" type="NinePatchRect" parent="NoteAction2"]
-margin_left = 0.902496
-margin_right = 268.902
+margin_left = 1.0
+margin_right = 296.0
 margin_bottom = 36.0
 texture = ExtResource( 5 )
 __meta__ = {
@@ -59,45 +61,45 @@ __meta__ = {
 }
 
 [node name="TextureRect2" type="TextureRect" parent="NoteAction2"]
-margin_left = 138.193
-margin_top = 5.01883
-margin_right = 162.193
-margin_bottom = 29.0188
+margin_left = 158.984
+margin_top = 8.21188
+margin_right = 205.984
+margin_bottom = 28.2119
 texture = ExtResource( 8 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="TextureRect3" type="TextureRect" parent="NoteAction2"]
-margin_left = 36.6039
-margin_top = 5.3773
-margin_right = 60.6039
-margin_bottom = 29.3773
+margin_left = 32.2842
+margin_top = 8.21188
+margin_right = 78.2842
+margin_bottom = 27.2119
 texture = ExtResource( 7 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="ActTitle2" type="Label" parent="NoteAction2"]
-modulate = Color( 0.698039, 0.698039, 0.698039, 1 )
-margin_left = 71.0
-margin_top = 10.0
-margin_right = 132.0
-margin_bottom = 27.0
+margin_left = 83.0
+margin_top = 12.0
+margin_right = 143.0
+margin_bottom = 29.0
 custom_fonts/font = SubResource( 1 )
 text = "Select"
+uppercase = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="ActTitle5" type="Label" parent="NoteAction2"]
-modulate = Color( 0.698039, 0.698039, 0.698039, 1 )
-margin_left = 170.301
-margin_top = 10.0
-margin_right = 237.301
-margin_bottom = 27.0
+margin_left = 209.7
+margin_top = 12.0
+margin_right = 287.7
+margin_bottom = 29.0
 custom_fonts/font = SubResource( 1 )
 text = "Speed Up"
+uppercase = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
