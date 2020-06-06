@@ -1,14 +1,13 @@
-extends Control
+extends CanvasLayer
 
 
 func _ready():
-	$Loose_PopUp/PopUp/Buttons/StartButton.connect("pressed", self, "_on_continue")
-	$Loose_PopUp/PopUp/Buttons/StartButton3.connect("pressed", self, "_on_exit")
+	$Pause_PopUp/PopUp/Buttons/StartButton.connect("pressed", self, "_on_continue")
+	$Pause_PopUp/PopUp/Buttons/StartButton3.connect("pressed", self, "_on_exit")
 
 
 func _on_continue():
-	GameFlow.unlock_character_input()
-	queue_free()
+	GameFlow.unpause_game()
 
 
 func _on_exit():

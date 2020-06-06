@@ -156,6 +156,9 @@ func reset_hunger(value):
 	hunger_level = 1.0
 
 func on_damage():
+	if playerDied:
+		return
+	
 	Events.emit_signal("player_died")
 	playerDied = true
 	print_debug("player is ded")

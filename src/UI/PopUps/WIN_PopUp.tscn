@@ -119,6 +119,7 @@ __meta__ = {
 }
 
 [node name="StartButton" type="TextureButton" parent="PopUP/Buttons"]
+visible = false
 margin_right = 250.0
 margin_bottom = 50.0
 rect_min_size = Vector2( 250, 50 )
@@ -152,9 +153,8 @@ __meta__ = {
 }
 
 [node name="StartButton3" type="TextureButton" parent="PopUP/Buttons"]
-margin_top = 60.0
 margin_right = 250.0
-margin_bottom = 110.0
+margin_bottom = 50.0
 rect_min_size = Vector2( 250, 50 )
 texture_normal = ExtResource( 7 )
 texture_pressed = ExtResource( 8 )
