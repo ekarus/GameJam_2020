@@ -29,6 +29,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/Behaiviors/BehaviorLoop.gd"
 }, {
+"base": "TriggerAction",
+"class": "DialogAction",
+"language": "GDScript",
+"path": "res://src/Interactables/DialogAction.gd"
+}, {
 "base": "Actor",
 "class": "Enemy",
 "language": "GDScript",
@@ -44,21 +49,6 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/Collectibles/ItemEffect.gd"
 }, {
-"base": "BaseVariant",
-"class": "JumpDiagonalVariant",
-"language": "GDScript",
-"path": "res://src/UI/MoveSelection/MoveVariants/JumpDiagonalVariant.gd"
-}, {
-"base": "BaseVariant",
-"class": "MoveLeftVariant",
-"language": "GDScript",
-"path": "res://src/UI/MoveSelection/MoveVariants/MoveLeftVariant.gd"
-}, {
-"base": "BaseVariant",
-"class": "MoveRightVariant",
-"language": "GDScript",
-"path": "res://src/UI/MoveSelection/MoveVariants/MoveRightVariant.gd"
-}, {
 "base": "Node2D",
 "class": "MoveVariantBase",
 "language": "GDScript",
@@ -68,20 +58,36 @@ _global_script_classes=[ {
 "class": "Player",
 "language": "GDScript",
 "path": "res://src/Actors/Player.gd"
+}, {
+"base": "Area2D",
+"class": "Trap",
+"language": "GDScript",
+"path": "res://src/Traps/BaseTrap.gd"
+}, {
+"base": "Area2D",
+"class": "Trigger",
+"language": "GDScript",
+"path": "res://src/Interactables/Trigger.gd"
+}, {
+"base": "Node",
+"class": "TriggerAction",
+"language": "GDScript",
+"path": "res://src/Interactables/TriggerAction.gd"
 } ]
 _global_script_class_icons={
 "Actor": "",
 "BaseBehavior": "",
 "BaseVariant": "",
 "BehaviorLoop": "",
+"DialogAction": "",
 "Enemy": "",
 "GameLevel": "",
 "ItemEffectBase": "",
-"JumpDiagonalVariant": "",
-"MoveLeftVariant": "",
-"MoveRightVariant": "",
 "MoveVariantBase": "",
-"Player": ""
+"Player": "",
+"Trap": "",
+"Trigger": "",
+"TriggerAction": ""
 }
 
 [application]
@@ -94,10 +100,7 @@ config/icon="res://icon.png"
 
 Events="*res://src/Autoload/Events.gd"
 GameFlow="*res://src/Autoload/GameFlow.tscn"
-
-[debug]
-
-settings/fps/force_fps=60
+DialogController="*res://src/UI/DialogController.tscn"
 
 [importer_defaults]
 
@@ -166,18 +169,16 @@ debug_jump_up={
 , Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":87,"unicode":0,"echo":false,"script":null)
  ]
 }
-debug_jump_left={
+debup_jump_left={
 "deadzone": 0.5,
 "events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":true,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777231,"unicode":0,"echo":false,"script":null)
 , Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":true,"control":false,"meta":false,"command":false,"pressed":false,"scancode":65,"unicode":0,"echo":false,"script":null)
-, Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":81,"unicode":0,"echo":false,"script":null)
  ]
 }
 debug_jump_right={
 "deadzone": 0.5,
 "events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":true,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777233,"unicode":0,"echo":false,"script":null)
 , Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":true,"control":false,"meta":false,"command":false,"pressed":false,"scancode":68,"unicode":0,"echo":false,"script":null)
-, Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":69,"unicode":0,"echo":false,"script":null)
  ]
 }
 
@@ -190,7 +191,7 @@ debug_jump_right={
 
 [physics]
 
-2d/default_gravity=400
+2d/default_gravity=200
 2d/default_gravity_vector=Vector2( 0, 2 )
 
 [rendering]
