@@ -46,6 +46,19 @@ func _on_StompDetector_body_entered(body: Node) -> void:
 	queue_free()
 
 
+func _on_LeftKillDetector_body_entered(body: Node) -> void:
+	_kill_player(body as Player)
+
+
+func _on_RightKillDetector_body_entered(body: Node) -> void:
+	_kill_player(body as Player)
+
+
+func _kill_player(player: Player):
+	if player:
+		player.on_damage()
+
+
 func _process(delta):
 	pass
 
@@ -156,3 +169,4 @@ func _update_velocity():
 			_velocity.x = speed.x
 	else:
 		_velocity.x = 0
+

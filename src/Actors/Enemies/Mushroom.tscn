@@ -140,15 +140,6 @@ animations = [ {
 [node name="Mushroom" instance=ExtResource( 1 )]
 _follow_player = true
 
-[node name="PlatformDetector" parent="." index="0"]
-visible = false
-
-[node name="FloorDetectorLeft" parent="." index="1"]
-visible = false
-
-[node name="FloorDetectorRight" parent="." index="2"]
-visible = false
-
 [node name="Sprite" parent="." index="3"]
 frames = SubResource( 31 )
 
@@ -163,4 +154,7 @@ scale = Vector2( 1.3, 1 )
 position = Vector2( 0, -18 )
 
 [node name="CollisionShape2D" parent="StompDetector" index="0"]
-position = Vector2( 0, -3 )
+position = Vector2( 0, -4 )
+
+[node name="CollisionShape2D" parent="RightKillDetector" index="0"]
+position = Vector2( 13, -10 )

@@ -28,11 +28,6 @@ func _ready():
 	Events.connect("player_action_choosen", self, "_on_action_choosen")
 
 
-func _on_EnemyDetector_body_entered(body: Node) -> void:
-	if body is Enemy:
-		self.on_damage()
-
-
 func _process(delta):
 	# process steps time calculation
 	if active_action != null:

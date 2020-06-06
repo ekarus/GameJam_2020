@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=2]
+[gd_scene load_steps=35 format=2]
 
 [ext_resource path="res://assets/PixelAdventure2/Enemies/AngryPig/Idle (36x30).png" type="Texture" id=1]
 [ext_resource path="res://assets/PixelAdventure2/Enemies/AngryPig/Walk (36x30).png" type="Texture" id=2]
@@ -120,27 +120,36 @@ animations = [ {
 } ]
 
 [sub_resource type="CapsuleShape2D" id=28]
-radius = 12.0
-height = 5.99998
+radius = 11.0
+height = 4.0
 
 [sub_resource type="RectangleShape2D" id=29]
-extents = Vector2( 9, 3 )
+extents = Vector2( 15, 2 )
+
+[sub_resource type="RectangleShape2D" id=30]
+extents = Vector2( 2, 10 )
+
+[sub_resource type="RectangleShape2D" id=31]
+extents = Vector2( 2, 10 )
 
 [node name="Enemy" type="KinematicBody2D"]
 collision_layer = 4
 script = ExtResource( 5 )
 
 [node name="PlatformDetector" type="RayCast2D" parent="."]
+visible = false
 enabled = true
 cast_to = Vector2( 0, 16 )
 
 [node name="FloorDetectorLeft" type="RayCast2D" parent="."]
+visible = false
 position = Vector2( -14, 0 )
 enabled = true
 cast_to = Vector2( 0, 16 )
 collide_with_areas = true
 
 [node name="FloorDetectorRight" type="RayCast2D" parent="."]
+visible = false
 position = Vector2( 13, 0 )
 enabled = true
 cast_to = Vector2( 0, 16 )
@@ -156,6 +165,7 @@ __meta__ = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2( 0, -11 )
 rotation = -1.5708
 shape = SubResource( 28 )
@@ -168,11 +178,35 @@ process_parent = true
 physics_process_parent = true
 
 [node name="StompDetector" type="Area2D" parent="."]
+visible = false
 position = Vector2( 0, -22 )
-collision_layer = 4
+monitorable = false
+collision_layer = 0
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StompDetector"]
 position = Vector2( 0, -2 )
 shape = SubResource( 29 )
+
+[node name="LeftKillDetector" type="Area2D" parent="."]
+visible = false
+monitorable = false
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LeftKillDetector"]
+position = Vector2( -13, -10 )
+shape = SubResource( 30 )
+
+[node name="RightKillDetector" type="Area2D" parent="."]
+visible = false
+monitorable = false
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RightKillDetector"]
+position = Vector2( 14, -10 )
+shape = SubResource( 31 )
 [connection signal="body_entered" from="StompDetector" to="." method="_on_StompDetector_body_entered"]
+[connection signal="body_entered" from="LeftKillDetector" to="." method="_on_LeftKillDetector_body_entered"]
+[connection signal="body_entered" from="RightKillDetector" to="." method="_on_RightKillDetector_body_entered"]
