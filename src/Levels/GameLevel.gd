@@ -9,6 +9,8 @@ export var LIMIT_BOTTOM = 10000
 
 var player: Player
 
+export(PackedScene) var game_hud = preload("res://src/UI/IngameHUD.tscn")
+
 func _ready():
 	player = $Player
 	GameFlow.current_level = self
@@ -22,3 +24,5 @@ func _ready():
 			camera.limit_top = LIMIT_TOP
 			camera.limit_right = LIMIT_RIGHT
 			camera.limit_bottom = LIMIT_BOTTOM
+	
+	add_child(game_hud.instance())

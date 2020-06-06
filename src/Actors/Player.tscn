@@ -1,7 +1,6 @@
-[gd_scene load_steps=38 format=2]
+[gd_scene load_steps=37 format=2]
 
 [ext_resource path="res://src/Actors/Player.gd" type="Script" id=1]
-[ext_resource path="res://src/UI/MoveSelection/MoveSelectionPanel.tscn" type="PackedScene" id=2]
 [ext_resource path="res://assets/PixelAdventure1/Main Characters/Virtual Guy/Idle (32x32).png" type="Texture" id=3]
 [ext_resource path="res://assets/PixelAdventure1/Main Characters/Virtual Guy/Run (32x32).png" type="Texture" id=4]
 [ext_resource path="res://assets/PixelAdventure1/Main Characters/Virtual Guy/Hit (32x32).png" type="Texture" id=5]
@@ -54,80 +53,80 @@ atlas = ExtResource( 3 )
 region = Rect2( 320, 0, 32, 32 )
 
 [sub_resource type="AtlasTexture" id=13]
-atlas = ExtResource( 4 )
+atlas = ExtResource( 5 )
 region = Rect2( 0, 0, 32, 32 )
 
 [sub_resource type="AtlasTexture" id=14]
-atlas = ExtResource( 4 )
+atlas = ExtResource( 5 )
 region = Rect2( 32, 0, 32, 32 )
 
 [sub_resource type="AtlasTexture" id=15]
-atlas = ExtResource( 4 )
+atlas = ExtResource( 5 )
 region = Rect2( 64, 0, 32, 32 )
 
 [sub_resource type="AtlasTexture" id=16]
-atlas = ExtResource( 4 )
+atlas = ExtResource( 5 )
 region = Rect2( 96, 0, 32, 32 )
 
 [sub_resource type="AtlasTexture" id=17]
-atlas = ExtResource( 4 )
+atlas = ExtResource( 5 )
 region = Rect2( 128, 0, 32, 32 )
 
 [sub_resource type="AtlasTexture" id=18]
-atlas = ExtResource( 4 )
+atlas = ExtResource( 5 )
 region = Rect2( 160, 0, 32, 32 )
 
 [sub_resource type="AtlasTexture" id=19]
-atlas = ExtResource( 4 )
+atlas = ExtResource( 5 )
 region = Rect2( 192, 0, 32, 32 )
 
 [sub_resource type="AtlasTexture" id=20]
 atlas = ExtResource( 4 )
-region = Rect2( 224, 0, 32, 32 )
+region = Rect2( 0, 0, 32, 32 )
 
 [sub_resource type="AtlasTexture" id=21]
 atlas = ExtResource( 4 )
-region = Rect2( 256, 0, 32, 32 )
+region = Rect2( 32, 0, 32, 32 )
 
 [sub_resource type="AtlasTexture" id=22]
 atlas = ExtResource( 4 )
-region = Rect2( 288, 0, 32, 32 )
+region = Rect2( 64, 0, 32, 32 )
 
 [sub_resource type="AtlasTexture" id=23]
 atlas = ExtResource( 4 )
-region = Rect2( 320, 0, 32, 32 )
+region = Rect2( 96, 0, 32, 32 )
 
 [sub_resource type="AtlasTexture" id=24]
 atlas = ExtResource( 4 )
-region = Rect2( 352, 0, 32, 32 )
-
-[sub_resource type="AtlasTexture" id=25]
-atlas = ExtResource( 5 )
-region = Rect2( 0, 0, 32, 32 )
-
-[sub_resource type="AtlasTexture" id=26]
-atlas = ExtResource( 5 )
-region = Rect2( 32, 0, 32, 32 )
-
-[sub_resource type="AtlasTexture" id=27]
-atlas = ExtResource( 5 )
-region = Rect2( 64, 0, 32, 32 )
-
-[sub_resource type="AtlasTexture" id=28]
-atlas = ExtResource( 5 )
-region = Rect2( 96, 0, 32, 32 )
-
-[sub_resource type="AtlasTexture" id=29]
-atlas = ExtResource( 5 )
 region = Rect2( 128, 0, 32, 32 )
 
-[sub_resource type="AtlasTexture" id=30]
-atlas = ExtResource( 5 )
+[sub_resource type="AtlasTexture" id=25]
+atlas = ExtResource( 4 )
 region = Rect2( 160, 0, 32, 32 )
 
-[sub_resource type="AtlasTexture" id=31]
-atlas = ExtResource( 5 )
+[sub_resource type="AtlasTexture" id=26]
+atlas = ExtResource( 4 )
 region = Rect2( 192, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=27]
+atlas = ExtResource( 4 )
+region = Rect2( 224, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=28]
+atlas = ExtResource( 4 )
+region = Rect2( 256, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=29]
+atlas = ExtResource( 4 )
+region = Rect2( 288, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=30]
+atlas = ExtResource( 4 )
+region = Rect2( 320, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=31]
+atlas = ExtResource( 4 )
+region = Rect2( 352, 0, 32, 32 )
 
 [sub_resource type="SpriteFrames" id=32]
 animations = [ {
@@ -136,15 +135,15 @@ animations = [ {
 "name": "idle",
 "speed": 7.0
 }, {
-"frames": [ SubResource( 13 ), SubResource( 14 ), SubResource( 15 ), SubResource( 16 ), SubResource( 17 ), SubResource( 18 ), SubResource( 19 ), SubResource( 20 ), SubResource( 21 ), SubResource( 22 ), SubResource( 23 ), SubResource( 24 ) ],
-"loop": true,
-"name": "run",
-"speed": 5.0
-}, {
-"frames": [ SubResource( 25 ), SubResource( 26 ), SubResource( 27 ), SubResource( 28 ), SubResource( 29 ), SubResource( 30 ), SubResource( 31 ) ],
+"frames": [ SubResource( 13 ), SubResource( 14 ), SubResource( 15 ), SubResource( 16 ), SubResource( 17 ), SubResource( 18 ), SubResource( 19 ) ],
 "loop": false,
 "name": "hit",
 "speed": 10.0
+}, {
+"frames": [ SubResource( 20 ), SubResource( 21 ), SubResource( 22 ), SubResource( 23 ), SubResource( 24 ), SubResource( 25 ), SubResource( 26 ), SubResource( 27 ), SubResource( 28 ), SubResource( 29 ), SubResource( 30 ), SubResource( 31 ) ],
+"loop": true,
+"name": "run",
+"speed": 5.0
 } ]
 
 [node name="Player" type="KinematicBody2D"]
@@ -169,10 +168,6 @@ __meta__ = {
 position = Vector2( 0.27055, 3.92299 )
 shape = SubResource( 1 )
 
-[node name="MoveSelectionPanel" parent="." instance=ExtResource( 2 )]
-position = Vector2( -306.287, -177.931 )
-scale = Vector2( 0.6, 0.6 )
-
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
 zoom = Vector2( 0.6, 0.6 )
@@ -180,6 +175,7 @@ zoom = Vector2( 0.6, 0.6 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 32 )
 animation = "idle"
+frame = 2
 playing = true
 __meta__ = {
 "_edit_lock_": true

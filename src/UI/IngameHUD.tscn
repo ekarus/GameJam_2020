@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://src/UI/MoveSelection/MoveSelectionPanel.tscn" type="PackedScene" id=1]
+
+[node name="HUD" type="CanvasLayer"]
+
+[node name="MoveSelectionPanel" parent="." instance=ExtResource( 1 )]
