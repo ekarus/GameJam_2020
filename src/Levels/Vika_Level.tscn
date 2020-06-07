@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://assets/Tilesets/TerrainTileset.tres" type="TileSet" id=1]
 [ext_resource path="res://src/Levels/ExitPoint.tscn" type="PackedScene" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://src/Actors/Player.tscn" type="PackedScene" id=4]
 [ext_resource path="res://src/Levels/DeathTrigger.gd" type="Script" id=5]
 [ext_resource path="res://src/Levels/GameLevel.gd" type="Script" id=6]
+[ext_resource path="res://assets/Tilesets/NavigationTileset.tres" type="TileSet" id=7]
 [ext_resource path="res://src/Traps/SawStatic.tscn" type="PackedScene" id=8]
 [ext_resource path="res://assets/Tilesets/BackGroundTileset.tres" type="TileSet" id=9]
 [ext_resource path="res://src/Actors/Enemies/Pig.tscn" type="PackedScene" id=10]
@@ -70,3 +71,12 @@ position = Vector2( 530.97, 178.807 )
 
 [node name="Pig" parent="." instance=ExtResource( 10 )]
 position = Vector2( 314.243, 207.16 )
+
+[node name="Navigation2D" type="Navigation2D" parent="."]
+
+[node name="TileMap" type="TileMap" parent="Navigation2D"]
+z_index = -1
+tile_set = ExtResource( 7 )
+cell_size = Vector2( 32, 32 )
+format = 1
+tile_data = PoolIntArray( 327678, 0, 0, 327679, 0, 0, 262144, 0, 0, 262145, 0, 0, 262146, 0, 0, 262147, 0, 0, 262148, 0, 0, 262154, 0, 0, 262155, 0, 0, 262156, 0, 0, 262157, 0, 0, 327684, 0, 0, 327685, 0, 0, 327686, 0, 0, 327687, 0, 0, 327688, 0, 0, 327689, 0, 0, 327690, 0, 0, 327693, 0, 0, 327694, 0, 0, 327695, 0, 0, 393222, 0, 0, 393223, 0, 0, 393231, 0, 0, 393232, 0, 0, 393233, 0, 0, 393234, 0, 0, 524283, 0, 0, 524284, 0, 0, 524285, 0, 0, 458768, 0, 0, 458769, 0, 0, 589817, 0, 0, 589818, 0, 0, 589819, 0, 0, 589821, 0, 0, 589822, 0, 0, 589823, 0, 0, 524288, 0, 0, 524289, 0, 0, 524290, 0, 0, 524304, 0, 0, 655355, 0, 0, 655357, 0, 0, 589826, 0, 0, 589835, 0, 0, 589836, 0, 0, 589837, 0, 0, 589838, 0, 0, 589839, 0, 0, 589840, 0, 0, 655362, 0, 0, 655363, 0, 0, 655364, 0, 0, 655365, 0, 0, 655366, 0, 0, 655367, 0, 0, 655368, 0, 0, 655369, 0, 0, 655370, 0, 0, 655371, 0, 0, 655373, 0, 0, 655374, 0, 0, 720899, 0, 0, 720902, 0, 0, 720903, 0, 0, 720905, 0, 0, 720907, 0, 0, 720908, 0, 0 )

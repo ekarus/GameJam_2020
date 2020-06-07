@@ -16,7 +16,7 @@ var _state = State.IDLE setget _set_state
 var _sees_player = false
 var _hit_a_wall = false
 
-const _enemy_size = 64
+const _epsilon = 4
 
 onready var platform_detector = $PlatformDetector
 onready var floor_detector_left = $FloorDetectorLeft
@@ -100,17 +100,17 @@ func find_path():
 	if path.size() < 2:
 		return false
 	
-	var player_on_left = (path[0].x - path[1].x) >= _enemy_size / 8
-	var player_on_right = (path[1].x - path[0].x) >= _enemy_size / 8
-	var player_on_top = (path[0].y - path[1].y) >= _enemy_size / 2
+	var player_on_left = (path[0].x - path[1].x) >= _epsilon
+	var player_on_right = (path[1].x - path[0].x) >= _epsilon
+	var player_on_top = (path[0].y - path[1].y) >= _epsilon
 	if player_on_top:
 		if player_on_left:
 			set_active_action(MoveVariantBase.VariantType.JumpLeft, 1)
 		elif player_on_right:
 			set_active_action(MoveVariantBase.VariantType.JumpRight, 1)
 		elif path.size() > 2:
-			player_on_left = (path[1].x - path[2].x) >= _enemy_size / 8
-			player_on_right = (path[2].x - path[1].x) >= _enemy_size / 8
+			player_on_left = (path[1].x - path[2].x) >= _epsilon
+			player_on_right = (path[2].x - path[1].x) >= _epsilon
 			if player_on_left:
 				set_active_action(MoveVariantBase.VariantType.JumpLeft, 1)
 			elif player_on_right:
