@@ -64,7 +64,8 @@ func _ready():
 
 func _process(delta):
 	if Input.is_action_just_pressed("select_action"):
-		_select_hovered_action()
+		if !GameFlow.is_main_menu_open():
+			_select_hovered_action()
 	elif GameFlow.input_active && GameFlow.DEBUG_INPUT:
 		if Input.is_action_just_pressed("debug_jump_left"):
 			Events.emit_signal("player_action_choosen", MoveVariantBase.VariantType.JumpLeft, 1)
