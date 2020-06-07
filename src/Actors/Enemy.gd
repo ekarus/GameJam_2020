@@ -30,6 +30,8 @@ func _ready():
 func _on_process_action(action, steps):
 	if is_static_actor:
 		return
+	if active_action != null:
+		return
 	_sees_player = find_path()
 	if not _sees_player:
 		if _hit_a_wall:
@@ -77,8 +79,6 @@ func _physics_process(delta):
 		self._state = State.IDLE
 	if not _hit_a_wall:
 		_hit_a_wall = is_on_wall()
-		if _hit_a_wall:
-			print(self.name, " hit a wall, may change direction");
 
 
 func find_path():
@@ -96,37 +96,36 @@ func find_path():
 	# redraw debug info
 	level.update()
 
+	return follow_path(path)
+
+
+func follow_path(path: Array) -> bool:
 	if path.size() < 2:
 		return false
+
+	var move_left = (path[0].x - path[1].x) >= _epsilon
+	var move_right = (path[1].x - path[0].x) >= _epsilon
+	var move_up = (path[0].y - path[1].y) >= _epsilon
 	
-	var player_on_left = (path[0].x - path[1].x) >= _epsilon
-	var player_on_right = (path[1].x - path[0].x) >= _epsilon
-	var player_on_top = (path[0].y - path[1].y) >= _epsilon
-	if player_on_top:
-		if player_on_left:
+	if move_left:
+		if move_up:
 			set_active_action(MoveVariantBase.VariantType.JumpLeft, 1)
-		elif player_on_right:
-			set_active_action(MoveVariantBase.VariantType.JumpRight, 1)
-		elif path.size() > 2:
-			player_on_left = (path[1].x - path[2].x) >= _epsilon
-			player_on_right = (path[2].x - path[1].x) >= _epsilon
-			if player_on_left:
-				set_active_action(MoveVariantBase.VariantType.JumpLeft, 1)
-			elif player_on_right:
-				set_active_action(MoveVariantBase.VariantType.JumpRight, 1)
-	else:
-		if player_on_left:
-			set_active_action(MoveVariantBase.VariantType.Left, 1)
-		elif player_on_right:
-			set_active_action(MoveVariantBase.VariantType.Right, 1)
 		else:
-			print(self.name, ": what is going on???")
-	
-	if player_on_left:
+			set_active_action(MoveVariantBase.VariantType.Left, 1)
 		self._direction = Direction.LEFT
-	elif player_on_right:
+		return true
+
+	if move_right:
+		if move_up:
+			set_active_action(MoveVariantBase.VariantType.JumpRight, 1)
+		else:
+			set_active_action(MoveVariantBase.VariantType.Right, 1)
 		self._direction = Direction.RIGHT
-	return true
+		return true
+
+	# check next point of the path recursively
+	path.pop_front()
+	return follow_path(path)
 
 
 func go_straight():

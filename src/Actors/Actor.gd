@@ -45,7 +45,7 @@ func _physics_process(delta):
 
 func set_active_action(action, steps):
 	if active_action != null:
-		print("skipped action because processing another one")
+		print(self.name, " skipped action because processing another one")
 		return
 	
 	active_action = action
