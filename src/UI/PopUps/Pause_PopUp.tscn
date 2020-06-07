@@ -147,6 +147,7 @@ __meta__ = {
 }
 
 [node name="StartButton3" type="TextureButton" parent="Pause_PopUp/PopUp/Buttons"]
+visible = false
 margin_top = 60.0
 margin_right = 250.0
 margin_bottom = 110.0

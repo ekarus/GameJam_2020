@@ -182,7 +182,6 @@ position = Vector2( 419.181, -43.0421 )
 scale = Vector2( 2.96438, 2.96438 )
 frames = SubResource( 10 )
 animation = "IdlePig"
-frame = 8
 playing = true
 
 [node name="IdleBat" type="AnimatedSprite" parent="Logo"]
@@ -190,7 +189,6 @@ position = Vector2( 93.752, 186.321 )
 scale = Vector2( 2.96438, 2.96438 )
 frames = SubResource( 23 )
 animation = "IdleBat"
-frame = 5
 playing = true
 
 [node name="Buttons" type="VBoxContainer" parent="."]
@@ -243,6 +241,7 @@ __meta__ = {
 }
 
 [node name="StartButton3" type="TextureButton" parent="Buttons"]
+visible = false
 margin_top = 60.0
 margin_right = 250.0
 margin_bottom = 110.0
