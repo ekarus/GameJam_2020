@@ -17,6 +17,10 @@ func _ready():
 
 
 func _process(delta):
+	pass
+
+
+func _physics_process(delta):
 	if !is_dead:
 		# process steps time calculation
 		if active_action != null:
@@ -70,10 +74,6 @@ func play_animation(name):
 func _on_action_choosen(action, steps):
 	$choose_sound.play()
 	set_active_action(action, steps)
-
-
-func _physics_process(delta):
-	pass
 
 
 func reduce_hunger(value):

@@ -67,19 +67,18 @@ func _kill_player(player: Player):
 
 
 func _process(delta):
-	if is_static_actor:
-		return
-	if not process_active_action(delta):
-		self._state = State.IDLE
+	pass
 
 
 func _physics_process(delta):
 	if is_static_actor:
 		return
+	if not process_active_action(delta):
+		self._state = State.IDLE
 	if not _hit_a_wall:
 		_hit_a_wall = is_on_wall()
 		if _hit_a_wall:
-			print(self.name, " hit a wall, let's switch direction");
+			print(self.name, " hit a wall, may change direction");
 
 
 func find_path():
