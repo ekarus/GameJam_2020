@@ -116,7 +116,7 @@ _global_script_class_icons={
 
 [application]
 
-config/name="Game Jam 2020"
+config/name="Stuck In VR"
 run/main_scene="res://src/Game.tscn"
 config/icon="res://icon.png"
 
