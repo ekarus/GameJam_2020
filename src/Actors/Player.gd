@@ -38,10 +38,9 @@ func _physics_process(delta):
 			if hunger_level <= 0:
 				on_damage()
 			Events.emit_signal("player_hunger_changed", hunger_level * 100)
-	_update_animations()
+	update_animations()
 
-func _update_animations():
-	
+func update_animations():
 	if is_dead:
 		play_animation("hit")
 		return
@@ -63,7 +62,6 @@ func _update_animations():
 		play_animation("idle")
 
 	prev_velocity = velocity.y
-	pass
 
 
 func play_animation(name):

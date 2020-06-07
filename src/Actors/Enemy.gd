@@ -12,7 +12,7 @@ enum Direction {
 }
 
 export(Direction) var _direction = Direction.LEFT setget _set_direction
-var _state = State.IDLE setget _set_state
+var _state = State.IDLE
 var _sees_player = false
 var _hit_a_wall = false
 
@@ -79,6 +79,20 @@ func _physics_process(delta):
 		self._state = State.IDLE
 	if not _hit_a_wall:
 		_hit_a_wall = is_on_wall()
+	update_animations()
+
+
+func update_animations():
+	var is_moving = abs(movement_dir.x) > 0
+	if is_moving:
+		play_animation("Move")
+	else:
+		play_animation("Idle")
+
+
+func play_animation(name):
+	if sprite.animation != name:
+		sprite.play(name)
 
 
 func find_path():
@@ -140,27 +154,6 @@ func change_direction():
 		self._direction = Direction.RIGHT
 	else:
 		self._direction = Direction.LEFT
-
-
-func select_animation():
-	if _state == State.MOVE && abs(movement_dir.x) != 0:
-		return "Move"
-	return "Idle"
-
-
-func _set_state(value):
-	if _state != value:
-		_state = value
-
-	# nothing to animate yet
-	if sprite == null:
-		return
-
-	# select animation according to the current state
-	var animation = select_animation()
-	if animation != sprite.animation:
-		#print(self.name, " switching animation to: " + animation)
-		sprite.play(animation)
 
 
 func _set_direction(value):
