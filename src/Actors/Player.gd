@@ -39,7 +39,7 @@ func _process(delta):
 func _update_animations():
 	
 	if is_dead:
-		$AnimatedSprite.play("hit")
+		play_animation("hit")
 		return
 		
 	var is_moving = abs(movement_dir.x) > 0
@@ -50,16 +50,21 @@ func _update_animations():
 		$Jump_sound.play()
 	
 	if is_moving:
-		$AnimatedSprite.play("run")
+		play_animation("run")
 	elif is_jumping:
-		$AnimatedSprite.play("jump")
+		play_animation("jump")
 	elif is_falling:
-		$AnimatedSprite.play("fall")
+		play_animation("fall")
 	else:
-		$AnimatedSprite.play("idle")
+		play_animation("idle")
 
 	prev_velocity = velocity.y
 	pass
+
+
+func play_animation(name):
+	if sprite.animation != name:
+		sprite.play(name)
 
 
 func _on_action_choosen(action, steps):
@@ -86,7 +91,7 @@ func on_damage():
 	
 	Events.emit_signal("player_died")
 	is_dead = true
-	print_debug("player is ded")
+	print("Player died!")
 
 	pass
 

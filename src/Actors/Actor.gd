@@ -39,8 +39,6 @@ func _physics_process(delta):
 		return
 	
 	# platform collision
-#	var snap_vector = Vector2.DOWN * FLOOR_DETECT_DISTANCE if movement_dir.y == 0.0 else Vector2.ZERO
-#	velocity = move_and_slide_with_snap(velocity, snap_vector, FLOOR_NORMAL, false, 4, 0.9, false)
 	velocity = move_and_slide(velocity, FLOOR_NORMAL)
 	velocity.y += gravity * delta
 
@@ -79,23 +77,23 @@ func process_active_action(delta):
 		movement_dir = Vector2()
 		return false
 	
-	var desiredDirection = Vector2()
+	var desired_direction = Vector2()
 	
 	if active_action in [MoveVariantBase.VariantType.Left, MoveVariantBase.VariantType.JumpLeft]:
-		desiredDirection.x = -1
+		desired_direction.x = -1
 	elif active_action in [MoveVariantBase.VariantType.Right, MoveVariantBase.VariantType.JumpRight]:
-		desiredDirection.x = 1
+		desired_direction.x = 1
 	elif active_action == MoveVariantBase.VariantType.JumpUp:
 		if not discrete_move_done and is_on_floor():
-			desiredDirection.y = -1
+			desired_direction.y = -1
 			discrete_move_done = true
 
 	if active_action in [MoveVariantBase.VariantType.JumpLeft, MoveVariantBase.VariantType.JumpRight]:
 		if not discrete_move_done and is_on_floor():
-			desiredDirection.y = -1
+			desired_direction.y = -1
 			discrete_move_done = true
 	
-	movement_dir = desiredDirection
+	movement_dir = desired_direction
 	return true
 
 

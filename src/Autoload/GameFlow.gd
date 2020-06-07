@@ -84,13 +84,13 @@ func on_game_started():
 
 func _on_item_collected():
 	itemsCollected += 1
-	print_debug("Collected an item, total: " + str(itemsCollected))
+	print("Collected an item, total: " + str(itemsCollected))
 
 
 func _on_level_started():
 	var items = get_tree().get_nodes_in_group("Collectables")
 	itemsCount = items.size()
-	print_debug("Total items: " + str(itemsCount))
+	print("Total items: " + str(itemsCount))
 	$bgm_game.play()
 	Events.emit_signal("player_hunger_changed", 100)
 
