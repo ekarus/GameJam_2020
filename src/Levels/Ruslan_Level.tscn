@@ -48,7 +48,7 @@ position = Vector2( 552.379, 367.991 )
 z_index = -1
 
 [node name="Mushroom" parent="." instance=ExtResource( 7 )]
-position = Vector2( 205.405, 210.796 )
+position = Vector2( 210.042, 207.466 )
 
 [node name="BackgroundTiles" type="TileMap" parent="."]
 z_index = -2
@@ -61,6 +61,7 @@ position = Vector2( 261.197, 207.194 )
 rotation = 1.5708
 
 [node name="Navigation2D" type="Navigation2D" parent="."]
+visible = false
 
 [node name="TileMap" type="TileMap" parent="Navigation2D"]
 z_index = -1

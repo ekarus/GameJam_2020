@@ -31,9 +31,6 @@ position = Vector2( 507, 287 )
 position = Vector2( 296, 576 )
 z_index = -1
 
-[node name="AnimatedSprite" parent="Trap" index="2"]
-frame = 5
-
 [node name="Pig" parent="." instance=ExtResource( 2 )]
 position = Vector2( 591, 557 )
 collision_layer = 1

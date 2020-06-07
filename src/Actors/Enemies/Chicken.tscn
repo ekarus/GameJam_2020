@@ -130,6 +130,10 @@ animations = [ {
 [node name="Sprite" parent="." index="3"]
 frames = SubResource( 28 )
 
+[node name="CollisionShape2D" parent="." index="4"]
+position = Vector2( 0, 2 )
+rotation = 0.0
+
 [node name="VisibilityEnabler2D" parent="." index="5"]
 position = Vector2( -5.36442e-07, -2.38419e-07 )
 scale = Vector2( 1.7, 1.8 )
