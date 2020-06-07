@@ -50,7 +50,7 @@ position = Vector2( -201.308, 337.257 )
 shape = SubResource( 1 )
 
 [node name="Trap" parent="." instance=ExtResource( 8 )]
-position = Vector2( 430.426, 366.633 )
+position = Vector2( 437.179, 369.414 )
 z_index = -1
 
 [node name="Trap3" parent="." instance=ExtResource( 8 )]
