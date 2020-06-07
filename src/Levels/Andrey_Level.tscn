@@ -22,6 +22,9 @@ extents = Vector2( 683, 15 )
 [node name="AndreyLevel" type="Node2D"]
 script = ExtResource( 6 )
 LIMIT_LEFT = -200
+actions_speed_multiplier = 1.5
+actions_dencity_multiplier = 3.0
+player_hunger_speed = 0.03
 
 [node name="GroundTiles" type="TileMap" parent="."]
 tile_set = ExtResource( 1 )

@@ -239,6 +239,7 @@ speed_up_actions={
 
 [physics]
 
+common/physics_fps=30
 2d/default_gravity=400
 2d/default_gravity_vector=Vector2( 0, 2 )
 
